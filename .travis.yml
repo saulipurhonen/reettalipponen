@@ -8,5 +8,6 @@ deploy:
   script: yarn install && yarn run deploy
   skip_cleanup: true
   keep-history: true
+  fqdn: reettalipponen.art
   on:
     branch: master
