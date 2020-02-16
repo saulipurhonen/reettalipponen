@@ -29,12 +29,18 @@ const Layout = ({ children }) => {
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
+          textAlign: 'center',
+          paddingBottom: '2.5rem'
         }}
       >
         <main>{children}</main>
-        <footer>
+        <footer style={{
+          position: 'absolute',
+          width: '100%',
+          bottom: '0',
+          height: '2.5rem',
+          textAlign: 'center',
+        }}>
           © {new Date().getFullYear()}, Reetta Lipponen
         </footer>
       </div>
