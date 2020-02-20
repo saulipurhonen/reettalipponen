@@ -7,7 +7,7 @@ deploy:
   provider: script
   script: yarn install && yarn run deploy
   skip_cleanup: true
-  keep-history: false
+  # keep-history: false
   fqdn: reettalipponen.art
   on:
     branch: master
