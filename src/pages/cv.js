@@ -123,7 +123,7 @@ const cvData = [
         location: "Keramiikkaveistoksia, Pielisensuun kirkko, Joensuu",
       },
       {
-        years: "11/2011",
+        years: "12/2011-",
         location: "Seimiasetelma, Joensuun taitokortteli",
       },
       {

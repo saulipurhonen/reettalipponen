@@ -18,7 +18,7 @@ const Branding = styled.span`
 const linkList = [
   { label: "Etusivu", target: "/" },
   // { label: "Artist statement", target: "/artist-statement" },
-  { label: "Työt", target: "/works" },
+  { label: "Teokset", target: "/works" },
   { label: "CV", target: "/cv" },
   { label: "Yhteystiedot", target: "/contact" },
 ]

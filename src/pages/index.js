@@ -10,7 +10,8 @@ const HeroContainer = styled(props => <div {...props} />)`
 `
 
 const SideImage = styled.img`
-  max-width: 450px;
+  max-width: 100%;
+  max-height: 42rem;
 `
 
 const IndexPage = () => (
@@ -23,7 +24,7 @@ const IndexPage = () => (
           <p>
             Olen Joensuulaislähtöinen kuvanveistäjä ja asun tällä hetkellä
             Lappeenrannassa. Koulutukseltani olen kuva-artesaani sekä
-            kuvataiteilija amk. Olen vuosien saatossa myös toiminut kuvataiteen
+            kuvataiteilija amk. Olen vuosien saatossa toiminut myös kuvataiteen
             opetustehtävissä sekä kulttuuritapahtumien tuottajana.
           </p>
           <p>
