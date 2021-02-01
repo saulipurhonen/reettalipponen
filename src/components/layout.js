@@ -12,6 +12,8 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.css"
 
+import Helmet from "react-helmet"
+
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -25,31 +27,32 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
-      <div
-        style={{
-          margin: `0 auto`,
-          textAlign: 'left',
-          color: 'black'
-        }}
-      >
+      <Helmet>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        />
+      </Helmet>
+      <div className="container-fluid">
+        <Header></Header>
         <main>{children}</main>
-        <footer style={{
-          position: 'absolute',
-          width: '100%',
-          bottom: '0',
-          height: '2.5rem',
-          textAlign: 'left',
-          color: 'black'
-        }}>
-        <div className="row">
-          <div className="col"></div>
-          <div className="col col-md-7 footer text-center text-md-left">
-            © {new Date().getFullYear()}, Reetta Lipponen
-          </div>
-        </div>
-        </footer>
       </div>
+      {/* <footer
+          style={{
+            position: "absolute",
+            width: "100%",
+            bottom: "0",
+            height: "2.5rem",
+            textAlign: "center",
+            // color: 'rgb(255, 255, 255)'
+          }}
+        >
+          <div className="row">
+            <div className="col footer text-center">
+              © {new Date().getFullYear()} Reetta Lipponen
+            </div>
+          </div>
+        </footer> */}
     </>
   )
 }
