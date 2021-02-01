@@ -2,7 +2,6 @@ import React from "react"
 import Layout from "../components/layout"
 import Image from "../images/web_bg.jpg"
 import SEO from "../components/seo"
-import MyComponent from "../components/visual"
 
 import styled from "styled-components"
 
@@ -19,7 +18,6 @@ const IndexPage = () => (
     <SEO title="Etusivu" />
     <HeroContainer>
       <div className="row">
-        {/* <MyComponent></MyComponent> */}
         <div className="col-12 col-lg-6">
           <h1>Reetta Lipponen</h1>
           <p>
