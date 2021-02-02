@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{"Cuy+":function(e,t,n){"use strict";n.r(t);var a=n("q1tI"),l=n.n(a),o=n("Bl7J"),r=n("vrFN");t.default=function(){return l.a.createElement(o.a,null,l.a.createElement(r.a,{title:"Yhteystiedot"}),l.a.createElement("h1",null,"Yhteystiedot"),l.a.createElement("p",null,"reetta.lipponen@hotmail.com"))}}}]);
+//# sourceMappingURL=component---src-pages-contact-js-a44d6516bfccd4f5611e.js.map
