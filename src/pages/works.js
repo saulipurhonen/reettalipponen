@@ -23,6 +23,8 @@ import Willow3 from "../images/tree2_3.webp"
 import Meeting from "../images/meeting_1.webp"
 import LotusRaku from "../images/lotus_raku.webp"
 
+import Siivous from "../images/siivous.jpg"
+
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -45,41 +47,48 @@ const useStyles = makeStyles(theme => ({
 const works = [
   {
     label: "Lotuksen tarina",
-    description1: "Moniaistillinen installaatio",
+    description1: "Osallistava moniaistillinen installaatio",
     description2: "130 x 52 x 80cm",
-    description2: "2020",
-    description3: "Posliini, kulta ja vesi",
+    description3: "2020",
+    description4: "Posliini, kulta ja vesi",
     images: [Lotus1, Lotus2, Lotus3],
   },
   {
-    label: "Tree of Life",
-    description1: "Yhteisötaideteos",
+    label: "Elämänpuu",
+    description1: "Osallistava teos",
     description2: "120 x 100 x 100cm",
-    description2: "2018",
-    description3: "Kierrätetty metalli, multa ja siemenet",
+    description3: "2018",
+    description4: "Kierrätetty metalli, multa ja siemenet",
     images: [Tree1, Tree2],
   },
   {
     label: "Dancing Old Willow",
     description1: "5 x 3m",
     description2: "2017",
-    description2: "Maali, kattohuopa ja kierrätetty posliini",
+    description3: "Maali, kattohuopa ja kierrätetty posliini",
     images: [Willow1, Willow2, Willow3],
   },
   {
     label: "Kohtaaminen",
     description1: "6 x 13 x 14cm",
     description2: "2017",
-    description2: "Keramiikka",
+    description3: "Keramiikka",
     images: [Meeting],
   },
   {
     label: "Lotus",
     description1: "25 x 25 x 7cm",
     description2: "2020",
-    description2: "Raku-keramiikka",
+    description3: "Raku-keramiikka",
     images: [LotusRaku],
   },
+  // {
+  //   label: "Siivouspäivä",
+  //   description1: "25 x 25 x 7cm",
+  //   description2: "2020",
+  //   description3: "Raku-keramiikka",
+  //   images: [Siivous],
+  // },
 ]
 
 const Image = path => {
@@ -88,7 +97,7 @@ const Image = path => {
 
 const getModalStyle = () => {
   return {
-    top: "2rem",
+    top: "5rem",
     margin: "0px auto",
     display: "inline-block",
     textAlign: "center",
@@ -96,6 +105,7 @@ const getModalStyle = () => {
     left: "50%",
     bottom: "10px",
     transform: "translateX(-50%)",
+    maxWidth: "90%",
   }
 }
 
@@ -114,10 +124,10 @@ const WorksPage = () => {
 
   return (
     <Layout>
-      <SEO title="Työt" />
+      <SEO title="Teokset" />
       <div className="row d-flex justify-content-center">
         <div className="text-center">
-        <h1>Työt</h1>
+        <h1>Teokset</h1>
         </div>
       </div>
 
