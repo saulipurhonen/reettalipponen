@@ -21,11 +21,6 @@ const cvData = [
         location:
           "Kuvallisen ilmaisun perustutkinto, Ammattiopisto Outokumpu",
       },
-      {
-        years: "2002 - 2006",
-        location:
-          "Ylioppilastutkinto, Joensuun Niinivaaran lukio",
-      },
     ],
   },
   {
@@ -112,7 +107,7 @@ const cvData = [
     items: [
       {
         years: "2017",
-        location: "Universumi- tilateos (yhteistyö), Konnunsuon vastaanottokeskus",
+        location: "Universumi- tilateos (yhteistyö), Konnunsuon vastaanottokeskus, Lappeenranta",
       },
       {
         years: "2013",
@@ -123,8 +118,8 @@ const cvData = [
         location: "Keramiikkaveistoksia, Pielisensuun kirkko, Joensuu",
       },
       {
-        years: "12/2011-",
-        location: "Seimiasetelma, Joensuun taitokortteli",
+        years: "2011-",
+        location: "Seimiasetelma, Joulusesongin aikaan, Joensuun Taitokortteli",
       },
       {
         years: "2011",
@@ -163,8 +158,8 @@ const SecondPage = () => {
           <h2>{data.label}</h2>
           <div className="pb-4">
             {data.items.map((item, j) => (
-              <div key={j} className="row pb-3 pb-lg-0">
-                <div className="col-3 col-lg-2">{item.years}</div>
+              <div key={j} className="row pb-3 pb-lg-0 mx-0">
+                <div className="col-3 col-lg-2 pl-0">{item.years}</div>
                 <div className="col col-lg-9">{item.location}</div>
               </div>
             ))}

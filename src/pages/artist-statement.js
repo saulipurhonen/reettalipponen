@@ -18,7 +18,7 @@ const SecondPage = () => (
       Pääasiallinen työskentelymateriaalini on savi ja keramiikka. Veistokseni
       ovat valtaosin esittäviä ja usein niissä on viitteitä luonnosta. Toisaalta
       myös ympäristö- ja yhteisötaide kiinnostavat. Inspiroidun ennemmin
-      tunteesta ja hetken mielijohteesta, kun pitkällisestä pohdinnasta. En
+      tunteesta ja hetken mielijohteesta, kuin pitkällisestä pohdinnasta. En
       suunnittele liikoja, vaan annan teokselle mahdollisuuden muotoutua
       omanlaisekseen.
     </p>

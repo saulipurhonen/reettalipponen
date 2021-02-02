@@ -1,58 +1,56 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-
 import Header from "./header"
 import "./layout.css"
-
 import Helmet from "react-helmet"
+import { makeStyles } from "@material-ui/core/styles"
+
+const useStyles = makeStyles(theme => ({
+  customHtml: {
+    position: "absolute",
+    width: 600,
+    backgroundColor: "none",
+  },
+}))
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
     <>
-      <Helmet>
+      <Helmet htmlAttributes={{
+        class: "customHtml",
+        style: "height: 100%"
+      }}>
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
       </Helmet>
-      <div className="container-fluid">
+      <div
+        className="container-fluid"
+        style={{
+          marginBottom: "2rem",
+        }}
+      >
         <Header></Header>
         <main>{children}</main>
       </div>
-      {/* <footer
-          style={{
-            position: "absolute",
-            width: "100%",
-            bottom: "0",
-            height: "2.5rem",
-            textAlign: "center",
-            // color: 'rgb(255, 255, 255)'
-          }}
-        >
-          <div className="row">
-            <div className="col footer text-center">
-              © {new Date().getFullYear()} Reetta Lipponen
-            </div>
+      <footer
+        style={{
+          width: "100%",
+          bottom: "0",
+          textAlign: "center",
+          clear: "both",
+          position: "relative",
+          height: "2rem",
+          marginTop: "-2rem",
+        }}
+      >
+        <div className="row mx-0">
+          <div className="col footer text-center px-0">
+            © {new Date().getFullYear()} Reetta Lipponen
           </div>
-        </footer> */}
+        </div>
+      </footer>
     </>
   )
 }

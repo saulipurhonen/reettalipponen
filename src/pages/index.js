@@ -18,8 +18,8 @@ const IndexPage = () => (
   <Layout>
     <SEO title="Etusivu" />
     <HeroContainer>
-      <div className="row">
-        <div className="col-12 col-lg-6">
+      <div className="row mx-0">
+        <div className="col-12 col-lg-6 px-0">
           <h1>Reetta Lipponen</h1>
           <p>
             Olen Joensuulaislähtöinen kuvanveistäjä ja asun tällä hetkellä

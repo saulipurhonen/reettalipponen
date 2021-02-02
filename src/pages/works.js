@@ -42,6 +42,9 @@ const useStyles = makeStyles(theme => ({
     top: "-2rem",
     color: "white",
   },
+  bigImage: {
+    maxHeight: "95%",
+  }
 }))
 
 const works = [
@@ -82,13 +85,13 @@ const works = [
     description3: "Raku-keramiikka",
     images: [LotusRaku],
   },
-  // {
-  //   label: "Siivouspäivä",
-  //   description1: "25 x 25 x 7cm",
-  //   description2: "2020",
-  //   description3: "Raku-keramiikka",
-  //   images: [Siivous],
-  // },
+  {
+    label: "Siivouspäivä",
+    description1: "30 x 90cm",
+    description2: "2018",
+    description3: "Rikkalapio, multa ja ohra",
+    images: [Siivous],
+  },
 ]
 
 const Image = path => {
@@ -106,20 +109,19 @@ const getModalStyle = () => {
     bottom: "10px",
     transform: "translateX(-50%)",
     maxWidth: "90%",
+    maxHeight: "100%",
   }
 }
 
 const WorksPage = () => {
   const classes = useStyles()
-  const [showDialog, setShowDialog] = useState(false)
   const [modalStyle] = useState(getModalStyle)
-  const open = () => setShowDialog(true)
-  const close = () => setShowDialog(false)
+  const [showDialog, setShowDialog] = useState(false)
   const [imagePath, setImagePath] = useState("")
 
   const handleClick = (path) => {
     setImagePath(path)
-    open()
+    setShowDialog(true)
   }
 
   return (
@@ -130,8 +132,6 @@ const WorksPage = () => {
         <h1>Teokset</h1>
         </div>
       </div>
-
-
       {works.map((work, i) => (
         <div key={i}y>
           <div className="row d-flex justify-content-center">
@@ -156,14 +156,14 @@ const WorksPage = () => {
           </div>
         </div>
       ))}
-      <Modal open={showDialog} onClose={close}>
+      <Modal open={showDialog} onClose={() => setShowDialog(false)}>
         <div style={modalStyle} className={classes.paper}>
-          <Button className={classes.closeButton} onClick={() => close()}>
+          <Button className={classes.closeButton} onClick={() => setShowDialog(false)}>
             Sulje
             <CloseIcon />
           </Button>
 
-          <img src={imagePath}></img>
+          <img className={classes.bigImage} src={imagePath}></img>
         </div>
       </Modal>
     </Layout>
