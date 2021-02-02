@@ -16,10 +16,7 @@ const useStyles = makeStyles(theme => ({
 const Layout = ({ children }) => {
   return (
     <>
-      <Helmet htmlAttributes={{
-        class: "customHtml",
-        style: "height: 100%"
-      }}>
+      <Helmet >
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
