@@ -13,6 +13,9 @@ const StyledLink = styled(props => <Link {...props} />)`
 const Branding = styled.span`
   font-size: 1.5rem;
   margin-top: -1rem;
+  background: linear-gradient(to right, #30cfd0 0%, #0e6708 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `
 
 const linkList = [

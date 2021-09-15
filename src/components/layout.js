@@ -6,17 +6,22 @@ import Helmet from "react-helmet"
 import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles(theme => ({
-  customHtml: {
-    position: "absolute",
-    width: 600,
-    backgroundColor: "none",
+  footer: {
+    width: "100%",
+    bottom: "0",
+    textAlign: "center",
+    clear: "both",
+    position: "relative",
+    height: "2rem",
+    marginTop: "-2rem",
   },
 }))
 
 const Layout = ({ children }) => {
+  const classes = useStyles()
   return (
     <>
-      <Helmet >
+      <Helmet>
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -31,17 +36,7 @@ const Layout = ({ children }) => {
         <Header></Header>
         <main>{children}</main>
       </div>
-      <footer
-        style={{
-          width: "100%",
-          bottom: "0",
-          textAlign: "center",
-          clear: "both",
-          position: "relative",
-          height: "2rem",
-          marginTop: "-2rem",
-        }}
-      >
+      <footer className={classes.footer}>
         <div className="row mx-0">
           <div className="col footer text-center px-0">
             © {new Date().getFullYear()} Reetta Lipponen

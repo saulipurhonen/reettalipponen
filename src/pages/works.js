@@ -11,7 +11,6 @@ import CloseIcon from "@material-ui/icons/Close"
 import Lotus1 from "../images/lotus_1.webp"
 import Lotus2 from "../images/lotus_2.webp"
 import Lotus3 from "../images/lotus_3.webp"
-import Lotus4 from "../images/lotus_4.webp"
 
 import Tree1 from "../images/tree_1.webp"
 import Tree2 from "../images/tree_2.webp"
@@ -94,10 +93,6 @@ const works = [
   },
 ]
 
-const Image = path => {
-  return <img src={path.path}></img>
-}
-
 const getModalStyle = () => {
   return {
     top: "5rem",
@@ -140,6 +135,7 @@ const WorksPage = () => {
                 <img
                   className={classes.thumbnail}
                   src={work.images[j]}
+                  alt=""
                   onClick={() => handleClick(work.images[j])}
                 ></img>
               </div>
