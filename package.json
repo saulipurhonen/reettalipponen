@@ -29,6 +29,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^5.2.1",
+    "simple-react-lightbox": "*",
     "styled-components": "^5.2.1",
     "vanta": "^0.5.21"
   },

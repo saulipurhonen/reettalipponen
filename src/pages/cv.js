@@ -61,6 +61,10 @@ const cvData = [
     label: "Ryhmänäyttelyt",
     items: [
       {
+        years: "2021",
+        location: "Kaikki Mustaa, Kaapelitehdas, Helsinki",
+      },
+      {
         years: "2020",
         location: "Via Dolorosa, Imatran taidemuseo, Imatra",
       },

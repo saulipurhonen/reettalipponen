@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../components/layout"
-import Image from "../images/web_bg.jpg"
+import Image from "../images/web_bg_2.png"
 import SEO from "../components/seo"
 
 import styled from "styled-components"
@@ -22,25 +22,25 @@ const IndexPage = () => (
         <div className="col-12 col-lg-6 px-0">
           <h1>Reetta Lipponen</h1>
           <p>
-            Olen Joensuulaislähtöinen kuvanveistäjä ja asun tällä hetkellä
-            Lappeenrannassa. Koulutukseltani olen kuva-artesaani sekä
-            kuvataiteilija amk. Olen vuosien saatossa toiminut myös kuvataiteen
-            opetustehtävissä sekä kulttuuritapahtumien tuottajana.
+            Olen Joensuulaislähtöinen, nykyisin Lappeenrannassa asuva
+            kuvataiteilija. Olen toiminut myös kuvataiteen opetustehtävissä sekä
+            kulttuuritapahtumien tuotannoissa. Mielenkiinnon kohteeni
+            keskittyvät kuvanveistoon, sekä ympäristö- ja yhteisötaiteeseen.
           </p>
           <p>
-            Pääasiallinen työskentelymateriaalini on savi ja keramiikka.
-            Veistokseni ovat valtaosin esittäviä ja usein niissä on viitteitä
-            luonnosta. Toisaalta myös ympäristö- ja yhteisötaide kiinnostavat.
             Inspiroidun ennemmin tunteesta ja hetken mielijohteesta, kuin
-            pitkällisestä pohdinnasta. En suunnittele liikoja, vaan annan
-            teokselle mahdollisuuden muotoutua omanlaisekseen.
+            pitkällisestä pohdinnasta. En luonnostele tai suunnittele teoksiani
+            liian tarkasti, vaan annan niiden monesti muotoutua omanlaisekseen,
+            joskus muuttaen suuntaa jopa aivan loppumetreillä. Annan teokselle
+            rakennusaineet ja se itse sanelee ehdot, joita hyväksi käyttäen
+            muokkaan lopputuloksen.
           </p>
           <p>
-            Esittävien veistosten lisäksi olen viehättynyt herättelemään
-            muutakin kuin pelkkää visuaalista maailmaa, koska useammat
-            aistiärsykkeet yleensä voimistavat taiteenkokemusta. Haluan
-            osallistaa katsojan mukaan ja näin ollen muuttaa hänet kokijaksi,
-            osaksi teosta.
+            Tälle sattumanvaraisuudelle vastapainoksi teen paljon myös
+            esittävää, loppuun saakka hiottua käyttökeramiikkaa. Näiden teosten
+            aiheet syntyvät pääosin luonnosta. Tämän lisäksi olen viehättynyt
+            herättelemään visuaalisuuden tueksi myös muita aisteja, jonka avulla
+            muuttaa katsojan kokijaksi, osaksi teosta.
           </p>
         </div>
         <div className="col">

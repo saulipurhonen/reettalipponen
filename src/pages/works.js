@@ -8,22 +8,36 @@ import Modal from "@material-ui/core/Modal"
 import Button from "@material-ui/core/Button"
 import CloseIcon from "@material-ui/icons/Close"
 
-import Lotus1 from "../images/lotus_1.webp"
-import Lotus2 from "../images/lotus_2.webp"
-import Lotus3 from "../images/lotus_3.webp"
+import SimpleReactLightbox from "simple-react-lightbox"
+import { SRLWrapper } from "simple-react-lightbox"
 
-import Tree1 from "../images/tree_1.webp"
-import Tree2 from "../images/tree_2.webp"
+import Lotus1 from "../images/large/lotus_1.jpeg"
+import Lotus2 from "../images/large/lotus_2.jpeg"
+import Lotus3 from "../images/large/lotus_3.jpeg"
+import Lotus1_thumbnail from "../images/thumbnails/lotus_1.jpg"
+import Lotus2_thumbnail from "../images/thumbnails/lotus_2.jpg"
+import Lotus3_thumbnail from "../images/thumbnails/lotus_3.jpg"
 
-import Willow1 from "../images/tree2_1.webp"
-import Willow2 from "../images/tree2_2.webp"
-import Willow3 from "../images/tree2_3.webp"
+import Tree1 from "../images/large/tree_1.jpg"
+import Tree2 from "../images/large/tree_2.jpg"
+import Tree1_thumbnail from "../images/thumbnails/tree_1.jpg"
+import Tree2_thumbnail from "../images/thumbnails/tree_2.jpg"
 
-import Meeting from "../images/meeting_1.webp"
-import LotusRaku from "../images/lotus_raku.webp"
+import Willow1 from "../images/large/tree2_1.jpeg"
+import Willow2 from "../images/large/tree2_2.jpeg"
+import Willow3 from "../images/large/tree2_3.jpeg"
+import Willow1_thumbnail from "../images/thumbnails/tree2_1.jpg"
+import Willow2_thumbnail from "../images/thumbnails/tree2_2.jpg"
+import Willow3_thumbnail from "../images/thumbnails/tree2_3.jpg"
 
-import Siivous from "../images/siivous.jpg"
+import Meeting from "../images/large/meeting_1.jpg"
+import Meeting_thumbnail from "../images/thumbnails/meeting_1.jpg"
 
+import LotusRaku from "../images/large/lotus_raku.jpg"
+import LotusRaku_thumbnail from "../images/thumbnails/lotus_raku.jpg"
+
+import Siivous from "../images/large/siivous.jpg"
+import Siivous_thumbnail from "../images/thumbnails/siivous.jpg"
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -43,7 +57,7 @@ const useStyles = makeStyles(theme => ({
   },
   bigImage: {
     maxHeight: "95%",
-  }
+  },
 }))
 
 const works = [
@@ -54,6 +68,7 @@ const works = [
     description3: "2020",
     description4: "Posliini, kulta ja vesi",
     images: [Lotus1, Lotus2, Lotus3],
+    thumbnails: [Lotus1_thumbnail, Lotus2_thumbnail, Lotus3_thumbnail],
   },
   {
     label: "Elämänpuu",
@@ -62,6 +77,7 @@ const works = [
     description3: "2018",
     description4: "Kierrätetty metalli, multa ja siemenet",
     images: [Tree1, Tree2],
+    thumbnails: [Tree1_thumbnail, Tree2_thumbnail],
   },
   {
     label: "Dancing Old Willow",
@@ -69,6 +85,7 @@ const works = [
     description2: "2017",
     description3: "Maali, kattohuopa ja kierrätetty posliini",
     images: [Willow1, Willow2, Willow3],
+    thumbnails: [Willow1_thumbnail, Willow2_thumbnail, Willow3_thumbnail],
   },
   {
     label: "Kohtaaminen",
@@ -76,6 +93,7 @@ const works = [
     description2: "2017",
     description3: "Keramiikka",
     images: [Meeting],
+    thumbnails: [Meeting_thumbnail],
   },
   {
     label: "Lotus",
@@ -83,6 +101,7 @@ const works = [
     description2: "2020",
     description3: "Raku-keramiikka",
     images: [LotusRaku],
+    thumbnails: [LotusRaku_thumbnail],
   },
   {
     label: "Siivouspäivä",
@@ -90,6 +109,7 @@ const works = [
     description2: "2018",
     description3: "Rikkalapio, multa ja ohra",
     images: [Siivous],
+    thumbnails: [Siivous_thumbnail],
   },
 ]
 
@@ -114,9 +134,22 @@ const WorksPage = () => {
   const [showDialog, setShowDialog] = useState(false)
   const [imagePath, setImagePath] = useState("")
 
-  const handleClick = (path) => {
+  const handleClick = path => {
     setImagePath(path)
     setShowDialog(true)
+  }
+
+  const lightboxOptions = {
+    settings: {
+      autoplaySpeed: 0,
+      disableWheelControls: true,
+    },
+    buttons: {
+      showDownloadButton: false,
+    },
+    thumbnails: {
+      showThumbnails: false,
+    },
   }
 
   return (
@@ -124,37 +157,49 @@ const WorksPage = () => {
       <SEO title="Teokset" />
       <div className="row d-flex justify-content-center">
         <div className="text-center">
-        <h1>Teokset</h1>
+          <h1>Teokset</h1>
         </div>
       </div>
+
       {works.map((work, i) => (
-        <div key={i}y>
-          <div className="row d-flex justify-content-center">
-            {work.images.map((img, j) => (
-              <div key={j} className="col-auto pt-1">
-                <img
-                  className={classes.thumbnail}
-                  src={work.images[j]}
-                  alt=""
-                  onClick={() => handleClick(work.images[j])}
-                ></img>
+        <SimpleReactLightbox>
+          <SRLWrapper options={lightboxOptions}>
+            <div key={i} y>
+              <div className="row d-flex justify-content-center">
+                {work.images.map((img, j) => (
+                  <div key={j} className="col-auto pt-1">
+                    <a href={img}>
+                    <img
+                      className={classes.thumbnail}
+                      src={work.thumbnails[j]}
+                      alt=""
+                      // onClick={() => handleClick(img)}
+                    ></img>
+                    </a>
+
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className="row d-flex justify-content-center pb-5">
-            <div className="col-auto text-center">
-              <span className="d-block">{work.label}</span>
-              <span className="d-block">{work.description1}</span>
-              <span className="d-block">{work.description2}</span>
-              <span className="d-block">{work.description3}</span>
-              <span className="d-block">{work?.description4}</span>
+              <div className="row d-flex justify-content-center pb-5">
+                <div className="col-auto text-center">
+                  <span className="d-block">{work.label}</span>
+                  <span className="d-block">{work.description1}</span>
+                  <span className="d-block">{work.description2}</span>
+                  <span className="d-block">{work.description3}</span>
+                  <span className="d-block">{work?.description4}</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </SRLWrapper>
+        </SimpleReactLightbox>
       ))}
+
       <Modal open={showDialog} onClose={() => setShowDialog(false)}>
         <div style={modalStyle} className={classes.paper}>
-          <Button className={classes.closeButton} onClick={() => setShowDialog(false)}>
+          <Button
+            className={classes.closeButton}
+            onClick={() => setShowDialog(false)}
+          >
             Sulje
             <CloseIcon />
           </Button>

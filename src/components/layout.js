@@ -14,6 +14,8 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     height: "2rem",
     marginTop: "-2rem",
+    position: "absolute",
+    bottom: "0"
   },
 }))
 
