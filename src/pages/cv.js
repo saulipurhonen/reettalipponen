@@ -35,7 +35,7 @@ const cvData = [
         location: "Ohjaaja, Harrastehaavi -hanke, Lappeenrannan nuorisotoimi",
       },
       {
-        years: "2022 -",
+        years: "2022",
         location: "Koulutaiteilija, Yhteisötaiteen kurssi, Sammonlahden yläkoulu, Lappeenranta",
       },
       {
@@ -74,7 +74,7 @@ const cvData = [
     ],
   },
   {
-    label: "Ryhmänäyttelyt",
+    label: "Teoksia yhteisnäyttelyissä",
     items: [
       {
         years: "2023",
@@ -86,7 +86,7 @@ const cvData = [
       },
       {
         years: "2023",
-        location: "Musta Lista -kollektiivin tammikuun näyttelym kulttuuritila Nuijamies, Lappeenranta",
+        location: "Musta Lista -kollektiivin tammikuun näyttelyn kulttuuritila Nuijamies, Lappeenranta",
       },
       {
         years: "2022",
@@ -151,7 +151,7 @@ const cvData = [
     ],
   },
   {
-    label: "Julkiset teokset",
+    label: "Julkiset ja puolijulkiset teokset",
     items: [
       {
         years: "2021",
@@ -208,6 +208,23 @@ const cvData = [
       }
     ],
   },
+  {
+    label: "Jäsenyydet",
+    items: [
+      {
+        location: "Etelä-Karjalan taiteilijaseura",
+      },
+      {
+        location: "Musta Lista -kollektiivi",
+      },
+      {
+        location: "Popkatu-yhdistys, hallituksen jäsen",
+      },
+      {
+        location: "Etelä-Karjalan taiteilijaseura, hallituksen varajäsen",
+      },
+    ],
+  },
 ]
 
 const SecondPage = () => {
@@ -227,7 +244,7 @@ const SecondPage = () => {
           <div className="pb-4">
             {data.items.map((item, j) => (
               <div key={j} className="row pb-3 pb-lg-0 mx-0">
-                <div className="col-3 col-lg-2 pl-0">{item.years}</div>
+                {item.years && <div className="col-3 col-lg-2 pl-0">{item.years}</div>}
                 <div className="col col-lg-9">{item.location}</div>
               </div>
             ))}
