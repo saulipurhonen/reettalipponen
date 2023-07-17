@@ -10,7 +10,7 @@ const cvData = [
       {
         years: "2016 - 2020",
         location:
-          "Kulttuurialan amk-tutkinto, kuvataiteilija, LAB-ammattikorkeakoulu",
+          "Kulttuurialan amk-tutkinto, kuvataiteilija, LAB-ammattikorkeakoulu, Lappeenranta",
       },
       {
         years: "2014 - 2015",
@@ -24,19 +24,35 @@ const cvData = [
     ],
   },
   {
-    label: "Työhistoria",
+    label: "Kulttuurialan työkokemus",
     items: [
+      {
+        years: "2023 -",
+        location: "Koulutaiteilija, Metamorfoosi -hanke, Sammonlahden yläkoulu, Lappeenranta",
+      },
+      {
+        years: "2022 - 2023",
+        location: "Ohjaaja, Harrastehaavi -hanke, Lappeenrannan nuorisotoimi",
+      },
+      {
+        years: "2022 -",
+        location: "Koulutaiteilija, Yhteisötaiteen kurssi, Sammonlahden yläkoulu, Lappeenranta",
+      },
+      {
+        years: "2022 -",
+        location: "Tuntiopettaja, kuvataiteen perusopetus, Savitaipaleen kansalaisopisto",
+      },
       {
         years: "2018",
         location: "Kuvataideopettaja, maahanmuuttajien kuvataidetyöpaja, Imatra",
       },
       {
-        years: "2017 -",
+        years: "2017 - 2023",
         location: "Tuottaja, LastenPop-kulttuuritapahtuma, Joensuu",
       },
       {
         years: "2015 - 2016",
-        location: "Kuvataideopettaja, Lasten- ja nuorten kuvataideleiri,  Joensuun seudun kansalaisopisto",
+        location: "Kuvataideopettaja, Lasten- ja nuorten kuvataideleiri, Joensuun seudun kansalaisopisto",
       },
       {
         years: "2013 - 2015",
@@ -44,7 +60,7 @@ const cvData = [
       },
       {
         years: "2012 - 2016",
-        location: "Tuntiopettaja, lasten- ja nuorten kuvataiteen perusopetus, Joensuun seudun kansalaisopisto",
+        location: "Tuntiopettaja, kuvataiteen perusopetus, Joensuun seudun kansalaisopisto",
       },
     ],
   },
@@ -60,6 +76,34 @@ const cvData = [
   {
     label: "Ryhmänäyttelyt",
     items: [
+      {
+        years: "2023",
+        location: "Päin punaista, Taidekeskus Ahjo, Joensuu",
+      },
+      {
+        years: "2023",
+        location: "Näyteikkunataidenäyttely, kauppakeskus Opri, Lappeenranta",
+      },
+      {
+        years: "2023",
+        location: "Musta Lista -kollektiivin tammikuun näyttelym kulttuuritila Nuijamies, Lappeenranta",
+      },
+      {
+        years: "2022",
+        location: "Patoan metsästä majan - EKTS uusien jäsenten näyttely, Taidekeskus ITÄ, Lappeenranta",
+      },
+      {
+        years: "2022",
+        location: "Kesänäyttely, Taideolohuone Katariina, Lappeenranta",
+      },
+      {
+        years: "2022",
+        location: "X-Tempore, Walleniuksen Wapriikki, Juupajoki",
+      },
+      {
+        years: "2022",
+        location: "Yksinkeltaista, Vihreä makasiini, Lappeenranta",
+      },
       {
         years: "2021",
         location: "Kaikki Mustaa, Kaapelitehdas, Helsinki",
@@ -110,6 +154,14 @@ const cvData = [
     label: "Julkiset teokset",
     items: [
       {
+        years: "2021",
+        location: "Vesi, ilma ja maa- akustiikkataulut, Lappeenrannan kirkko",
+      },
+      {
+        years: "2020",
+        location: "Tihku, Urkin Piilopirtin taidepuutarha, Nokia",
+      },
+      {
         years: "2017",
         location: "Universumi- tilateos (yhteistyö), Konnunsuon vastaanottokeskus, Lappeenranta",
       },
@@ -138,6 +190,18 @@ const cvData = [
   {
     label: "Yhteisötaideteokset",
     items: [
+      {
+        years: "2022",
+        location: "Värit, Pohjoinen rantapuisto, Joensuu",
+      },
+      {
+        years: "2022",
+        location: "Värit, Mäntylän päiväkodin piha, Lappeenranta",
+      },
+      {
+        years: "2022",
+        location: "Hyönteishotellikylä, Taideolohuone Katariinan piha, Lappeenrannan linnoitus",
+      },
       {
         years: "2019",
         location: "Metsän peitto, LastenPop-kulttuuritapahtuma, Joensuu",
