@@ -1,13 +1,11 @@
 <script>
+	import Meta from '$lib/components/Meta.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import PageContent from '$lib/components/PageContent.svelte';
 	export let data;
 </script>
 
-<svelte:head>
-	<title>CV</title>
-	<meta name="description" content="CV" />
-</svelte:head>
+<Meta title="CV" description="CV TODO" />
 
 <PageHeader title="CV" />
 
