@@ -3,8 +3,8 @@
 </script>
 
 <header>
-	<h1 class="text-6xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8 text-slate-50">
-		reettalipponen.art
+	<h1 class="base:text-4xl md:text-6xl font-bold tracking-tighter leading-tight text-slate-50 break-word">
+		reettalipponen<wbr>.art
 	</h1>
 </header>
 
