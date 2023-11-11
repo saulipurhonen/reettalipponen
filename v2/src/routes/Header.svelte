@@ -15,8 +15,8 @@
 			<nav class="text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">
 				<ul class="flex space-x-8 justify-end">
 					{#each navItems as item}
-						<li class="hover:text-sky-500 dark:hover:text-sky-400">
-							<a href={item.href} class="hover:text-sky-500 dark:hover:text-sky-400">
+						<li>
+							<a href={item.href} class="hover:text-emerald-500">
 								{item.label}
 							</a>
 						</li>

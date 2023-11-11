@@ -4,7 +4,7 @@ import { GetPageContentByIdQuery } from '$lib/queries';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 export async function load() {
-	const response = await contentfulFetch(GetPageContentByIdQuery('6QV9zwkdRBchyCu2JbdmZE'));
+	const response = await contentfulFetch(GetPageContentByIdQuery('2TUBsWx1GDFEmuNGNxJoMH'));
 
 	if (!response.ok) {
 		throw error(404, {

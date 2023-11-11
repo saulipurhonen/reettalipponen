@@ -10,9 +10,7 @@
 
 <section class="container py-20">
 	<div class="max-w-xl backdrop-blur-sm">
-		{#each data.pageContent as section}
-			<p class="py-2 text-slate-50">{section.value}</p>
-		{/each}
+			<p class="py-2 text-slate-50">{@html data.pageContent}</p>
 	</div>
 </section>
 
