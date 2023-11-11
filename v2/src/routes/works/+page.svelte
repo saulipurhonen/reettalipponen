@@ -1,5 +1,6 @@
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import PageContent from '$lib/components/PageContent.svelte';
 </script>
 
 <svelte:head>
@@ -9,8 +10,8 @@
 
 <PageHeader title="Teokset" />
 
-<div class="text-column">
+<PageContent>
 	<p>
 		TODO
 	</p>
-</div>
+</PageContent>
