@@ -1,4 +1,5 @@
 <script>
+	import PageHeader from '$lib/components/PageHeader.svelte';
 	export let data;
 </script>
 
@@ -7,9 +8,9 @@
 	<meta name="description" content="Yhteystiedot" />
 </svelte:head>
 
-<div class="text-column">
-	<h1>Yhteystiedot</h1>
+<PageHeader title="Yhteystiedot" />
 
+<div class="text-column">
 	<p>
 		{@html data.pageContent}
 	</p>
