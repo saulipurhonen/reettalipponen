@@ -26,10 +26,6 @@ export async function load() {
 
 	const { content } = data.pageText;
 
-	// const pageContent = content.json.content.flatMap(
-	// 	(content: { content: unknown[] }) => content.content
-	// );
-
 	const pageContent = documentToHtmlString(content.json);
 
 	return {

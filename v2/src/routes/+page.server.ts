@@ -1,18 +1,6 @@
 import { error } from '@sveltejs/kit';
 import contentfulFetch from '$lib/contentfulFetch';
 
-// const query = `
-// {
-// 	employeeCollection{
-//     items{
-//       name,
-//       jobTitle
-//       startDate
-//     }
-//   }
-// }
-// `
-
 const getPageContentByIdQuery = (id: string) => `query {
   pageText(id: "${id}") {
     heading
