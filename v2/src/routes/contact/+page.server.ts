@@ -22,8 +22,6 @@ export async function load() {
 
 	const { data } = await response.json();
 
-	console.log(JSON.stringify(data));
-
 	const { content } = data.pageText;
 
 	const pageContent = documentToHtmlString(content.json);
