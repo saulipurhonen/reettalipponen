@@ -1,18 +1,10 @@
 import { error } from '@sveltejs/kit';
 import contentfulFetch from '$lib/contentfulFetch';
+import { GetPageContentByIdQuery } from '$lib/queries';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
-const getPageContentByIdQuery = (id: string) => `query {
-  pageText(id: "${id}") {
-    heading
-    content {
-      json
-    }
-  }
-}`;
-
 export async function load() {
-	const response = await contentfulFetch(getPageContentByIdQuery('2TUBsWx1GDFEmuNGNxJoMH'));
+	const response = await contentfulFetch(GetPageContentByIdQuery('2TUBsWx1GDFEmuNGNxJoMH'));
 
 	if (!response.ok) {
 		throw error(404, {
