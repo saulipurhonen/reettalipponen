@@ -1,3 +1,7 @@
+<script>
+	export let data;
+</script>
+
 <svelte:head>
 	<title>Yhteystiedot</title>
 	<meta name="description" content="Yhteystiedot" />
@@ -7,6 +11,6 @@
 	<h1>Yhteystiedot</h1>
 
 	<p>
-		TODO
+		{@html data.pageContent}
 	</p>
 </div>
