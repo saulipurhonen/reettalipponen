@@ -1,5 +1,6 @@
 import { error } from '@sveltejs/kit';
 import contentfulFetch from '$lib/contentfulFetch';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 const getPageContentByIdQuery = (id: string) => `query {
   pageText(id: "${id}") {
@@ -23,9 +24,7 @@ export async function load() {
 
 	const { content } = data.pageText;
 
-	const pageContent = content.json.content.flatMap(
-		(content: { content: unknown[] }) => content.content
-	);
+	const pageContent = documentToHtmlString(content.json);
 
 	return {
 		pageContent
