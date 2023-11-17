@@ -7,7 +7,7 @@ interface Entry {
 }
 
 interface Section {
-  heading: string;
+  title: string;
   entries: Entry[];
 }
 
@@ -15,8 +15,8 @@ interface ApiResponse {
   data: {
     cvSectionCollection: {
       items: {
-        sectionHeading: string;
-        sectionEntriesCollection: {
+        title: string;
+        entriesCollection: {
           items: {
             date: string;
             content: string;
@@ -32,8 +32,8 @@ const query = `
 	{
 		cvSectionCollection {
 			items {
-				sectionHeading,
-				sectionEntriesCollection {
+				title,
+				entriesCollection {
 					items {
 						date,
 						content
@@ -61,8 +61,8 @@ export async function load(): Promise<{
   return {
     fetching,
     sections: data.cvSectionCollection.items.map((section) => ({
-      heading: section.sectionHeading,
-      entries: section.sectionEntriesCollection.items.map((entry) => ({
+      title: section.title,
+      entries: section.entriesCollection.items.map((entry) => ({
         date: entry.date,
         content: entry.content,
       })),
