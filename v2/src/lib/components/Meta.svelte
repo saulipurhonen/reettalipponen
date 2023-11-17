@@ -10,6 +10,6 @@
 </script>
 
 <svelte:head>
-  <title>{title}</title>
+  <title>{title} - Reetta Lipponen Art</title>
   <meta name="description" content={description} />
 </svelte:head>

@@ -1,11 +1,14 @@
 <script>
+	import { page } from '$app/stores';
   import Footer from '$lib/components/Footer.svelte';
   import Header from './Header.svelte';
   import '../app.css';
   import './styles.css';
+
+	$: isHomePage = $page?.url?.pathname === '/';
 </script>
 
-<div class="app">
+<div class="app" class:home={isHomePage}>
   <Header />
 
   <main>
@@ -20,9 +23,12 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+  }
+
+	.home {
     background-image: url('$lib//images/bg_mock.jpg');
     background-size: cover;
-  }
+	}
 
   main {
     flex: 1;
