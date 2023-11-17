@@ -4,21 +4,21 @@ import { GetPageContentByIdQuery } from '$lib/queries';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 export async function load() {
-	const response = await contentfulFetch(GetPageContentByIdQuery('2TUBsWx1GDFEmuNGNxJoMH'));
+  const response = await contentfulFetch(GetPageContentByIdQuery('2TUBsWx1GDFEmuNGNxJoMH'));
 
-	if (!response.ok) {
-		throw error(404, {
-			message: response.statusText
-		});
-	}
+  if (!response.ok) {
+    throw error(404, {
+      message: response.statusText,
+    });
+  }
 
-	const { data } = await response.json();
+  const { data } = await response.json();
 
-	const { content } = data.pageText;
+  const { content } = data.pageText;
 
-	const pageContent = documentToHtmlString(content.json);
+  const pageContent = documentToHtmlString(content.json);
 
-	return {
-		pageContent
-	};
+  return {
+    pageContent,
+  };
 }

@@ -1,7 +1,7 @@
-import { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } from '$env/static/private'
+import { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } from '$env/static/private';
 
 const contentfulFetch = async (query: unknown) => {
-  const url = 'https://graphql.contentful.com/content/v1/spaces/' + CONTENTFUL_SPACE_ID
+  const url = 'https://graphql.contentful.com/content/v1/spaces/' + CONTENTFUL_SPACE_ID;
 
   const response = await fetch(url, {
     method: 'POST',
@@ -10,9 +10,9 @@ const contentfulFetch = async (query: unknown) => {
       Authorization: 'Bearer ' + CONTENTFUL_ACCESS_TOKEN,
     },
     body: JSON.stringify({ query }),
-  })
+  });
 
-  return response
-}
+  return response;
+};
 
-export default contentfulFetch
+export default contentfulFetch;
