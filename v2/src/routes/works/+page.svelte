@@ -1,12 +1,15 @@
-<svelte:head>
-	<title>Teokset</title>
-	<meta name="description" content="Teokset" />
-</svelte:head>
+<script>
+	import Meta from '$lib/components/Meta.svelte';
+	import PageHeader from '$lib/components/PageHeader.svelte';
+	import PageContent from '$lib/components/PageContent.svelte';
+</script>
 
-<div class="text-column">
-	<h1>Teokset</h1>
+<Meta title="Teokset" description="Teokset TODO" />
 
+<PageHeader title="Teokset" />
+
+<PageContent>
 	<p>
 		TODO
 	</p>
-</div>
+</PageContent>

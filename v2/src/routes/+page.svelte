@@ -1,28 +1,14 @@
 <script>
+	import Meta from '$lib/components/Meta.svelte';
+	import PageHeader from '$lib/components/PageHeader.svelte';
+	import PageContent from '$lib/components/PageContent.svelte';
 	export let data;
 </script>
 
-<header>
-	<h1 class="base:text-4xl md:text-6xl font-bold tracking-tighter leading-tight text-slate-50 break-word">
-		reettalipponen<wbr>.art
-	</h1>
-</header>
+<Meta title="reettalipponen.art" description="reettalipponen.art TODO" />
 
-<section class="container py-20">
-	<div class="max-w-xl backdrop-blur-sm">
-			<p class="py-2 text-slate-50">{@html data.pageContent}</p>
-	</div>
-</section>
+<PageHeader title="reettalipponen.art" />
 
-<style>
-	h1 {
-		display: block;
-		padding-top: 50px;
-		text-transform: uppercase;
-	}
-
-	h1,
-	p {
-		text-align: left;
-	}
-</style>
+<PageContent>
+	{@html data.pageContent}
+</PageContent>
