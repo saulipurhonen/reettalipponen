@@ -42,30 +42,30 @@ const query = `
 			}
 		}
 	}
-`
+`;
 
 export async function load(): Promise<{
-	fetching: boolean;
-	sections: Section[];
+  fetching: boolean;
+  sections: Section[];
 }> {
-	const response = await contentfulFetch(query);
+  const response = await contentfulFetch(query);
 
-	if (!response.ok) {
-		throw error(404, {
-			message: response.statusText
-		});
-	}
+  if (!response.ok) {
+    throw error(404, {
+      message: response.statusText,
+    });
+  }
 
-	const { data, fetching }: ApiResponse = await response.json();
+  const { data, fetching }: ApiResponse = await response.json();
 
-	return {
-		fetching,
-		sections: data.cvSectionCollection.items.map(section => ({
-			heading: section.sectionHeading,
-			entries: section.sectionEntriesCollection.items.map(entry => ({
-				date: entry.date,
-				content: entry.content
-			}))
-		}))
-	};
+  return {
+    fetching,
+    sections: data.cvSectionCollection.items.map((section) => ({
+      heading: section.sectionHeading,
+      entries: section.sectionEntriesCollection.items.map((entry) => ({
+        date: entry.date,
+        content: entry.content,
+      })),
+    })),
+  };
 }
