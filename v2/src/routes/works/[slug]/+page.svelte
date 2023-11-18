@@ -26,9 +26,11 @@
   $: currentWork = worksPages.find(work => work.slug === $page.params.slug)
 </script>
 
-<Meta title={currentWork.title} description={currentWork.title} />
+{#if currentWork}
+  <Meta title={currentWork.title} description={currentWork.title} />
 
-<PageHeader title={currentWork.title} />
+  <PageHeader title={currentWork.title} />
+{/if}
 
 <PageContent>
   <p>TODO</p>
