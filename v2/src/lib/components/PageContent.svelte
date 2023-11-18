@@ -1,21 +1,32 @@
 <script>
-    import { gsap } from 'gsap';
+  import { gsap } from 'gsap';
 
-    /**
+  /**
    * @type HTMLElement
    */
-    let contentContainer;
+  let contentContainer;
 
-    $: if (contentContainer) {
-    gsap.set(contentContainer, { opacity: 0 });
+  $: if (contentContainer) {
     contentContainer.classList.remove('invisible');
-    gsap.to(contentContainer, {
-      opacity: 1,
-      duration: 1.5,
-      ease: 'power2.inOut',
-    });
-  }
 
+    const paragraphs = document.querySelectorAll('.animate');
+
+    if (paragraphs.length) {
+      gsap.set(paragraphs, { opacity: 1, y: -20 });
+
+      const tl = gsap.timeline({ defaults: { duration: 1.0, ease: 'power2.inOut' } });
+
+      tl.from(
+        paragraphs,
+        {
+          opacity: 0,
+          y: 0,
+          stagger: 0.1,
+        },
+        0.25,
+      );
+    }
+  }
 </script>
 
 <section bind:this={contentContainer} class="container py-20 invisible">
