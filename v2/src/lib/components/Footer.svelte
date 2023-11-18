@@ -3,7 +3,7 @@
 </script>
 
 <footer>
-  <p>© {currentYear} Reetta Lipponen</p>
+  <p>© {currentYear} Reetta Lipponen | Website by partner in crime</p>
 </footer>
 
 <style>
