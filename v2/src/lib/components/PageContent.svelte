@@ -9,7 +9,7 @@
   $: if (contentContainer) {
     contentContainer.classList.remove('invisible');
 
-    const paragraphs = document.querySelectorAll('.animate');
+    const paragraphs = document.querySelectorAll('.reveal');
 
     if (paragraphs.length) {
       gsap.set(paragraphs, { opacity: 1, y: -20 });
