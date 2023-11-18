@@ -12,6 +12,11 @@ body {
   margin: 0;
 }
 
+a {
+  color: theme('colors.emerald.600');
+  text-decoration: underline;
+}
+
 p {
   margin: 0;
   padding: 0.5rem 0;

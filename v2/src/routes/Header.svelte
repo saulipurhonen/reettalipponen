@@ -26,7 +26,7 @@
               <a
                 href={item.href}
                 aria-current={item.href === currentPath ? 'page' : undefined}
-                class="hover:text-emerald-500"
+                class="text-white no-underline hover:text-emerald-500"
                 class:active={item.href === currentPath}
               >
                 {item.label}

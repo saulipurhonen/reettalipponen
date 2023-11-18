@@ -3,7 +3,10 @@
 </script>
 
 <footer>
-  <p>© {currentYear} Reetta Lipponen | Website by partner in crime</p>
+  <p>
+    © {currentYear} Reetta Lipponen | Website by
+    <a href="https://github.com/saulipurhonen" target="_blank">partner in crime</a>
+  </p>
 </footer>
 
 <style>
