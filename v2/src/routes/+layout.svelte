@@ -14,9 +14,16 @@
   /**
    * @type HTMLElement
    */
+  let appContainer;
+
+  /**
+   * @type HTMLElement
+   */
   let mainContainer;
 
   let isNavigating = false;
+
+  const pageInTransitionClass = 'page-in-transition';
 
   beforeNavigate((navigation) => {
     if (isNavigating || navigation.to?.route.id === currentPath) return;
@@ -29,6 +36,8 @@
     const newIndex = hrefs.indexOf(navigation.to?.url.pathname ?? '');
 
     navigation.cancel();
+
+    appContainer.classList.add(pageInTransitionClass);
 
     const tl = gsap.timeline({
       defaults: { duration: 0.4, ease: 'power2.inOut' },
@@ -56,9 +65,14 @@
   });
 
   afterNavigate(() => {
-    const tl = gsap.timeline({ defaults: { duration: 0.4, ease: 'power2.inOut' } });
+    const tl = gsap.timeline({
+      defaults: { duration: 0.4, ease: 'power2.inOut' },
+      onComplete: () => {
+        appContainer.classList.remove(pageInTransitionClass);
+      },
+    });
 
-    gsap.to(mainContainer, { x: 0, opacity: 1, ease: 'power2.inOut' });
+    tl.to(mainContainer, { x: 0, opacity: 1 });
   });
 
   /**
@@ -71,7 +85,7 @@
   }
 </script>
 
-<div class="app" class:home={isHomePage} class:in-transition={isNavigating}>
+<div bind:this={appContainer} class="app" class:home={isHomePage}>
   <Header />
 
   <main bind:this={mainContainer}>
@@ -91,10 +105,6 @@
   .home {
     background-image: url('$lib//images/bg_mock.jpg');
     background-size: cover;
-  }
-
-  .in-transition {
-    overflow: hidden;
   }
 
   main {
