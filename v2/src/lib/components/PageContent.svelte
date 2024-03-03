@@ -1,6 +1,6 @@
 <script>
   import { page } from '$app/stores';
-  // import { gsap } from 'gsap';
+  import { gsap } from 'gsap';
 
   /**
    * @type HTMLElement
@@ -15,21 +15,21 @@
 
     const paragraphs = document.querySelectorAll('.reveal');
 
-    // if (paragraphs.length) {
-    //   gsap.set(paragraphs, { opacity: 1, y: -20 });
+    if (paragraphs.length) {
+      gsap.set(paragraphs, { opacity: 1, y: -20 });
 
-    //   const tl = gsap.timeline({ defaults: { duration: 1.0, ease: 'power2.inOut' } });
+      const tl = gsap.timeline({ defaults: { duration: 1.0, ease: 'power2.inOut' } });
 
-    //   tl.from(
-    //     paragraphs,
-    //     {
-    //       opacity: 0,
-    //       y: 0,
-    //       stagger: 0.1,
-    //     },
-    //     0.25,
-    //   );
-    // }
+      tl.from(
+        paragraphs,
+        {
+          opacity: 0,
+          y: 0,
+          stagger: 0.1,
+        },
+        0.25,
+      );
+    }
   }
 </script>
 
