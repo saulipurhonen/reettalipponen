@@ -21,7 +21,7 @@ export async function load() {
   const options = {
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node: Block | Inline, next: Next) =>
-        `<p class="animate">${next(node.content)}</p>`,
+        `<p class="reveal">${next(node.content)}</p>`,
     },
   };
 

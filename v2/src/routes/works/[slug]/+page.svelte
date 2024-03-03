@@ -33,5 +33,5 @@
 {/if}
 
 <PageContent>
-  <p>TODO</p>
+  <p class="reveal">TODO</p>
 </PageContent>

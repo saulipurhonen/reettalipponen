@@ -1,15 +1,19 @@
 <script>
+  import { page } from '$app/stores';
   import { gsap } from 'gsap';
 
   /**
    * @type HTMLElement
    */
   let contentContainer;
-
-  $: if (contentContainer) {
+  $: currentPath = $page?.url?.pathname;
+  // TODO: Restart animation when in slug route change
+  // Current path check is a workaround for this for now.
+  // Better approach would be resetting the animation when slug changes.
+  $: if (contentContainer && currentPath) {
     contentContainer.classList.remove('invisible');
 
-    const paragraphs = document.querySelectorAll('.animate');
+    const paragraphs = document.querySelectorAll('.reveal');
 
     if (paragraphs.length) {
       gsap.set(paragraphs, { opacity: 1, y: -20 });

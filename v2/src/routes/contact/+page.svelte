@@ -10,5 +10,7 @@
 <PageHeader title="Yhteystiedot" />
 
 <PageContent>
-  {@html data.pageContent}
+  <div class="reveal">
+    {@html data.pageContent}
+  </div>
 </PageContent>
