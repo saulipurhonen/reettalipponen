@@ -25,6 +25,9 @@
 
   const pageInTransitionClass = 'page-in-transition';
 
+  const duration = 0.3;
+  const ease = 'power2.inOut';
+
   beforeNavigate((navigation) => {
     if (isNavigating || !navigation.to || navigation.to?.route.id === currentPath) return;
 
@@ -40,7 +43,7 @@
     appContainer.classList.add(pageInTransitionClass);
 
     const tl = gsap.timeline({
-      defaults: { duration: 0.4, ease: 'power2.inOut' },
+      defaults: { duration, ease },
       onComplete: () => {
         isNavigating = false;
         if (navigation.to) {
@@ -53,7 +56,7 @@
 
     const goLeft = oldIndex > newIndex;
 
-    const x = 500;
+    const x = 50;
 
     const fadeToValue = goLeft ? x : x * -1;
     const completionValue = goLeft ? x * -1 : x;
@@ -66,7 +69,7 @@
 
   afterNavigate(() => {
     const tl = gsap.timeline({
-      defaults: { duration: 0.4, ease: 'power2.inOut' },
+      defaults: { duration, ease },
       onComplete: () => {
         appContainer.classList.remove(pageInTransitionClass);
       },
