@@ -31,7 +31,7 @@
     navigation.cancel();
 
     const tl = gsap.timeline({
-      defaults: { duration: 0.5, ease: 'power2.inOut' },
+      defaults: { duration: 0.4, ease: 'power2.inOut' },
       onComplete: () => {
         isNavigating = false;
         if (navigation.to) {
@@ -39,6 +39,8 @@
         }
       },
     });
+
+    if (oldIndex === newIndex) return;
 
     const goLeft = oldIndex > newIndex;
 
@@ -54,9 +56,9 @@
   });
 
   afterNavigate(() => {
-    const tl = gsap.timeline({ defaults: { duration: 0.5, ease: 'power2.inOut' } });
+    const tl = gsap.timeline({ defaults: { duration: 0.4, ease: 'power2.inOut' } });
 
-    tl.to(mainContainer, { x: 0, opacity: 1 });
+    gsap.to(mainContainer, { x: 0, opacity: 1, ease: 'power2.inOut' });
   });
 
   /**
