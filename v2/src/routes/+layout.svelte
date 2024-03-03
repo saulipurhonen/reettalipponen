@@ -26,7 +26,7 @@
   const pageInTransitionClass = 'page-in-transition';
 
   beforeNavigate((navigation) => {
-    if (isNavigating || navigation.to?.route.id === currentPath) return;
+    if (isNavigating || !navigation.to || navigation.to?.route.id === currentPath) return;
 
     isNavigating = true;
 
