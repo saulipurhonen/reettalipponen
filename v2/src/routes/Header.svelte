@@ -1,8 +1,18 @@
 <script>
   import { page } from '$app/stores';
   import { NAVIGATION_ITEMS } from '$lib/constants/navigation';
+  import { beforeNavigate } from '$app/navigation';
 
   $: currentPath = $page?.url?.pathname;
+
+  /**
+   * @type {string | undefined}
+   */
+  let activePath;
+
+  beforeNavigate((navigate) => {
+    activePath = navigate.to?.url.pathname;
+  });
 </script>
 
 <header
@@ -18,7 +28,7 @@
                 href={item.href}
                 aria-current={item.href === currentPath ? 'page' : undefined}
                 class="text-white no-underline hover:text-emerald-500"
-                class:active={item.href === currentPath}
+                class:active={item.href === (activePath ?? currentPath)}
               >
                 {item.label}
               </a>

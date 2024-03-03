@@ -14,12 +14,22 @@
   /**
    * @type HTMLElement
    */
+  let appContainer;
+
+  /**
+   * @type HTMLElement
+   */
   let mainContainer;
 
   let isNavigating = false;
 
+  const pageInTransitionClass = 'page-in-transition';
+
+  const duration = 0.3;
+  const ease = 'power2.inOut';
+
   beforeNavigate((navigation) => {
-    if (isNavigating || navigation.to?.route.id === currentPath) return;
+    if (isNavigating || !navigation.to || navigation.to?.route.id === currentPath) return;
 
     isNavigating = true;
 
@@ -30,8 +40,10 @@
 
     navigation.cancel();
 
+    appContainer.classList.add(pageInTransitionClass);
+
     const tl = gsap.timeline({
-      defaults: { duration: 0.5, ease: 'power2.inOut' },
+      defaults: { duration, ease },
       onComplete: () => {
         isNavigating = false;
         if (navigation.to) {
@@ -40,9 +52,11 @@
       },
     });
 
+    if (oldIndex === newIndex) return;
+
     const goLeft = oldIndex > newIndex;
 
-    const x = 500;
+    const x = 50;
 
     const fadeToValue = goLeft ? x : x * -1;
     const completionValue = goLeft ? x * -1 : x;
@@ -54,7 +68,12 @@
   });
 
   afterNavigate(() => {
-    const tl = gsap.timeline({ defaults: { duration: 0.5, ease: 'power2.inOut' } });
+    const tl = gsap.timeline({
+      defaults: { duration, ease },
+      onComplete: () => {
+        appContainer.classList.remove(pageInTransitionClass);
+      },
+    });
 
     tl.to(mainContainer, { x: 0, opacity: 1 });
   });
@@ -69,7 +88,7 @@
   }
 </script>
 
-<div class="app" class:home={isHomePage}>
+<div bind:this={appContainer} class="app" class:home={isHomePage}>
   <Header />
 
   <main bind:this={mainContainer}>
