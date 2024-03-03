@@ -1,17 +1,8 @@
 <script>
   import { page } from '$app/stores';
+  import { NAVIGATION_ITEMS } from '$lib/constants/navigation';
 
   $: currentPath = $page?.url?.pathname;
-
-  const navItems = [
-    { label: 'Etusivu', href: '/' },
-    { label: 'Keramiikka', href: '/works/ceramic' },
-    { label: 'Installaatio', href: '/works/installation' },
-    { label: 'Veistos', href: '/works/sculpture' },
-    { label: 'Asiakastyö', href: '/works/customer' },
-    { label: 'CV', href: '/cv' },
-    { label: 'Yhteystiedot', href: '/contact' },
-  ];
 </script>
 
 <header
@@ -21,7 +12,7 @@
     <div class="py-4 border-b border-slate-300/10 lg:px-8 lg:border-0 mx-4 lg:mx-0">
       <nav class="text-sm leading-6 text-slate-700 dark:text-slate-200">
         <ul class="flex space-x-8 justify-end">
-          {#each navItems as item}
+          {#each NAVIGATION_ITEMS as item}
             <li>
               <a
                 href={item.href}

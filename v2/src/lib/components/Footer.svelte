@@ -1,5 +1,5 @@
 <script>
-  import { gsap } from 'gsap';
+  // import { gsap } from 'gsap';
 
   const currentYear = new Date().getFullYear();
 
@@ -8,22 +8,22 @@
    */
   let footerContainer;
 
-  $: if (footerContainer) {
-    footerContainer.classList.remove('invisible');
+  // $: if (footerContainer) {
+  //   footerContainer.classList.remove('invisible');
 
-    gsap.set(footerContainer, { opacity: 1, y: 0 });
+  //   gsap.set(footerContainer, { opacity: 1, y: 0 });
 
-    const tl = gsap.timeline({ defaults: { duration: 0.5, ease: 'power2.inOut' } });
+  //   const tl = gsap.timeline({ defaults: { duration: 0.5, ease: 'power2.inOut' } });
 
-    tl.from(
-      footerContainer,
-      {
-        opacity: 0,
-        y: 0,
-      },
-      1,
-    );
-  }
+  //   tl.from(
+  //     footerContainer,
+  //     {
+  //       opacity: 0,
+  //       y: 0,
+  //     },
+  //     1,
+  //   );
+  // }
 </script>
 
 <footer bind:this={footerContainer} class="invisible">
