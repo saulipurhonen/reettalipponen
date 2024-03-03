@@ -69,7 +69,7 @@
   }
 </script>
 
-<div class="app" class:home={isHomePage}>
+<div class="app" class:home={isHomePage} class:in-transition={isNavigating}>
   <Header />
 
   <main bind:this={mainContainer}>
@@ -89,6 +89,10 @@
   .home {
     background-image: url('$lib//images/bg_mock.jpg');
     background-size: cover;
+  }
+
+  .in-transition {
+    overflow: hidden;
   }
 
   main {
