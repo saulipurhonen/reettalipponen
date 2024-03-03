@@ -34,7 +34,12 @@
     bind:this={titleElement}
     class="green base:text-4xl md:text-6xl font-bold tracking-tighter leading-tight break-word uppercase mt-6 invisible"
   >
-    {title} <span class="text-xl tracking-normal">{currentPath}</span>
+    <!-- {title} <span class="text-xl tracking-normal">{currentPath}</span> -->
+    {title}
+
+    {#if currentPath !== '/'}
+      <span class="text-xl tracking-normal">{currentPath}</span>
+    {/if}
     <!-- reettalipponen.art -->
   </h1>
 </header>
