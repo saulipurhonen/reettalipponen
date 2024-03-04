@@ -40,8 +40,6 @@
 
     navigation.cancel();
 
-    appContainer.classList.add(pageInTransitionClass);
-
     const tl = gsap.timeline({
       defaults: { duration, ease },
       onComplete: () => {
@@ -68,14 +66,7 @@
   });
 
   afterNavigate(() => {
-    const tl = gsap.timeline({
-      defaults: { duration, ease },
-      onComplete: () => {
-        appContainer.classList.remove(pageInTransitionClass);
-      },
-    });
-
-    tl.to(mainContainer, { x: 0, opacity: 1 });
+    gsap.to(mainContainer, { x: 0, opacity: 1 });
   });
 
   /**
