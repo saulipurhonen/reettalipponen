@@ -1,6 +1,7 @@
 <script>
   import { page } from '$app/stores';
   import { gsap } from 'gsap';
+  import { isMobile } from '$lib/stores';
 
   /**
    * @type HTMLElement
@@ -18,7 +19,7 @@
     if (paragraphs.length) {
       gsap.set(paragraphs, { opacity: 1, y: -20 });
 
-      const tl = gsap.timeline({ defaults: { duration: 1.0, ease: 'power2.inOut' } });
+      const tl = gsap.timeline({ defaults: { duration: 1, ease: 'power2.inOut' } });
 
       tl.from(
         paragraphs,
@@ -33,7 +34,7 @@
   }
 </script>
 
-<section bind:this={contentContainer} class="container py-20 invisible">
+<section bind:this={contentContainer} class="container py-20" class:py-10={isMobile}>
   <div class="max-w-xl backdrop-blur-sm">
     <slot />
   </div>
