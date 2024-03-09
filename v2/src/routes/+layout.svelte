@@ -7,7 +7,7 @@
   import './styles.css';
   import { gsap } from 'gsap';
   import { NAVIGATION_ITEMS, MOBILE_BREAKPOINT } from '$lib/constants/navigation';
-  import { isMobile as isMobileState, menuOpen } from '$lib/stores';
+  import { isMobileState, menuOpen } from '$lib/stores';
   import { onMount } from 'svelte';
 
   $: isHomePage = $page?.url?.pathname === '/';

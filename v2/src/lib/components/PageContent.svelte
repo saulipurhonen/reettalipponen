@@ -1,9 +1,15 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { isMobile } from '$lib/stores';
+  import { isMobileState } from '$lib/stores';
   import { gsap } from 'gsap';
 
   let contentContainer: HTMLElement;
+
+  let isMobile: boolean;
+
+  isMobileState.subscribe((value) => {
+    isMobile = value;
+  });
 
   $: currentPath = $page?.url?.pathname;
   // TODO: Restart animation when in slug route change
