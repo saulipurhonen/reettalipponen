@@ -7,3 +7,5 @@ export const NAVIGATION_ITEMS = [
   { label: 'CV', href: '/cv' },
   { label: 'Yhteystiedot', href: '/contact' },
 ];
+
+export const MOBILE_BREAKPOINT = 768;

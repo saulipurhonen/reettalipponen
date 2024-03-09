@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { page } from '$app/stores';
   import { beforeNavigate, afterNavigate, goto } from '$app/navigation';
   import Footer from '$lib/components/Footer.svelte';
@@ -6,30 +6,41 @@
   import '../app.css';
   import './styles.css';
   import { gsap } from 'gsap';
-  import { NAVIGATION_ITEMS } from '$lib/constants/navigation';
+  import { NAVIGATION_ITEMS, MOBILE_BREAKPOINT } from '$lib/constants/navigation';
+  import { isMobileState, menuOpen } from '$lib/stores';
+  import { onMount } from 'svelte';
 
   $: isHomePage = $page?.url?.pathname === '/';
   $: currentPath = $page?.url?.pathname;
 
-  /**
-   * @type HTMLElement
-   */
-  let appContainer;
+  let appContainer: HTMLElement;
 
-  /**
-   * @type HTMLElement
-   */
-  let mainContainer;
+  let mainContainer: HTMLElement;
 
   let isNavigating = false;
 
-  const pageInTransitionClass = 'page-in-transition';
+  let innerWidth = 0;
 
-  const duration = 0.3;
-  const ease = 'power2.inOut';
+  onMount(() => {
+    menuOpen.subscribe((isOpen) => {
+      document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    });
+  });
+
+  let isMobile: boolean;
+
+  $: if (innerWidth) {
+    isMobile = innerWidth < MOBILE_BREAKPOINT;
+    isMobileState.set(innerWidth < MOBILE_BREAKPOINT);
+  }
 
   beforeNavigate((navigation) => {
-    if (isNavigating || !navigation.to || navigation.to?.route.id === currentPath) return;
+    if (isMobile) {
+      mainContainer.classList.add('invisible');
+    }
+
+    if (isNavigating || !navigation.to || navigation.to?.route.id === currentPath || isMobile)
+      return;
 
     isNavigating = true;
 
@@ -40,10 +51,8 @@
 
     navigation.cancel();
 
-    appContainer.classList.add(pageInTransitionClass);
-
     const tl = gsap.timeline({
-      defaults: { duration, ease },
+      defaults: { duration: 0.3, ease: 'power2.inOut' },
       onComplete: () => {
         isNavigating = false;
         if (navigation.to) {
@@ -68,27 +77,21 @@
   });
 
   afterNavigate(() => {
-    const tl = gsap.timeline({
-      defaults: { duration, ease },
-      onComplete: () => {
-        appContainer.classList.remove(pageInTransitionClass);
-      },
-    });
-
-    tl.to(mainContainer, { x: 0, opacity: 1 });
+    mainContainer.classList.remove('invisible');
+    appContainer.classList.remove('invisible'); // Workaround for the initial load
+    gsap.to(mainContainer, { x: 0, opacity: 1 });
   });
 
-  /**
-   * @param {string | URL} destination
-   */
-  async function gotoDestination(destination) {
+  async function gotoDestination(destination: string | URL) {
     isNavigating = true; // Prevents re-triggering beforeNavigate
     await goto(destination);
     isNavigating = false;
   }
 </script>
 
-<div bind:this={appContainer} class="app" class:home={isHomePage}>
+<svelte:window bind:innerWidth />
+
+<div bind:this={appContainer} class="app invisible" class:home={isHomePage && !isMobile}>
   <Header />
 
   <main bind:this={mainContainer}>
