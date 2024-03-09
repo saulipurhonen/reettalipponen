@@ -82,7 +82,7 @@
 
     <div
       bind:this={mobileNav}
-      class="container grow overflow-y-auto"
+      class="grow overflow-y-auto"
       class:hidden={!displayMobileMenu}
       style={`margin-top: -${mobileHeadingArea?.offsetHeight / 2}px`}
     >

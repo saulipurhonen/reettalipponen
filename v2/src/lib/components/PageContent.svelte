@@ -1,12 +1,10 @@
-<script>
+<script lang="ts">
   import { page } from '$app/stores';
-  import { gsap } from 'gsap';
   import { isMobile } from '$lib/stores';
+  import { gsap } from 'gsap';
 
-  /**
-   * @type HTMLElement
-   */
-  let contentContainer;
+  let contentContainer: HTMLElement;
+
   $: currentPath = $page?.url?.pathname;
   // TODO: Restart animation when in slug route change
   // Current path check is a workaround for this for now.
@@ -34,7 +32,12 @@
   }
 </script>
 
-<section bind:this={contentContainer} class="container py-20" class:py-10={isMobile}>
+<section
+  bind:this={contentContainer}
+  class="container"
+  class:py-10={isMobile}
+  class:py-20={!isMobile}
+>
   <div class="max-w-xl backdrop-blur-sm">
     <slot />
   </div>

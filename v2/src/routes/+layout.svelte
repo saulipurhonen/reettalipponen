@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { page } from '$app/stores';
   import { beforeNavigate, afterNavigate, goto } from '$app/navigation';
   import Footer from '$lib/components/Footer.svelte';
@@ -7,21 +7,15 @@
   import './styles.css';
   import { gsap } from 'gsap';
   import { NAVIGATION_ITEMS, MOBILE_BREAKPOINT } from '$lib/constants/navigation';
-  import { menuOpen, isMobile } from '$lib/stores';
+  import { isMobile as isMobileState, menuOpen } from '$lib/stores';
   import { onMount } from 'svelte';
 
   $: isHomePage = $page?.url?.pathname === '/';
   $: currentPath = $page?.url?.pathname;
 
-  /**
-   * @type HTMLElement
-   */
-  let appContainer;
+  let appContainer: HTMLElement;
 
-  /**
-   * @type HTMLElement
-   */
-  let mainContainer;
+  let mainContainer: HTMLElement;
 
   let isNavigating = false;
 
@@ -33,9 +27,12 @@
     });
   });
 
-  // const isMobile = innerWidth < MOBILE_BREAKPOINT;
+  let isMobile: boolean;
 
-  isMobile.set(innerWidth < MOBILE_BREAKPOINT);
+  $: if (innerWidth) {
+    isMobile = innerWidth < MOBILE_BREAKPOINT;
+    isMobileState.set(innerWidth < MOBILE_BREAKPOINT);
+  }
 
   beforeNavigate((navigation) => {
     if (isMobile) {
@@ -84,10 +81,7 @@
     gsap.to(mainContainer, { x: 0, opacity: 1 });
   });
 
-  /**
-   * @param {string | URL} destination
-   */
-  async function gotoDestination(destination) {
+  async function gotoDestination(destination: string | URL) {
     isNavigating = true; // Prevents re-triggering beforeNavigate
     await goto(destination);
     isNavigating = false;
