@@ -78,6 +78,7 @@
 
   afterNavigate(() => {
     mainContainer.classList.remove('invisible');
+    appContainer.classList.remove('invisible'); // Workaround for the initial load
     gsap.to(mainContainer, { x: 0, opacity: 1 });
   });
 
@@ -90,7 +91,7 @@
 
 <svelte:window bind:innerWidth />
 
-<div bind:this={appContainer} class="app" class:home={isHomePage && !isMobile}>
+<div bind:this={appContainer} class="app invisible" class:home={isHomePage && !isMobile}>
   <Header />
 
   <main bind:this={mainContainer}>
