@@ -91,6 +91,8 @@ function isActive(href: string): boolean {
 </header>
 
 <script>
+  import gsap from "gsap"
+
   document.addEventListener("astro:page-load", () => {
     const toggle = document.getElementById("menu-toggle")
     const menu = document.getElementById("mobile-menu")
@@ -98,8 +100,12 @@ function isActive(href: string): boolean {
     const bar2 = document.getElementById("bar-2")
     const bar3 = document.getElementById("bar-3")
     const mobileLinks = document.querySelectorAll(".mobile-nav-link")
+    let isAnimating = false
 
     function openMenu() {
+      if (isAnimating) return
+      isAnimating = true
+
       menu?.classList.remove("hidden")
       menu?.classList.add("flex")
       bar1?.classList.add("top-[6px]", "rotate-45")
@@ -109,11 +115,26 @@ function isActive(href: string): boolean {
       bar3?.classList.remove("bottom-0")
       toggle?.setAttribute("aria-expanded", "true")
       toggle?.setAttribute("aria-label", "Sulje valikko")
+
+      gsap.fromTo(
+        menu,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.3,
+          ease: "power2.out",
+          onComplete: () => {
+            isAnimating = false
+          },
+        }
+      )
     }
 
     function closeMenu() {
-      menu?.classList.add("hidden")
-      menu?.classList.remove("flex")
+      if (isAnimating) return
+      isAnimating = true
+
       bar1?.classList.remove("top-[6px]", "rotate-45")
       bar1?.classList.add("top-0")
       bar2?.classList.remove("opacity-0")
@@ -121,6 +142,19 @@ function isActive(href: string): boolean {
       bar3?.classList.add("bottom-0")
       toggle?.setAttribute("aria-expanded", "false")
       toggle?.setAttribute("aria-label", "Avaa valikko")
+
+      gsap.to(menu, {
+        opacity: 0,
+        y: -40,
+        duration: 0.3,
+        ease: "power2.in",
+        onComplete: () => {
+          menu?.classList.add("hidden")
+          menu?.classList.remove("flex")
+          gsap.set(menu, { clearProps: "all" })
+          isAnimating = false
+        },
+      })
     }
 
     toggle?.addEventListener("click", () => {
