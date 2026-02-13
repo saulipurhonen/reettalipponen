@@ -148,7 +148,7 @@ Build the v3 portfolio site from scratch in the `v3/` directory using Astro.js, 
     - Add `reveal` class to content elements across pages
     - _Requirements: 2.1 (layout consistency with animations)_
 
-- [-] 7. Final checkpoint - Full build and test verification
+- [x] 7. Final checkpoint - Full build and test verification
   - Run `npm run build` in `v3/` and verify static output
   - Ensure all tests pass, ask the user if questions arise.
 
