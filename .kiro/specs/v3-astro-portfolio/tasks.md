@@ -37,27 +37,27 @@ Build the v3 portfolio site from scratch in the `v3/` directory using Astro.js, 
     - Create `src/lib/i18n.ts` with `DEFAULT_LOCALE`, `Locale` type, `UI_STRINGS` (fi + en navigation labels, footer strings), and `MOBILE_BREAKPOINT`
     - _Requirements: 10.1, 10.5_
 
-- [ ] 2. Implement shared layout and components
+- [x] 2. Implement shared layout and components
 
-  - [-] 2.1 Create SEO component
+  - [x] 2.1 Create SEO component
 
     - Create `src/components/SEO.astro` that renders `<title>`, `<meta name="description">`, and Open Graph tags (`og:title`, `og:description`, `og:type`)
     - Accept `title`, `description`, and optional `ogType` props
     - _Requirements: 3.3, 6.3, 7.3, 7.4_
 
-  - [ ] 2.2 Write property test for SEO component
+  - [x] 2.2 Write property test for SEO component
 
     - **Property 1: SEO meta tags are complete for all pages**
     - Use `fast-check` to generate random title/description strings and verify rendered output contains correct `<title>`, `<meta>`, and OG tags
     - **Validates: Requirements 3.3, 6.3, 7.3, 7.4**
 
-  - [ ] 2.3 Create Footer component
+  - [x] 2.3 Create Footer component
 
     - Create `src/components/Footer.astro` displaying current year, "Reetta Lipponen", and credit link
     - Use `UI_STRINGS[DEFAULT_LOCALE].footer` for translatable text
     - _Requirements: 2.9_
 
-  - [ ] 2.4 Create Navigation component
+  - [x] 2.4 Create Navigation component
 
     - Create `src/components/Navigation.astro` with desktop horizontal nav and mobile hamburger menu
     - Read navigation items from `UI_STRINGS[DEFAULT_LOCALE].navigation`
@@ -66,7 +66,7 @@ Build the v3 portfolio site from scratch in the `v3/` directory using Astro.js, 
     - Desktop nav hidden below 768px, mobile hamburger hidden at 768px+
     - _Requirements: 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8_
 
-  - [ ] 2.5 Create BaseLayout
+  - [x] 2.5 Create BaseLayout
 
     - Create `src/layouts/BaseLayout.astro` that wraps all pages
     - Accept `title`, `description`, and optional `locale` props
@@ -75,19 +75,19 @@ Build the v3 portfolio site from scratch in the `v3/` directory using Astro.js, 
     - Render `<SEO>`, `<Navigation>`, `<main><slot /></main>`, `<Footer>`
     - _Requirements: 2.1, 10.4_
 
-  - [ ] 2.6 Write unit tests for Navigation and Footer
+  - [x] 2.6 Write unit tests for Navigation and Footer
     - Test Navigation renders all 7 expected Finnish labels
     - Test Footer contains current year and artist name
     - _Requirements: 2.2, 2.9_
 
-- [ ] 3. Checkpoint - Verify project builds and layout renders
+- [x] 3. Checkpoint - Verify project builds and layout renders
 
   - Ensure `npm run build` succeeds in `v3/`
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 4. Implement page routes
 
-  - [ ] 4.1 Implement Home page
+  - [-] 4.1 Implement Home page
 
     - Create `src/pages/index.astro` using `BaseLayout`
     - Fetch home content from TinaCMS client (`client.queries.home`)

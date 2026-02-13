@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ogType?: string;
+}
+
+const { title, description, ogType = 'website' } = Astro.props;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={ogType} />
