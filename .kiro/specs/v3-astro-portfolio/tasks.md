@@ -85,7 +85,7 @@ Build the v3 portfolio site from scratch in the `v3/` directory using Astro.js, 
   - Ensure `npm run build` succeeds in `v3/`
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 4. Implement page routes
+- [x] 4. Implement page routes
 
   - [x] 4.1 Implement Home page
 
@@ -127,19 +127,19 @@ Build the v3 portfolio site from scratch in the `v3/` directory using Astro.js, 
     - Render rich text body
     - _Requirements: 6.1, 6.2, 6.3_
 
-- [ ] 5. Checkpoint - Verify all pages render with content
+- [x] 5. Checkpoint - Verify all pages render with content
 
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 6. SEO, static assets, and animations
+- [x] 6. SEO, static assets, and animations
 
-  - [ ] 6.1 Configure sitemap and robots.txt
+  - [x] 6.1 Configure sitemap and robots.txt
 
     - Ensure `@astrojs/sitemap` is configured in `astro.config.mjs` with the site URL
     - Create `public/robots.txt` allowing all crawlers
     - _Requirements: 7.1, 7.2_
 
-  - [ ] 6.2 Add GSAP animations
+  - [x] 6.2 Add GSAP animations
     - Install `gsap` package
     - Add a client-side `<script>` in `BaseLayout.astro` that:
       - Animates `.reveal` elements on viewport entry (fade + slide up) using IntersectionObserver + GSAP
@@ -148,7 +148,7 @@ Build the v3 portfolio site from scratch in the `v3/` directory using Astro.js, 
     - Add `reveal` class to content elements across pages
     - _Requirements: 2.1 (layout consistency with animations)_
 
-- [ ] 7. Final checkpoint - Full build and test verification
+- [-] 7. Final checkpoint - Full build and test verification
   - Run `npm run build` in `v3/` and verify static output
   - Ensure all tests pass, ask the user if questions arise.
 
