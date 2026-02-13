@@ -87,14 +87,14 @@ Build the v3 portfolio site from scratch in the `v3/` directory using Astro.js, 
 
 - [ ] 4. Implement page routes
 
-  - [-] 4.1 Implement Home page
+  - [x] 4.1 Implement Home page
 
     - Create `src/pages/index.astro` using `BaseLayout`
     - Fetch home content from TinaCMS client (`client.queries.home`)
     - Render heading and rich text body
     - _Requirements: 3.1, 3.2, 3.3_
 
-  - [ ] 4.2 Implement Works pages with Gallery
+  - [x] 4.2 Implement Works pages with Gallery
 
     - Create `src/components/Gallery.astro` accepting `items` array, rendering responsive grid (single col mobile, multi-col desktop)
     - Create `src/pages/works/[slug].astro` with `getStaticPaths()` returning ceramic, installation, sculpture, customer
@@ -102,26 +102,26 @@ Build the v3 portfolio site from scratch in the `v3/` directory using Astro.js, 
     - Each gallery item renders `<img>` with `alt` text and title
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6_
 
-  - [ ] 4.3 Write property test for Gallery rendering
+  - [x] 4.3 Write property test for Gallery rendering
 
     - **Property 4: Works page renders all gallery items**
     - Use `fast-check` to generate random arrays of gallery items (image path + title), verify each item's image and title appear in rendered output
     - **Validates: Requirements 4.2, 4.6**
 
-  - [ ] 4.4 Implement CV page
+  - [x] 4.4 Implement CV page
 
     - Create `src/pages/cv.astro` using `BaseLayout`
     - Fetch CV content from TinaCMS client
     - Render sections with titles, entries with optional dates and content
     - _Requirements: 5.1, 5.2, 5.3_
 
-  - [ ] 4.5 Write property test for CV rendering
+  - [x] 4.5 Write property test for CV rendering
 
     - **Property 5: CV page renders all sections and entries**
     - Use `fast-check` to generate random CV sections with entries (some with dates, some without), verify all section titles, entry content, and dates appear in output
     - **Validates: Requirements 5.1, 5.2**
 
-  - [ ] 4.6 Implement Contact page
+  - [x] 4.6 Implement Contact page
     - Create `src/pages/contact.astro` using `BaseLayout`
     - Fetch contact content from TinaCMS client
     - Render rich text body
