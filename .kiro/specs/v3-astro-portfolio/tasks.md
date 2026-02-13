@@ -6,7 +6,7 @@ Build the v3 portfolio site from scratch in the `v3/` directory using Astro.js, 
 
 ## Tasks
 
-- [ ] 1. Initialize Astro project with TinaCMS and Tailwind CSS
+- [x] 1. Initialize Astro project with TinaCMS and Tailwind CSS
 
   - [x] 1.1 Scaffold a new Astro project in `v3/` with TypeScript support
 
@@ -25,7 +25,7 @@ Build the v3 portfolio site from scratch in the `v3/` directory using Astro.js, 
     - Configure build output to `public/admin/`
     - _Requirements: 1.2, 8.1, 8.2, 8.4_
 
-  - [ ] 1.3 Create seed content files
+  - [x] 1.3 Create seed content files
 
     - Create `content/fi/home/index.md` with placeholder heading and body
     - Create `content/fi/works/ceramic.md`, `installation.md`, `sculpture.md`, `customer.md` with placeholder gallery items
@@ -33,13 +33,13 @@ Build the v3 portfolio site from scratch in the `v3/` directory using Astro.js, 
     - Create `content/fi/contact/index.md` with placeholder contact content
     - _Requirements: 8.3, 8.4_
 
-  - [ ] 1.4 Create i18n constants file
+  - [x] 1.4 Create i18n constants file
     - Create `src/lib/i18n.ts` with `DEFAULT_LOCALE`, `Locale` type, `UI_STRINGS` (fi + en navigation labels, footer strings), and `MOBILE_BREAKPOINT`
     - _Requirements: 10.1, 10.5_
 
 - [ ] 2. Implement shared layout and components
 
-  - [ ] 2.1 Create SEO component
+  - [-] 2.1 Create SEO component
 
     - Create `src/components/SEO.astro` that renders `<title>`, `<meta name="description">`, and Open Graph tags (`og:title`, `og:description`, `og:type`)
     - Accept `title`, `description`, and optional `ogType` props
