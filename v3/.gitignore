@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+
+# TinaCMS
+tina/__generated__/
+public/admin/
+
+# macOS
+.DS_Store

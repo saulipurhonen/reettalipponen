@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getContent } from '../lib/content';
+
+interface CvEntry {
+  date?: string;
+  content: string;
+}
+
+interface CvSection {
+  sectionTitle: string;
+  entries: CvEntry[];
+}
+
+interface CvData {
+  title: string;
+  description: string;
+  sections: CvSection[];
+}
+
+const { data } = getContent<CvData>('fi/cv/index.md');
+---
+
+<BaseLayout title={data.title} description={data.description}>
+  <div class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="reveal text-3xl font-bold mb-8">{data.title}</h1>
+    {data.sections?.map((section) => (
+      <section class="reveal mb-8">
+        <h2 class="text-xl font-semibold mb-4">{section.sectionTitle}</h2>
+        <ul class="space-y-2">
+          {section.entries?.map((entry) => (
+            <li class="flex gap-4">
+              {entry.date && <span class="text-gray-500 shrink-0 w-16">{entry.date}</span>}
+              <span>{entry.content}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

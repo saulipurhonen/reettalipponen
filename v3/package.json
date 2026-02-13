@@ -1,0 +1,28 @@
+{
+  "name": "v3-astro-portfolio",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "tinacms dev -c \"astro dev\"",
+    "build": "tinacms build && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.0",
+    "@astrojs/sitemap": "^3.3.0",
+    "@astrojs/tailwind": "^6.0.2",
+    "@tinacms/cli": "^2.1.5",
+    "astro": "^5.8.0",
+    "gray-matter": "^4.0.3",
+    "gsap": "^3.14.2",
+    "tailwindcss": "^3.4.0",
+    "tinacms": "^3.4.1",
+    "typescript": "^5.7.0"
+  },
+  "devDependencies": {
+    "fast-check": "^4.1.1",
+    "vitest": "^3.2.1"
+  }
+}

@@ -1,0 +1,87 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import SEO from '../components/SEO.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import { DEFAULT_LOCALE, type Locale } from '../lib/i18n';
+import '../app.css';
+
+interface Props {
+  title: string;
+  description: string;
+  locale?: Locale;
+}
+
+const { title, description, locale = DEFAULT_LOCALE } = Astro.props;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <SEO title={title} description={description} />
+    <ViewTransitions />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Navigation />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      import gsap from 'gsap';
+
+      function initAnimations() {
+        // Animate .reveal elements on viewport entry
+        const revealElements = document.querySelectorAll('.reveal');
+
+        // Set initial state
+        gsap.set(revealElements, { opacity: 0, y: 30 });
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                gsap.to(entry.target, {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.8,
+                  ease: 'power2.out',
+                });
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        revealElements.forEach((el) => observer.observe(el));
+
+        // Footer fade-in
+        const footer = document.querySelector('footer');
+        if (footer) {
+          gsap.fromTo(footer, { opacity: 0 }, { opacity: 1, duration: 1, delay: 0.3 });
+        }
+      }
+
+      // Run on initial page load
+      initAnimations();
+
+      // Re-run after Astro View Transitions navigation
+      document.addEventListener('astro:after-swap', () => {
+        initAnimations();
+      });
+
+      // Page transition: fade out before swap
+      document.addEventListener('astro:before-swap', () => {
+        const main = document.querySelector('main');
+        if (main) {
+          gsap.to(main, { opacity: 0, duration: 0.2 });
+        }
+      });
+    </script>
+  </body>
+</html>

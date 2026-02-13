@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getContent } from '../lib/content';
+
+interface ContactData {
+  title: string;
+  description: string;
+}
+
+const { data, content } = getContent<ContactData>('fi/contact/index.md');
+---
+
+<BaseLayout title={data.title} description={data.description}>
+  <div class="reveal mx-auto max-w-4xl px-4 py-12">
+    <h1 class="text-3xl font-bold mb-8">{data.title}</h1>
+    <div class="prose prose-gray max-w-none" set:html={content} />
+  </div>
+</BaseLayout>
