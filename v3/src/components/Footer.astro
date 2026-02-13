@@ -1,11 +1,18 @@
 ---
-import { UI_STRINGS, DEFAULT_LOCALE } from '../lib/i18n';
+import { UI_STRINGS, DEFAULT_LOCALE } from "../lib/i18n"
 
-const { credit } = UI_STRINGS[DEFAULT_LOCALE].footer;
-const year = new Date().getFullYear();
+const { credit } = UI_STRINGS[DEFAULT_LOCALE].footer
+const year = new Date().getFullYear()
 ---
 
 <footer class="py-8 text-center text-sm text-gray-500">
   <p>&copy; {year} Reetta Lipponen</p>
-  <p>{credit} <a href="https://github.com/saulipurhonen" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">Sauli Purhonen</a></p>
+  <p>
+    {credit}
+    <a
+      href="https://github.com/saulipurhonen"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="underline hover:text-gray-300">Sauli Purhonen</a>
+  </p>
 </footer>

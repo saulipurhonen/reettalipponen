@@ -10,9 +10,15 @@ interface Props {
   title: string
   description: string
   locale?: Locale
+  backgroundImage?: string
 }
 
-const { title, description, locale = DEFAULT_LOCALE } = Astro.props
+const {
+  title,
+  description,
+  locale = DEFAULT_LOCALE,
+  backgroundImage,
+} = Astro.props
 
 const slideTransition = {
   forwards: {
@@ -55,7 +61,15 @@ const slideTransition = {
     <SEO title={title} description={description} />
     <ClientRouter />
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body
+    class:list={[
+      "min-h-screen flex flex-col bg-black text-white",
+      backgroundImage && "md:bg-cover md:bg-center",
+    ]}
+    style={backgroundImage
+      ? `background-image: url('${backgroundImage}')`
+      : undefined}
+  >
     <Navigation />
     <main class="flex-1" transition:animate={slideTransition}>
       <slot />
