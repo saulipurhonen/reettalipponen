@@ -1,18 +1,49 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import SEO from '../components/SEO.astro';
-import Navigation from '../components/Navigation.astro';
-import Footer from '../components/Footer.astro';
-import { DEFAULT_LOCALE, type Locale } from '../lib/i18n';
-import '../app.css';
+import { ClientRouter } from "astro:transitions"
+import SEO from "../components/SEO.astro"
+import Navigation from "../components/Navigation.astro"
+import Footer from "../components/Footer.astro"
+import { DEFAULT_LOCALE, type Locale } from "../lib/i18n"
+import "../app.css"
 
 interface Props {
-  title: string;
-  description: string;
-  locale?: Locale;
+  title: string
+  description: string
+  locale?: Locale
 }
 
-const { title, description, locale = DEFAULT_LOCALE } = Astro.props;
+const { title, description, locale = DEFAULT_LOCALE } = Astro.props
+
+const slideTransition = {
+  forwards: {
+    old: {
+      name: "slide-out-left",
+      duration: "0.3s",
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+      fillMode: "both",
+    },
+    new: {
+      name: "slide-in-right",
+      duration: "0.3s",
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+      fillMode: "both",
+    },
+  },
+  backwards: {
+    old: {
+      name: "slide-out-right",
+      duration: "0.3s",
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+      fillMode: "both",
+    },
+    new: {
+      name: "slide-in-left",
+      duration: "0.3s",
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+      fillMode: "both",
+    },
+  },
+}
 ---
 
 <!doctype html>
@@ -22,66 +53,139 @@ const { title, description, locale = DEFAULT_LOCALE } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <SEO title={title} description={description} />
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body class="min-h-screen flex flex-col">
     <Navigation />
-    <main class="flex-1">
+    <main class="flex-1" transition:animate={slideTransition}>
       <slot />
     </main>
     <Footer />
 
-    <script>
-      import gsap from 'gsap';
-
-      function initAnimations() {
-        // Animate .reveal elements on viewport entry
-        const revealElements = document.querySelectorAll('.reveal');
-
-        // Set initial state
-        gsap.set(revealElements, { opacity: 0, y: 30 });
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                gsap.to(entry.target, {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.8,
-                  ease: 'power2.out',
-                });
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.1 }
-        );
-
-        revealElements.forEach((el) => observer.observe(el));
-
-        // Footer fade-in
-        const footer = document.querySelector('footer');
-        if (footer) {
-          gsap.fromTo(footer, { opacity: 0 }, { opacity: 1, duration: 1, delay: 0.3 });
+    <style is:global>
+      @keyframes slide-out-left {
+        from {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+      }
+      @keyframes slide-in-right {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes slide-out-right {
+        from {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+      }
+      @keyframes slide-in-left {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
         }
       }
 
-      // Run on initial page load
-      initAnimations();
-
-      // Re-run after Astro View Transitions navigation
-      document.addEventListener('astro:after-swap', () => {
-        initAnimations();
-      });
-
-      // Page transition: fade out before swap
-      document.addEventListener('astro:before-swap', () => {
-        const main = document.querySelector('main');
-        if (main) {
-          gsap.to(main, { opacity: 0, duration: 0.2 });
+      @media (max-width: 767px) {
+        ::view-transition-old(*),
+        ::view-transition-new(*) {
+          animation-duration: 0s !important;
         }
-      });
+      }
+    </style>
+
+    <script>
+      import gsap from "gsap"
+
+      const NAV_HREFS = [
+        "/",
+        "/works/ceramic",
+        "/works/installation",
+        "/works/sculpture",
+        "/works/customer",
+        "/cv",
+        "/contact",
+      ]
+
+      function getNavIndex(path: string): number {
+        const exact = NAV_HREFS.indexOf(path)
+        if (exact !== -1) return exact
+        const prefix = NAV_HREFS.findIndex(
+          (href) => href !== "/" && path.startsWith(href)
+        )
+        return prefix !== -1 ? prefix : -1
+      }
+
+      function initAnimations(initialLoad = false) {
+        if (initialLoad) {
+          const revealElements = document.querySelectorAll(".reveal")
+          gsap.set(revealElements, { opacity: 0, y: 30 })
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  gsap.to(entry.target, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                  })
+                  observer.unobserve(entry.target)
+                }
+              })
+            },
+            { threshold: 0.1 }
+          )
+
+          revealElements.forEach((el) => observer.observe(el))
+        }
+
+        const footer = document.querySelector("footer")
+        if (footer) {
+          gsap.fromTo(
+            footer,
+            { opacity: 0 },
+            { opacity: 1, duration: 1, delay: 0.3 }
+          )
+        }
+      }
+
+      initAnimations(true)
+
+      // Set transition direction based on nav order
+      document.addEventListener("astro:before-preparation", (event: any) => {
+        const oldIndex = getNavIndex(window.location.pathname)
+        const newIndex = getNavIndex(
+          new URL(event.to, window.location.origin).pathname
+        )
+
+        if (oldIndex !== -1 && newIndex !== -1 && oldIndex !== newIndex) {
+          event.direction = oldIndex < newIndex ? "forward" : "back"
+        }
+      })
+
+      document.addEventListener("astro:after-swap", () => {
+        initAnimations(false)
+      })
     </script>
   </body>
 </html>
