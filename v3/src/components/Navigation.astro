@@ -14,6 +14,11 @@ function isActive(href: string): boolean {
 
 <header class="relative z-50">
   <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+    <!-- Logo -->
+    <a href="/" class="text-lg font-semibold tracking-wide text-gray-900">
+      reettalipponen<span class="text-gray-400">.ART</span>
+    </a>
+
     <!-- Desktop nav -->
     <ul class="hidden md:flex md:items-center md:gap-6">
       {
@@ -39,7 +44,7 @@ function isActive(href: string): boolean {
     <!-- Mobile hamburger button -->
     <button
       id="menu-toggle"
-      class="relative z-50 md:hidden p-2 group"
+      class="relative z-50 md:hidden p-2 group ml-auto"
       type="button"
       aria-label="Avaa valikko"
       aria-expanded="false"
