@@ -8,11 +8,132 @@ interface ContactData {
 }
 
 const { data, content } = getContent<ContactData>("fi/contact/index.md")
+const apiKey = import.meta.env.STATIC_FORMS_API_KEY
 ---
 
 <BaseLayout title={data.title} description={data.description}>
   <div class="reveal mx-auto max-w-6xl px-4 py-12">
     <h1 class="text-3xl font-bold mb-8">{data.title}</h1>
-    <div class="prose prose-invert max-w-none" set:html={content} />
+
+    <p class="mb-4">
+      Ota yhteyttä alla olevalla lomakkeella, niin palaan asiaan mahdollisimman
+      pian.
+    </p>
+
+    <p class="mb-8">Minut löydät myös sosiaalisesta mediasta:</p>
+
+    <a
+      href="https://www.instagram.com/reettalipponen.art"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 mb-10 text-gray-300 transition-colors hover:text-white"
+      aria-label="Instagram"
+    >
+      <svg
+        class="w-5 h-5"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.97.24 2.43.403a4.088 4.088 0 011.47.957c.453.453.78.898.957 1.47.163.46.349 1.26.404 2.43.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.055 1.17-.241 1.97-.404 2.43a4.088 4.088 0 01-.957 1.47 4.088 4.088 0 01-1.47.957c-.46.163-1.26.349-2.43.404-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.055-1.97-.241-2.43-.404a4.088 4.088 0 01-1.47-.957 4.088 4.088 0 01-.957-1.47c-.163-.46-.349-1.26-.404-2.43C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.055-1.17.241-1.97.404-2.43a4.088 4.088 0 01.957-1.47A4.088 4.088 0 015.064 2.293c.46-.163 1.26-.349 2.43-.404C8.76 1.831 9.14 1.82 12 1.82zM12 0C8.741 0 8.333.014 7.053.072 5.775.13 4.902.333 4.14.63a5.882 5.882 0 00-2.126 1.384A5.882 5.882 0 00.63 4.14C.333 4.902.13 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.058 1.278.261 2.151.558 2.913a5.882 5.882 0 001.384 2.126 5.882 5.882 0 002.126 1.384c.762.297 1.635.5 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.278-.058 2.151-.261 2.913-.558a5.882 5.882 0 002.126-1.384 5.882 5.882 0 001.384-2.126c.297-.762.5-1.635.558-2.913.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.058-1.278-.261-2.151-.558-2.913a5.882 5.882 0 00-1.384-2.126A5.882 5.882 0 0019.86.63C19.098.333 18.225.13 16.947.072 15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
+        ></path>
+      </svg>
+      @reettalipponen.art
+    </a>
+
+    <form id="contact-form" class="max-w-xl space-y-6">
+      <input type="hidden" name="accessKey" value={apiKey} />
+      <input
+        type="hidden"
+        name="subject"
+        value="Yhteydenotto - reettalipponen.fi"
+      />
+      <input type="text" name="honeypot" style="display:none" />
+
+      <div>
+        <label for="name" class="block text-sm mb-1">Nimi</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          class="w-full rounded border border-gray-600 bg-black/50 px-3 py-2 text-white placeholder-gray-500 focus:border-white focus:outline-none"
+        />
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm mb-1">Sähköposti</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          class="w-full rounded border border-gray-600 bg-black/50 px-3 py-2 text-white placeholder-gray-500 focus:border-white focus:outline-none"
+        />
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm mb-1">Viesti</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          required
+          class="w-full rounded border border-gray-600 bg-black/50 px-3 py-2 text-white placeholder-gray-500 focus:border-white focus:outline-none resize-vertical"
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="rounded bg-white px-6 py-2 text-sm font-semibold text-black transition-colors hover:bg-gray-200 disabled:opacity-50"
+      >
+        Lähetä
+      </button>
+
+      <p id="form-status" class="text-sm hidden"></p>
+    </form>
   </div>
 </BaseLayout>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement
+  const status = document.getElementById("form-status") as HTMLParagraphElement
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault()
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement
+    btn.disabled = true
+    btn.textContent = "Lähetetään..."
+    status.classList.add("hidden")
+
+    try {
+      const formData = new FormData(form)
+      const data = Object.fromEntries(formData.entries())
+
+      const res = await fetch("https://api.staticforms.xyz/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+
+      const json = await res.json()
+
+      if (json.success) {
+        status.textContent =
+          "Kiitos viestistäsi! Palaan asiaan mahdollisimman pian."
+        status.className = "text-sm text-green-400"
+        form.reset()
+      } else {
+        throw new Error(json.message || "Lähetys epäonnistui")
+      }
+    } catch {
+      status.textContent =
+        "Viestin lähetys epäonnistui. Yritä myöhemmin uudelleen."
+      status.className = "text-sm text-red-400"
+    } finally {
+      btn.disabled = false
+      btn.textContent = "Lähetä"
+    }
+  })
+</script>
