@@ -7,6 +7,7 @@ interface WorkItem {
   materials?: string | null
   images?: Array<{
     image?: string | null
+    thumbnail?: string | null
     alt?: string | null
   }> | null
 }
@@ -24,12 +25,19 @@ const { items } = Astro.props
       <div class="reveal py-12 first:pt-0">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {work.images?.map((img) => (
-            <img
-              src={img.image || ""}
-              alt={img.alt || work.title || ""}
-              class="w-full h-auto object-cover"
-              loading="lazy"
-            />
+            <button
+              type="button"
+              class="lightbox-trigger block cursor-pointer"
+              data-src={img.image || ""}
+              data-alt={img.alt || work.title || ""}
+            >
+              <img
+                src={img.thumbnail || img.image || ""}
+                alt={img.alt || work.title || ""}
+                class="w-full h-auto object-cover transition-opacity hover:opacity-80"
+                loading="lazy"
+              />
+            </button>
           ))}
         </div>
         <div class="mt-4 space-y-1">

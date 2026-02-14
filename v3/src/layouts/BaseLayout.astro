@@ -76,6 +76,82 @@ const slideTransition = {
     </main>
     <Footer />
 
+    <!-- Global lightbox overlay (outside main to avoid stacking context issues) -->
+    <div
+      id="lightbox"
+      style="display:none"
+      class="fixed inset-0 z-[60] flex items-center justify-center"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Kuvan suurennus"
+    >
+      <div
+        id="lightbox-backdrop"
+        class="absolute inset-0 bg-black/90 backdrop-blur-sm"
+      >
+      </div>
+      <button
+        id="lightbox-close"
+        type="button"
+        class="absolute top-4 right-4 z-20 p-2 text-white/70 hover:text-white transition-colors"
+        aria-label="Sulje"
+      >
+        <svg
+          class="w-8 h-8 pointer-events-none"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="relative z-10 max-h-[90vh] max-w-[90vw] object-contain"
+      />
+    </div>
+
+    <script is:inline>
+      ;(function () {
+        var lightbox = document.getElementById("lightbox")
+        var lightboxImg = document.getElementById("lightbox-img")
+        var closeBtn = document.getElementById("lightbox-close")
+        var backdrop = document.getElementById("lightbox-backdrop")
+        if (!lightbox || !lightboxImg || !closeBtn || !backdrop) return
+        function show(src, alt) {
+          lightboxImg.src = src
+          lightboxImg.alt = alt
+          lightbox.style.display = "flex"
+          closeBtn.focus()
+        }
+        function hide() {
+          lightbox.style.display = "none"
+          lightboxImg.src = ""
+        }
+        document.addEventListener("click", function (e) {
+          var trigger = e.target.closest(".lightbox-trigger")
+          if (trigger) {
+            show(trigger.dataset.src || "", trigger.dataset.alt || "")
+          }
+        })
+        closeBtn.addEventListener("click", function () {
+          hide()
+        })
+        backdrop.addEventListener("click", function () {
+          hide()
+        })
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && lightbox.style.display !== "none") hide()
+        })
+      })()
+    </script>
+
     <style is:global>
       @keyframes slide-out-left {
         from {

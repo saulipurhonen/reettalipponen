@@ -54,6 +54,7 @@ export default defineConfig({
                 list: true,
                 fields: [
                   { name: 'image', label: 'Kuva', type: 'image' },
+                  { name: 'thumbnail', label: 'Pienoiskuva', type: 'image' },
                   { name: 'alt', label: 'Alt-teksti', type: 'string' },
                 ],
               },
