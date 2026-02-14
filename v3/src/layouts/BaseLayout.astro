@@ -71,7 +71,7 @@ const slideTransition = {
       : undefined}
   >
     <Navigation />
-    <main class="flex-1" transition:animate={slideTransition}>
+    <main id="main-content" class="flex-1" transition:animate={slideTransition}>
       <slot />
     </main>
     <Footer />
@@ -151,6 +151,7 @@ const slideTransition = {
         alt=""
         class="relative z-10 max-h-[90vh] max-w-[90vw] object-contain"
       />
+      <p id="lightbox-counter" class="sr-only" aria-live="polite"></p>
     </div>
 
     <script is:inline>
@@ -170,6 +171,7 @@ const slideTransition = {
           !backdrop
         )
           return
+        var counter = document.getElementById("lightbox-counter")
         var lastFocused = null
         var currentGroup = []
         var currentIndex = 0
@@ -191,6 +193,10 @@ const slideTransition = {
           lightboxImg.src = currentGroup[i].src
           lightboxImg.alt = currentGroup[i].alt
           updateNav()
+          if (counter && currentGroup.length > 1) {
+            counter.textContent =
+              "Kuva " + (i + 1) + " / " + currentGroup.length
+          }
         }
 
         function show(trigger) {
@@ -320,10 +326,21 @@ const slideTransition = {
           animation-duration: 0s !important;
         }
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        ::view-transition-old(*),
+        ::view-transition-new(*) {
+          animation-duration: 0s !important;
+        }
+      }
     </style>
 
     <script>
       import gsap from "gsap"
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches
 
       const NAV_HREFS = [
         "/",
@@ -345,6 +362,12 @@ const slideTransition = {
       }
 
       function initAnimations(initialLoad = false) {
+        if (prefersReducedMotion) {
+          const revealElements = document.querySelectorAll(".reveal")
+          gsap.set(revealElements, { opacity: 1, y: 0 })
+          return
+        }
+
         if (initialLoad) {
           const revealElements = document.querySelectorAll(".reveal")
           gsap.set(revealElements, { opacity: 0, y: 30 })

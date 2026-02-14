@@ -27,7 +27,7 @@ const apiKey = import.meta.env.STATIC_FORMS_API_KEY
       target="_blank"
       rel="noopener noreferrer"
       class="inline-flex items-center gap-2 mb-10 text-gray-300 transition-colors hover:text-white"
-      aria-label="Instagram"
+      aria-label="Instagram: @reettalipponen.art"
     >
       <svg
         class="w-5 h-5"
@@ -58,7 +58,7 @@ const apiKey = import.meta.env.STATIC_FORMS_API_KEY
           id="name"
           name="name"
           required
-          class="w-full rounded border border-gray-600 bg-black/50 px-3 py-2 text-white placeholder-gray-500 focus:border-white focus:outline-none"
+          class="w-full rounded border border-gray-600 bg-black/50 px-3 py-2 text-white placeholder-gray-500 focus:border-white focus:outline-none focus:ring-2 focus:ring-white"
         />
       </div>
 
@@ -69,7 +69,7 @@ const apiKey = import.meta.env.STATIC_FORMS_API_KEY
           id="email"
           name="email"
           required
-          class="w-full rounded border border-gray-600 bg-black/50 px-3 py-2 text-white placeholder-gray-500 focus:border-white focus:outline-none"
+          class="w-full rounded border border-gray-600 bg-black/50 px-3 py-2 text-white placeholder-gray-500 focus:border-white focus:outline-none focus:ring-2 focus:ring-white"
         />
       </div>
 
@@ -80,7 +80,7 @@ const apiKey = import.meta.env.STATIC_FORMS_API_KEY
           name="message"
           rows="5"
           required
-          class="w-full rounded border border-gray-600 bg-black/50 px-3 py-2 text-white placeholder-gray-500 focus:border-white focus:outline-none resize-vertical"
+          class="w-full rounded border border-gray-600 bg-black/50 px-3 py-2 text-white placeholder-gray-500 focus:border-white focus:outline-none focus:ring-2 focus:ring-white resize-vertical"
         ></textarea>
       </div>
 
@@ -91,7 +91,13 @@ const apiKey = import.meta.env.STATIC_FORMS_API_KEY
         Lähetä
       </button>
 
-      <p id="form-status" class="text-sm hidden"></p>
+      <p
+        id="form-status"
+        class="text-sm hidden"
+        role="status"
+        aria-live="polite"
+      >
+      </p>
     </form>
   </div>
 </BaseLayout>

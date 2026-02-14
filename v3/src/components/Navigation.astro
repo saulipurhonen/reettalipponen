@@ -13,9 +13,22 @@ function isActive(href: string): boolean {
 ---
 
 <header class="relative z-50">
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:absolute focus:z-[70] focus:top-2 focus:left-2 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-black focus:text-sm focus:font-semibold"
+  >
+    Siirry sisältöön
+  </a>
+  <nav
+    aria-label="Päävalikko"
+    class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4"
+  >
     <!-- Logo -->
-    <a href="/" class="text-lg font-semibold tracking-wide text-white">
+    <a
+      href="/"
+      class="text-lg font-semibold tracking-wide text-white"
+      aria-label="Etusivu – reettalipponen.ART"
+    >
       reettalipponen<span class="text-gray-400">.ART</span>
     </a>
 
@@ -66,8 +79,9 @@ function isActive(href: string): boolean {
   </nav>
 
   <!-- Mobile overlay -->
-  <div
+  <nav
     id="mobile-menu"
+    aria-label="Mobiilivalikko"
     class="fixed inset-0 z-40 hidden flex-col items-center justify-center bg-black"
   >
     <ul class="flex flex-col items-center gap-6">
@@ -88,7 +102,7 @@ function isActive(href: string): boolean {
         ))
       }
     </ul>
-  </div>
+  </nav>
 </header>
 
 <script>
@@ -171,6 +185,35 @@ function isActive(href: string): boolean {
       link.addEventListener("click", () => {
         closeMenu()
       })
+    })
+
+    // Escape key closes mobile menu
+    document.addEventListener("keydown", (e) => {
+      if (
+        e.key === "Escape" &&
+        toggle?.getAttribute("aria-expanded") === "true"
+      ) {
+        closeMenu()
+        toggle?.focus()
+      }
+    })
+
+    // Focus trap inside mobile menu
+    menu?.addEventListener("keydown", (e) => {
+      if (e.key !== "Tab") return
+      const focusableEls = menu.querySelectorAll<HTMLElement>(
+        "a[href], button:not([disabled])"
+      )
+      if (!focusableEls.length) return
+      const first = focusableEls[0]
+      const last = focusableEls[focusableEls.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
     })
   })
 </script>
