@@ -145,6 +145,11 @@ const slideTransition = {
           ></path>
         </svg>
       </button>
+      <p
+        id="lightbox-title"
+        class="absolute top-4 left-4 z-20 text-lg font-semibold text-white/90"
+      >
+      </p>
       <img
         id="lightbox-img"
         src=""
@@ -172,9 +177,11 @@ const slideTransition = {
         )
           return
         var counter = document.getElementById("lightbox-counter")
+        var titleEl = document.getElementById("lightbox-title")
         var lastFocused = null
         var currentGroup = []
         var currentIndex = 0
+        var currentTitle = ""
         var focusable = [closeBtn, prevBtn, nextBtn]
 
         function updateNav() {
@@ -193,6 +200,7 @@ const slideTransition = {
           lightboxImg.src = currentGroup[i].src
           lightboxImg.alt = currentGroup[i].alt
           updateNav()
+          if (titleEl) titleEl.textContent = currentTitle
           if (counter && currentGroup.length > 1) {
             counter.textContent =
               "Kuva " + (i + 1) + " / " + currentGroup.length
@@ -202,6 +210,7 @@ const slideTransition = {
         function show(trigger) {
           lastFocused = document.activeElement
           var group = trigger.dataset.group
+          currentTitle = trigger.dataset.title || ""
           var triggers = group
             ? Array.from(
                 document.querySelectorAll(
@@ -225,6 +234,8 @@ const slideTransition = {
           lightboxImg.src = ""
           document.body.style.overflow = ""
           currentGroup = []
+          currentTitle = ""
+          if (titleEl) titleEl.textContent = ""
           prevBtn.classList.add("hidden")
           nextBtn.classList.add("hidden")
           if (lastFocused && lastFocused.focus) lastFocused.focus()

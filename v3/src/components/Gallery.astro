@@ -31,6 +31,7 @@ const { items } = Astro.props
               data-src={img.image || ""}
               data-alt={img.alt || work.title || ""}
               data-group={`work-${workIndex}`}
+              data-title={work.title || ""}
             >
               <img
                 src={img.thumbnail || img.image || ""}
