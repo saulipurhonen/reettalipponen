@@ -102,6 +102,17 @@ export default defineConfig({
           { name: 'body', label: 'Sisältö', type: 'rich-text', isBody: true },
         ],
       },
+      {
+        name: 'statement',
+        label: 'Artist statement',
+        path: 'content/fi/statement',
+        format: 'md',
+        fields: [
+          { name: 'title', label: 'Otsikko', type: 'string', required: true, isTitle: true },
+          { name: 'description', label: 'SEO-kuvaus', type: 'string' },
+          { name: 'body', label: 'Sisältö', type: 'rich-text', isBody: true },
+        ],
+      },
     ],
   },
 });

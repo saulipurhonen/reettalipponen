@@ -12,7 +12,10 @@ function isActive(href: string): boolean {
 }
 ---
 
-<header class="relative z-50">
+<header
+  id="site-header"
+  class="sticky top-0 z-50 transition-transform duration-300"
+>
   <a
     href="#main-content"
     class="sr-only focus:not-sr-only focus:absolute focus:z-[70] focus:top-2 focus:left-2 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-black focus:text-sm focus:font-semibold"
@@ -219,5 +222,41 @@ function isActive(href: string): boolean {
         first.focus()
       }
     })
+
+    // Sticky nav: hide on scroll down, show on scroll up
+    const header = document.getElementById("site-header")
+    let lastScrollY = window.scrollY
+    let ticking = false
+
+    function onScroll() {
+      const currentY = window.scrollY
+      if (!header) return
+
+      if (currentY <= 0) {
+        header.classList.remove("-translate-y-full")
+        header.classList.remove("bg-black/80", "backdrop-blur-sm", "shadow-lg")
+      } else if (currentY > lastScrollY && currentY > 80) {
+        // Scrolling down past threshold — hide
+        header.classList.add("-translate-y-full")
+      } else {
+        // Scrolling up — show with background
+        header.classList.remove("-translate-y-full")
+        header.classList.add("bg-black/80", "backdrop-blur-sm", "shadow-lg")
+      }
+
+      lastScrollY = currentY
+      ticking = false
+    }
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(onScroll)
+          ticking = true
+        }
+      },
+      { passive: true }
+    )
   })
 </script>
