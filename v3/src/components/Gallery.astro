@@ -18,10 +18,10 @@ interface Props {
 const { items } = Astro.props
 ---
 
-<div class="space-y-16">
+<div class="divide-y divide-white/10">
   {
     items.map((work) => (
-      <div class="reveal">
+      <div class="reveal py-12 first:pt-0">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {work.images?.map((img) => (
             <img
