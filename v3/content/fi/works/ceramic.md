@@ -15,4 +15,18 @@ works:
         alt: Lotuksen tarina 2
       - image: /images/lotus_3.jpeg
         alt: Lotuksen tarina 3
+  - title: Kohtaaminen
+    dimensions: 6 x 13 x 14cm
+    year: "2017"
+    materials: Keramiikka
+    images:
+      - image: /images/meeting_1.jpg
+        alt: Kohtaaminen
+  - title: Lotus
+    dimensions: 25 x 25 x 7cm
+    year: "2020"
+    materials: Raku-keramiikka
+    images:
+      - image: /images/lotus_raku.jpg
+        alt: Lotus
 ---
