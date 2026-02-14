@@ -161,44 +161,45 @@ const slideTransition = {
 
     <script is:inline>
       ;(function () {
-        var lightbox = document.getElementById("lightbox")
-        var lightboxImg = document.getElementById("lightbox-img")
-        var closeBtn = document.getElementById("lightbox-close")
-        var prevBtn = document.getElementById("lightbox-prev")
-        var nextBtn = document.getElementById("lightbox-next")
-        var backdrop = document.getElementById("lightbox-backdrop")
-        if (
-          !lightbox ||
-          !lightboxImg ||
-          !closeBtn ||
-          !prevBtn ||
-          !nextBtn ||
-          !backdrop
-        )
-          return
-        var counter = document.getElementById("lightbox-counter")
-        var titleEl = document.getElementById("lightbox-title")
-        var lastFocused = null
         var currentGroup = []
         var currentIndex = 0
         var currentTitle = ""
-        var focusable = [closeBtn, prevBtn, nextBtn]
+        var lastFocused = null
+
+        function getEl(id) {
+          return document.getElementById(id)
+        }
+
+        function isOpen() {
+          var lb = getEl("lightbox")
+          return lb && lb.style.display !== "none"
+        }
 
         function updateNav() {
-          prevBtn.classList.toggle(
-            "hidden",
-            currentGroup.length <= 1 || currentIndex === 0
-          )
-          nextBtn.classList.toggle(
-            "hidden",
-            currentGroup.length <= 1 || currentIndex === currentGroup.length - 1
-          )
+          var prevBtn = getEl("lightbox-prev")
+          var nextBtn = getEl("lightbox-next")
+          if (prevBtn)
+            prevBtn.classList.toggle(
+              "hidden",
+              currentGroup.length <= 1 || currentIndex === 0
+            )
+          if (nextBtn)
+            nextBtn.classList.toggle(
+              "hidden",
+              currentGroup.length <= 1 ||
+                currentIndex === currentGroup.length - 1
+            )
         }
 
         function showIndex(i) {
+          var img = getEl("lightbox-img")
+          var titleEl = getEl("lightbox-title")
+          var counter = getEl("lightbox-counter")
           currentIndex = i
-          lightboxImg.src = currentGroup[i].src
-          lightboxImg.alt = currentGroup[i].alt
+          if (img) {
+            img.src = currentGroup[i].src
+            img.alt = currentGroup[i].alt
+          }
           updateNav()
           if (titleEl) titleEl.textContent = currentTitle
           if (counter && currentGroup.length > 1) {
@@ -208,6 +209,9 @@ const slideTransition = {
         }
 
         function show(trigger) {
+          var lightbox = getEl("lightbox")
+          var closeBtn = getEl("lightbox-close")
+          if (!lightbox) return
           lastFocused = document.activeElement
           var group = trigger.dataset.group
           currentTitle = trigger.dataset.title || ""
@@ -226,41 +230,55 @@ const slideTransition = {
           lightbox.style.display = "flex"
           document.body.style.overflow = "hidden"
           showIndex(currentIndex)
-          closeBtn.focus()
+          if (closeBtn) closeBtn.focus()
         }
 
         function hide() {
-          lightbox.style.display = "none"
-          lightboxImg.src = ""
+          var lightbox = getEl("lightbox")
+          var img = getEl("lightbox-img")
+          var titleEl = getEl("lightbox-title")
+          var prevBtn = getEl("lightbox-prev")
+          var nextBtn = getEl("lightbox-next")
+          if (lightbox) lightbox.style.display = "none"
+          if (img) img.src = ""
           document.body.style.overflow = ""
           currentGroup = []
           currentTitle = ""
           if (titleEl) titleEl.textContent = ""
-          prevBtn.classList.add("hidden")
-          nextBtn.classList.add("hidden")
+          if (prevBtn) prevBtn.classList.add("hidden")
+          if (nextBtn) nextBtn.classList.add("hidden")
           if (lastFocused && lastFocused.focus) lastFocused.focus()
           lastFocused = null
         }
 
         document.addEventListener("click", function (e) {
           var trigger = e.target.closest(".lightbox-trigger")
-          if (trigger) show(trigger)
+          if (trigger) {
+            show(trigger)
+            return
+          }
+          if (!isOpen()) return
+          if (e.target.closest("#lightbox-close")) {
+            hide()
+            return
+          }
+          if (e.target.closest("#lightbox-backdrop")) {
+            hide()
+            return
+          }
+          if (e.target.closest("#lightbox-prev")) {
+            if (currentIndex > 0) showIndex(currentIndex - 1)
+            return
+          }
+          if (e.target.closest("#lightbox-next")) {
+            if (currentIndex < currentGroup.length - 1)
+              showIndex(currentIndex + 1)
+            return
+          }
         })
-        closeBtn.addEventListener("click", function () {
-          hide()
-        })
-        backdrop.addEventListener("click", function () {
-          hide()
-        })
-        prevBtn.addEventListener("click", function () {
-          if (currentIndex > 0) showIndex(currentIndex - 1)
-        })
-        nextBtn.addEventListener("click", function () {
-          if (currentIndex < currentGroup.length - 1)
-            showIndex(currentIndex + 1)
-        })
+
         document.addEventListener("keydown", function (e) {
-          if (lightbox.style.display === "none") return
+          if (!isOpen()) return
           if (e.key === "Escape") {
             hide()
             return
@@ -276,14 +294,19 @@ const slideTransition = {
           }
           if (e.key === "Tab") {
             e.preventDefault()
+            var focusable = [
+              getEl("lightbox-close"),
+              getEl("lightbox-prev"),
+              getEl("lightbox-next"),
+            ]
             var visible = focusable.filter(function (b) {
-              return !b.classList.contains("hidden")
+              return b && !b.classList.contains("hidden")
             })
             var idx = visible.indexOf(document.activeElement)
             var next = e.shiftKey
               ? visible[(idx - 1 + visible.length) % visible.length]
               : visible[(idx + 1) % visible.length]
-            next.focus()
+            if (next) next.focus()
           }
         })
       })()
