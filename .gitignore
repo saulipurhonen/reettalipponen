@@ -58,6 +58,9 @@ typings/
 .cache/
 public
 
+# v3 build output
+v3/dist/
+
 # Mac files
 .DS_Store
 
