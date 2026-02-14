@@ -32,7 +32,7 @@ const { data } = getContent<CvData>("fi/cv/index.md")
             {section.entries?.map((entry) => (
               <li class="flex gap-4">
                 {entry.date && (
-                  <span class="text-gray-500 shrink-0 w-16">{entry.date}</span>
+                  <span class="text-gray-500 shrink-0 w-28">{entry.date}</span>
                 )}
                 <span>{entry.content}</span>
               </li>
