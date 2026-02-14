@@ -21,7 +21,7 @@ const { items } = Astro.props
 
 <div class="divide-y divide-white/10">
   {
-    items.map((work) => (
+    items.map((work, workIndex) => (
       <div class="reveal py-12 first:pt-0">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {work.images?.map((img) => (
@@ -30,6 +30,7 @@ const { items } = Astro.props
               class="lightbox-trigger block cursor-pointer"
               data-src={img.image || ""}
               data-alt={img.alt || work.title || ""}
+              data-group={`work-${workIndex}`}
             >
               <img
                 src={img.thumbnail || img.image || ""}

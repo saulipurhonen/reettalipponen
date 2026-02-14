@@ -109,6 +109,42 @@ const slideTransition = {
             d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
+      <button
+        id="lightbox-prev"
+        type="button"
+        class="absolute left-4 z-20 p-2 text-white/70 hover:text-white transition-colors hidden"
+        aria-label="Edellinen kuva"
+      >
+        <svg
+          class="w-8 h-8 pointer-events-none"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <button
+        id="lightbox-next"
+        type="button"
+        class="absolute right-4 z-20 p-2 text-white/70 hover:text-white transition-colors hidden"
+        aria-label="Seuraava kuva"
+      >
+        <svg
+          class="w-8 h-8 pointer-events-none"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"
+          ></path>
+        </svg>
+      </button>
       <img
         id="lightbox-img"
         src=""
@@ -122,23 +158,76 @@ const slideTransition = {
         var lightbox = document.getElementById("lightbox")
         var lightboxImg = document.getElementById("lightbox-img")
         var closeBtn = document.getElementById("lightbox-close")
+        var prevBtn = document.getElementById("lightbox-prev")
+        var nextBtn = document.getElementById("lightbox-next")
         var backdrop = document.getElementById("lightbox-backdrop")
-        if (!lightbox || !lightboxImg || !closeBtn || !backdrop) return
-        function show(src, alt) {
-          lightboxImg.src = src
-          lightboxImg.alt = alt
+        if (
+          !lightbox ||
+          !lightboxImg ||
+          !closeBtn ||
+          !prevBtn ||
+          !nextBtn ||
+          !backdrop
+        )
+          return
+        var lastFocused = null
+        var currentGroup = []
+        var currentIndex = 0
+        var focusable = [closeBtn, prevBtn, nextBtn]
+
+        function updateNav() {
+          prevBtn.classList.toggle(
+            "hidden",
+            currentGroup.length <= 1 || currentIndex === 0
+          )
+          nextBtn.classList.toggle(
+            "hidden",
+            currentGroup.length <= 1 || currentIndex === currentGroup.length - 1
+          )
+        }
+
+        function showIndex(i) {
+          currentIndex = i
+          lightboxImg.src = currentGroup[i].src
+          lightboxImg.alt = currentGroup[i].alt
+          updateNav()
+        }
+
+        function show(trigger) {
+          lastFocused = document.activeElement
+          var group = trigger.dataset.group
+          var triggers = group
+            ? Array.from(
+                document.querySelectorAll(
+                  '.lightbox-trigger[data-group="' + group + '"]'
+                )
+              )
+            : [trigger]
+          currentGroup = triggers.map(function (t) {
+            return { src: t.dataset.src || "", alt: t.dataset.alt || "" }
+          })
+          currentIndex = triggers.indexOf(trigger)
+          if (currentIndex === -1) currentIndex = 0
           lightbox.style.display = "flex"
+          document.body.style.overflow = "hidden"
+          showIndex(currentIndex)
           closeBtn.focus()
         }
+
         function hide() {
           lightbox.style.display = "none"
           lightboxImg.src = ""
+          document.body.style.overflow = ""
+          currentGroup = []
+          prevBtn.classList.add("hidden")
+          nextBtn.classList.add("hidden")
+          if (lastFocused && lastFocused.focus) lastFocused.focus()
+          lastFocused = null
         }
+
         document.addEventListener("click", function (e) {
           var trigger = e.target.closest(".lightbox-trigger")
-          if (trigger) {
-            show(trigger.dataset.src || "", trigger.dataset.alt || "")
-          }
+          if (trigger) show(trigger)
         })
         closeBtn.addEventListener("click", function () {
           hide()
@@ -146,8 +235,39 @@ const slideTransition = {
         backdrop.addEventListener("click", function () {
           hide()
         })
+        prevBtn.addEventListener("click", function () {
+          if (currentIndex > 0) showIndex(currentIndex - 1)
+        })
+        nextBtn.addEventListener("click", function () {
+          if (currentIndex < currentGroup.length - 1)
+            showIndex(currentIndex + 1)
+        })
         document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && lightbox.style.display !== "none") hide()
+          if (lightbox.style.display === "none") return
+          if (e.key === "Escape") {
+            hide()
+            return
+          }
+          if (e.key === "ArrowLeft") {
+            if (currentIndex > 0) showIndex(currentIndex - 1)
+            return
+          }
+          if (e.key === "ArrowRight") {
+            if (currentIndex < currentGroup.length - 1)
+              showIndex(currentIndex + 1)
+            return
+          }
+          if (e.key === "Tab") {
+            e.preventDefault()
+            var visible = focusable.filter(function (b) {
+              return !b.classList.contains("hidden")
+            })
+            var idx = visible.indexOf(document.activeElement)
+            var next = e.shiftKey
+              ? visible[(idx - 1 + visible.length) % visible.length]
+              : visible[(idx + 1) % visible.length]
+            next.focus()
+          }
         })
       })()
     </script>
