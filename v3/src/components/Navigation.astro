@@ -29,7 +29,7 @@ function isActive(href: string): boolean {
       class="text-lg font-semibold tracking-wide text-white"
       aria-label="Etusivu – reettalipponen.ART"
     >
-      reettalipponen<span class="text-gray-400">.ART</span>
+      reettalipponen<span class="text-emerald-400">.ART</span>
     </a>
 
     <!-- Desktop nav -->
@@ -40,8 +40,10 @@ function isActive(href: string): boolean {
             <a
               href={item.href}
               class:list={[
-                "text-sm transition-colors hover:text-emerald-500",
-                isActive(item.href) ? "font-bold text-white" : "text-gray-300",
+                "text-sm transition-colors",
+                isActive(item.href)
+                  ? "text-emerald-400 font-semibold border-b-4 border-emerald-400/50 pb-1"
+                  : "text-gray-300 hover:text-emerald-500",
               ]}
               {...(isActive(item.href) ? { "aria-current": "page" } : {})}
             >
@@ -91,8 +93,10 @@ function isActive(href: string): boolean {
             <a
               href={item.href}
               class:list={[
-                "mobile-nav-link text-lg transition-colors hover:text-emerald-500",
-                isActive(item.href) ? "font-bold text-white" : "text-gray-300",
+                "mobile-nav-link text-lg transition-colors",
+                isActive(item.href)
+                  ? "text-emerald-400 font-semibold border-b-4 border-emerald-400/50 pb-1"
+                  : "text-gray-300 hover:text-emerald-500",
               ]}
               {...(isActive(item.href) ? { "aria-current": "page" } : {})}
             >
