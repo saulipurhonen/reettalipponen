@@ -32,6 +32,7 @@ const { items } = Astro.props
               data-alt={img.alt || work.title || ""}
               data-group={`work-${workIndex}`}
               data-title={work.title || ""}
+              aria-label={`Avaa kuva: ${img.alt || work.title || "Teos"}`}
             >
               <img
                 src={img.thumbnail || img.image || ""}
