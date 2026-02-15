@@ -1,6 +1,6 @@
 ---
-title: Artist statement
-description: Reetta Lipposen artist statement
+title: Taiteilijan lausunto
+description: Reetta Lipposen taiteilijan lausunto
 ---
 
 Olen Joensuulaislähtöinen kuvanveistäjä ja asun tällä hetkellä Lappeenrannassa. Koulutukseltani olen kuva-artesaani sekä kuvataiteilija amk. Olen vuosien saatossa myös toiminut kuvataiteen opetustehtävissä sekä kulttuuritapahtumien tuottajana.
