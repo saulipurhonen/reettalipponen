@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://reettalipponen.fi',
   integrations: [
-    tailwind(),
+    tailwind({ applyBaseStyles: false }),
     sitemap(),
   ],
 });
