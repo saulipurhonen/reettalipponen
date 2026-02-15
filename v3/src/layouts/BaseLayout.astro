@@ -445,8 +445,17 @@ const slideTransition = {
 
       initAnimations(true)
 
-      // Set transition direction based on nav order
+      // Track whether navigation was triggered by keyboard
+      let keyboardNavHref: string | null = null
+
       document.addEventListener("astro:before-preparation", (event: any) => {
+        const active = document.activeElement as HTMLElement | null
+        if (active?.matches?.("a[href]") && active.closest("nav[aria-label]")) {
+          keyboardNavHref = active.getAttribute("href")
+        } else {
+          keyboardNavHref = null
+        }
+
         const oldIndex = getNavIndex(window.location.pathname)
         const newIndex = getNavIndex(
           new URL(event.to, window.location.origin).pathname
@@ -459,6 +468,17 @@ const slideTransition = {
 
       document.addEventListener("astro:after-swap", () => {
         initAnimations(false)
+
+        // Restore focus to the corresponding nav link after page swap
+        if (keyboardNavHref) {
+          const targetLink = document.querySelector(
+            `nav[aria-label="Päävalikko"] a[href="${keyboardNavHref}"]`
+          ) as HTMLElement | null
+          if (targetLink) {
+            targetLink.focus()
+          }
+          keyboardNavHref = null
+        }
       })
     </script>
   </body>
