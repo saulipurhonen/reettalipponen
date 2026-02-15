@@ -13,20 +13,20 @@ const apiKey = import.meta.env.STATIC_FORMS_API_KEY
 
 <BaseLayout title={data.title} description={data.description}>
   <div class="reveal mx-auto max-w-6xl px-4 py-12">
-    <h1 class="text-3xl font-bold mb-8">{data.title}</h1>
+    <h1 class="text-3xl font-bold mb-8 text-text">{data.title}</h1>
 
-    <p class="mb-4">
+    <p class="mb-4 text-text">
       Ota yhteyttä alla olevalla lomakkeella, niin palaan asiaan mahdollisimman
       pian.
     </p>
 
-    <p class="mb-8">Minut löydät myös sosiaalisesta mediasta:</p>
+    <p class="mb-8 text-text">Minut löydät myös sosiaalisesta mediasta:</p>
 
     <a
       href="https://www.instagram.com/reettalipponen.art"
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 mb-10 text-gray-300 transition-colors hover:text-white"
+      class="inline-flex items-center gap-2 mb-10 text-text-muted transition-colors hover:text-accent-light"
       aria-label="Instagram: @reettalipponen.art"
     >
       <svg
@@ -58,41 +58,43 @@ const apiKey = import.meta.env.STATIC_FORMS_API_KEY
       />
 
       <div>
-        <label for="name" class="block text-sm mb-1">Nimi</label>
+        <label for="name" class="block text-sm mb-1 text-text">Nimi</label>
         <input
           type="text"
           id="name"
           name="name"
           required
-          class="w-full rounded border border-gray-600 bg-black/50 px-3 py-2 text-white placeholder-gray-500 focus:border-white focus:outline-none focus:ring-2 focus:ring-white"
+          class="w-full rounded border border-surface-elevated bg-surface-raised px-3 py-2 text-text placeholder-text-dim focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent"
         />
       </div>
 
       <div>
-        <label for="email" class="block text-sm mb-1">Sähköposti</label>
+        <label for="email" class="block text-sm mb-1 text-text"
+          >Sähköposti</label
+        >
         <input
           type="email"
           id="email"
           name="email"
           required
-          class="w-full rounded border border-gray-600 bg-black/50 px-3 py-2 text-white placeholder-gray-500 focus:border-white focus:outline-none focus:ring-2 focus:ring-white"
+          class="w-full rounded border border-surface-elevated bg-surface-raised px-3 py-2 text-text placeholder-text-dim focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent"
         />
       </div>
 
       <div>
-        <label for="message" class="block text-sm mb-1">Viesti</label>
+        <label for="message" class="block text-sm mb-1 text-text">Viesti</label>
         <textarea
           id="message"
           name="message"
           rows="5"
           required
-          class="w-full rounded border border-gray-600 bg-black/50 px-3 py-2 text-white placeholder-gray-500 focus:border-white focus:outline-none focus:ring-2 focus:ring-white resize-vertical"
+          class="w-full rounded border border-surface-elevated bg-surface-raised px-3 py-2 text-text placeholder-text-dim focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent resize-vertical"
         ></textarea>
       </div>
 
       <button
         type="submit"
-        class="rounded bg-white px-6 py-2 text-sm font-semibold text-black transition-colors hover:bg-gray-200 disabled:opacity-50"
+        class="rounded bg-accent px-6 py-2 text-sm font-semibold text-text transition-colors hover:bg-accent-light disabled:opacity-50"
       >
         Lähetä
       </button>
@@ -134,7 +136,7 @@ const apiKey = import.meta.env.STATIC_FORMS_API_KEY
       if (json.success) {
         status.textContent =
           "Kiitos viestistäsi! Palaan asiaan mahdollisimman pian."
-        status.className = "text-sm text-green-400"
+        status.className = "text-sm text-accent-light"
         form.reset()
       } else {
         throw new Error(json.message || "Lähetys epäonnistui")

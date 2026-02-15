@@ -19,7 +19,7 @@ interface Props {
 const { items } = Astro.props
 ---
 
-<div class="divide-y divide-white/10">
+<div class="divide-y divide-surface-elevated">
   {
     items.map((work, workIndex) => (
       <div class="reveal py-12 first:pt-0">
@@ -44,16 +44,18 @@ const { items } = Astro.props
           ))}
         </div>
         <div class="mt-4 space-y-1">
-          {work.title && <p class="text-lg font-semibold">{work.title}</p>}
+          {work.title && (
+            <p class="text-lg font-semibold text-text">{work.title}</p>
+          )}
           {work.description && (
-            <p class="text-sm text-gray-400">{work.description}</p>
+            <p class="text-sm text-text-muted">{work.description}</p>
           )}
           {work.dimensions && (
-            <p class="text-sm text-gray-400">{work.dimensions}</p>
+            <p class="text-sm text-text-muted">{work.dimensions}</p>
           )}
-          {work.year && <p class="text-sm text-gray-400">{work.year}</p>}
+          {work.year && <p class="text-sm text-text-muted">{work.year}</p>}
           {work.materials && (
-            <p class="text-sm text-gray-400">{work.materials}</p>
+            <p class="text-sm text-text-muted">{work.materials}</p>
           )}
         </div>
       </div>

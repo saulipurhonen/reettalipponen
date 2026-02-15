@@ -23,22 +23,22 @@ const { data } = getContent<CvData>("fi/cv/index.md")
 
 <BaseLayout title={data.title} description={data.description}>
   <div class="mx-auto max-w-6xl px-4 py-12">
-    <h1 class="reveal text-3xl font-bold mb-12">{data.title}</h1>
+    <h1 class="reveal text-3xl font-bold mb-12 text-text">{data.title}</h1>
     {
       data.sections?.map((section) => (
         <section class="reveal mb-10">
-          <h2 class="text-sm font-semibold uppercase tracking-widest text-emerald-400 mb-4 border-b border-white/10 pb-2">
+          <h2 class="text-sm font-semibold uppercase tracking-widest text-accent mb-4 border-b border-surface-elevated pb-2">
             {section.sectionTitle}
           </h2>
           <ul class="space-y-3">
             {section.entries?.map((entry) => (
               <li class="flex gap-4 text-sm leading-relaxed">
                 {entry.date && (
-                  <span class="text-gray-400 shrink-0 w-28 tabular-nums">
+                  <span class="text-text-muted shrink-0 w-28 tabular-nums">
                     {entry.date}
                   </span>
                 )}
-                <span class="text-gray-200">{entry.content}</span>
+                <span class="text-text">{entry.content}</span>
               </li>
             ))}
           </ul>

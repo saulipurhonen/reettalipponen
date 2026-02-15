@@ -15,6 +15,27 @@ h1 {
 }
 
 :focus-visible {
-  outline: 2px solid white;
+  outline: 2px solid #6b9e7a;
   outline-offset: 2px;
+}
+
+/* Typography plugin overrides for the green theme */
+.prose-theme {
+  --tw-prose-body: #e8ede9;
+  --tw-prose-headings: #e8ede9;
+  --tw-prose-lead: #9aaa9e;
+  --tw-prose-links: #6b9e7a;
+  --tw-prose-bold: #e8ede9;
+  --tw-prose-counters: #6b7d70;
+  --tw-prose-bullets: #4a7c59;
+  --tw-prose-hr: #1e261e;
+  --tw-prose-quotes: #9aaa9e;
+  --tw-prose-quote-borders: #4a7c59;
+  --tw-prose-captions: #6b7d70;
+  --tw-prose-code: #e8ede9;
+  --tw-prose-pre-code: #e8ede9;
+  --tw-prose-pre-bg: #141a14;
+  --tw-prose-th-borders: #1e261e;
+  --tw-prose-td-borders: #1e261e;
+  --tw-prose-invert-body: #e8ede9;
 }

@@ -69,7 +69,7 @@ const slideTransition = {
   </head>
   <body
     class:list={[
-      "min-h-screen flex flex-col bg-black text-white",
+      "min-h-screen flex flex-col bg-surface text-text",
       backgroundImage && "md:bg-cover md:bg-center",
     ]}
     style={backgroundImage
@@ -93,13 +93,13 @@ const slideTransition = {
     >
       <div
         id="lightbox-backdrop"
-        class="absolute inset-0 bg-black/90 backdrop-blur-sm"
+        class="absolute inset-0 bg-surface/95 backdrop-blur-sm"
       >
       </div>
       <button
         id="lightbox-close"
         type="button"
-        class="absolute top-4 right-4 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center text-white/70 hover:text-white transition-colors"
+        class="absolute top-4 right-4 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-text transition-colors"
         aria-label="Sulje"
       >
         <svg
@@ -118,7 +118,7 @@ const slideTransition = {
       <button
         id="lightbox-prev"
         type="button"
-        class="absolute left-4 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center text-white/70 hover:text-white transition-colors hidden"
+        class="absolute left-4 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-text transition-colors hidden"
         aria-label="Edellinen kuva"
       >
         <svg
@@ -137,7 +137,7 @@ const slideTransition = {
       <button
         id="lightbox-next"
         type="button"
-        class="absolute right-4 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center text-white/70 hover:text-white transition-colors hidden"
+        class="absolute right-4 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-text transition-colors hidden"
         aria-label="Seuraava kuva"
       >
         <svg
@@ -153,7 +153,7 @@ const slideTransition = {
       </button>
       <p
         id="lightbox-title"
-        class="absolute top-4 left-4 z-20 text-lg font-semibold text-white/90"
+        class="absolute top-4 left-4 z-20 text-lg font-semibold text-text"
       >
       </p>
       <img
