@@ -41,6 +41,9 @@ export default defineConfig({
             label: 'Teokset',
             type: 'object',
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || 'Teos' }),
+            },
             fields: [
               { name: 'title', label: 'Teoksen nimi', type: 'string', required: true },
               { name: 'description', label: 'Kuvaus', type: 'string' },
@@ -52,6 +55,9 @@ export default defineConfig({
                 label: 'Kuvat',
                 type: 'object',
                 list: true,
+                ui: {
+                  itemProps: (item) => ({ label: item?.alt || 'Kuva' }),
+                },
                 fields: [
                   { name: 'image', label: 'Kuva', type: 'image' },
                   { name: 'thumbnail', label: 'Pienoiskuva', type: 'image' },
@@ -75,6 +81,9 @@ export default defineConfig({
             label: 'Osiot',
             type: 'object',
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.sectionTitle || 'Osio' }),
+            },
             fields: [
               { name: 'sectionTitle', label: 'Osion otsikko', type: 'string', required: true },
               {
@@ -82,6 +91,9 @@ export default defineConfig({
                 label: 'Merkinnät',
                 type: 'object',
                 list: true,
+                ui: {
+                  itemProps: (item) => ({ label: item?.content || 'Merkintä' }),
+                },
                 fields: [
                   { name: 'date', label: 'Päivämäärä', type: 'string' },
                   { name: 'content', label: 'Sisältö', type: 'string', required: true },
