@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import { getContent } from "../lib/content"
+
+interface StatementData {
+  title: string
+  description: string
+}
+
+const { data, content } = getContent<StatementData>("fi/statement/index.md")
+---
+
+<BaseLayout title={data.title} description={data.description}>
+  <div class="mx-auto max-w-3xl px-4 py-12">
+    <h1 class="reveal text-5xl font-light mb-8 text-text">{data.title}</h1>
+    <div
+      class="reveal prose prose-theme prose-lg max-w-none"
+      set:html={content}
+    />
+  </div>
+</BaseLayout>

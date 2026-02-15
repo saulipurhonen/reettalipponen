@@ -1,18 +1,36 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { getContent } from '../lib/content';
+import BaseLayout from "../layouts/BaseLayout.astro"
+import { getContent } from "../lib/content"
 
 interface HomeData {
-  title: string;
-  description: string;
+  title: string
+  description: string
 }
 
-const { data, content } = getContent<HomeData>('fi/home/index.md');
+const { data, content } = getContent<HomeData>("fi/home/index.md")
 ---
 
 <BaseLayout title={data.title} description={data.description}>
-  <div class="reveal mx-auto max-w-4xl px-4 py-12">
-    <h1 class="text-3xl font-bold">{data.title}</h1>
-    <div class="mt-6 prose prose-gray max-w-none" set:html={content} />
-  </div>
+  <section class="relative min-h-[70vh] flex items-end">
+    <img
+      src="/images/home_bg.jpg"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover object-[0%_30%]"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"
+    >
+    </div>
+    <div class="relative z-10 mx-auto max-w-6xl w-full px-4 pb-16">
+      <h1
+        class="reveal text-5xl md:text-7xl font-light tracking-tight text-text"
+      >
+        {data.title}
+      </h1>
+      <p class="reveal mt-2 text-lg text-text-muted">Kuvataiteilija</p>
+    </div>
+  </section>
+  <section class="reveal mx-auto max-w-3xl px-4 py-16">
+    <div class="prose prose-theme prose-lg max-w-none" set:html={content} />
+  </section>
 </BaseLayout>

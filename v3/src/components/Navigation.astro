@@ -1,114 +1,269 @@
 ---
-import { UI_STRINGS, DEFAULT_LOCALE } from '../lib/i18n';
+import { UI_STRINGS, DEFAULT_LOCALE } from "../lib/i18n"
 
-const navItems = UI_STRINGS[DEFAULT_LOCALE].navigation;
-const pathname = Astro.url.pathname;
+const navItems = UI_STRINGS[DEFAULT_LOCALE].navigation
+const pathname = Astro.url.pathname
 
 function isActive(href: string): boolean {
-  if (href === '/') {
-    return pathname === '/';
+  if (href === "/") {
+    return pathname === "/"
   }
-  return pathname.startsWith(href);
+  return pathname.startsWith(href)
 }
 ---
 
-<header class="relative z-50">
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+<header
+  id="site-header"
+  class="sticky top-0 z-50 transition-transform duration-300"
+>
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:absolute focus:z-[70] focus:top-2 focus:left-2 focus:rounded focus:bg-accent focus:px-4 focus:py-2 focus:text-surface focus:text-sm focus:font-semibold"
+  >
+    Siirry sisältöön
+  </a>
+  <nav
+    aria-label="Päävalikko"
+    class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4"
+  >
+    <!-- Logo -->
+    <a
+      href="/"
+      class="flex items-baseline gap-1"
+      aria-label="Etusivu – Reetta Lipponen .ART"
+    >
+      <span class="font-display text-2xl text-text">Reetta Lipponen</span>
+      <span class="text-xs font-semibold uppercase tracking-widest text-accent"
+        >.ART</span
+      >
+    </a>
+
     <!-- Desktop nav -->
     <ul class="hidden md:flex md:items-center md:gap-6">
-      {navItems.map((item) => (
-        <li>
-          <a
-            href={item.href}
-            class:list={[
-              'text-sm transition-colors hover:text-gray-900',
-              isActive(item.href) ? 'font-bold text-gray-900' : 'text-gray-600',
-            ]}
-            {...(isActive(item.href) ? { 'aria-current': 'page' } : {})}
-          >
-            {item.label}
-          </a>
-        </li>
-      ))}
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={[
+                "text-sm transition-colors",
+                isActive(item.href)
+                  ? "text-accent-light font-semibold border-b-4 border-accent/50 pb-1"
+                  : "text-text-muted hover:text-accent-light",
+              ]}
+              {...(isActive(item.href) ? { "aria-current": "page" } : {})}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
     </ul>
 
     <!-- Mobile hamburger button -->
     <button
       id="menu-toggle"
-      class="md:hidden p-2"
+      class="relative z-50 md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center group ml-auto"
       type="button"
       aria-label="Avaa valikko"
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path id="icon-open" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        <path id="icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
+      <div class="relative h-3.5 w-5">
+        <span
+          id="bar-1"
+          class="absolute left-0 top-0 block h-0.5 w-5 bg-current transition-all duration-300 ease-in-out"
+        ></span>
+        <span
+          id="bar-2"
+          class="absolute left-0 top-[6px] block h-0.5 w-5 bg-current transition-all duration-300 ease-in-out"
+        ></span>
+        <span
+          id="bar-3"
+          class="absolute left-0 bottom-0 block h-0.5 w-5 bg-current transition-all duration-300 ease-in-out"
+        ></span>
+      </div>
     </button>
   </nav>
 
   <!-- Mobile overlay -->
-  <div
+  <nav
     id="mobile-menu"
-    class="fixed inset-0 z-40 hidden flex-col items-center justify-center bg-white"
+    aria-label="Mobiilivalikko"
+    class="fixed inset-0 z-40 hidden flex-col items-center justify-center bg-surface"
   >
     <ul class="flex flex-col items-center gap-6">
-      {navItems.map((item) => (
-        <li>
-          <a
-            href={item.href}
-            class:list={[
-              'mobile-nav-link text-lg transition-colors hover:text-gray-900',
-              isActive(item.href) ? 'font-bold text-gray-900' : 'text-gray-600',
-            ]}
-            {...(isActive(item.href) ? { 'aria-current': 'page' } : {})}
-          >
-            {item.label}
-          </a>
-        </li>
-      ))}
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={[
+                "mobile-nav-link text-lg transition-colors",
+                isActive(item.href)
+                  ? "text-accent-light font-semibold border-b-4 border-accent/50 pb-1"
+                  : "text-text-muted hover:text-accent-light",
+              ]}
+              {...(isActive(item.href) ? { "aria-current": "page" } : {})}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
     </ul>
-  </div>
+  </nav>
 </header>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
-  const iconOpen = document.getElementById('icon-open');
-  const iconClose = document.getElementById('icon-close');
-  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  import gsap from "gsap"
 
-  function openMenu() {
-    menu?.classList.remove('hidden');
-    menu?.classList.add('flex');
-    iconOpen?.classList.add('hidden');
-    iconClose?.classList.remove('hidden');
-    toggle?.setAttribute('aria-expanded', 'true');
-    toggle?.setAttribute('aria-label', 'Sulje valikko');
-  }
+  document.addEventListener("astro:page-load", () => {
+    const toggle = document.getElementById("menu-toggle")
+    const menu = document.getElementById("mobile-menu")
+    const bar1 = document.getElementById("bar-1")
+    const bar2 = document.getElementById("bar-2")
+    const bar3 = document.getElementById("bar-3")
+    const mobileLinks = document.querySelectorAll(".mobile-nav-link")
+    let isAnimating = false
 
-  function closeMenu() {
-    menu?.classList.add('hidden');
-    menu?.classList.remove('flex');
-    iconOpen?.classList.remove('hidden');
-    iconClose?.classList.add('hidden');
-    toggle?.setAttribute('aria-expanded', 'false');
-    toggle?.setAttribute('aria-label', 'Avaa valikko');
-  }
+    function openMenu() {
+      if (isAnimating) return
+      isAnimating = true
 
-  toggle?.addEventListener('click', () => {
-    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
+      menu?.classList.remove("hidden")
+      menu?.classList.add("flex")
+      bar1?.classList.add("top-[6px]", "rotate-45")
+      bar1?.classList.remove("top-0")
+      bar2?.classList.add("opacity-0")
+      bar3?.classList.add("bottom-[6px]", "-rotate-45")
+      bar3?.classList.remove("bottom-0")
+      toggle?.setAttribute("aria-expanded", "true")
+      toggle?.setAttribute("aria-label", "Sulje valikko")
+
+      gsap.fromTo(
+        menu,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.3,
+          ease: "power2.out",
+          onComplete: () => {
+            isAnimating = false
+          },
+        }
+      )
     }
-  });
 
-  mobileLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      closeMenu();
-    });
-  });
+    function closeMenu() {
+      if (isAnimating) return
+      isAnimating = true
+
+      bar1?.classList.remove("top-[6px]", "rotate-45")
+      bar1?.classList.add("top-0")
+      bar2?.classList.remove("opacity-0")
+      bar3?.classList.remove("bottom-[6px]", "-rotate-45")
+      bar3?.classList.add("bottom-0")
+      toggle?.setAttribute("aria-expanded", "false")
+      toggle?.setAttribute("aria-label", "Avaa valikko")
+
+      gsap.to(menu, {
+        opacity: 0,
+        y: -40,
+        duration: 0.3,
+        ease: "power2.in",
+        onComplete: () => {
+          menu?.classList.add("hidden")
+          menu?.classList.remove("flex")
+          gsap.set(menu, { clearProps: "all" })
+          isAnimating = false
+        },
+      })
+    }
+
+    toggle?.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true"
+      if (isOpen) {
+        closeMenu()
+      } else {
+        openMenu()
+      }
+    })
+
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        closeMenu()
+      })
+    })
+
+    // Escape key closes mobile menu
+    document.addEventListener("keydown", (e) => {
+      if (
+        e.key === "Escape" &&
+        toggle?.getAttribute("aria-expanded") === "true"
+      ) {
+        closeMenu()
+        toggle?.focus()
+      }
+    })
+
+    // Focus trap inside mobile menu
+    menu?.addEventListener("keydown", (e) => {
+      if (e.key !== "Tab") return
+      const focusableEls = menu.querySelectorAll<HTMLElement>(
+        "a[href], button:not([disabled])"
+      )
+      if (!focusableEls.length) return
+      const first = focusableEls[0]
+      const last = focusableEls[focusableEls.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    })
+
+    // Sticky nav: hide on scroll down, show on scroll up
+    const header = document.getElementById("site-header")
+    let lastScrollY = window.scrollY
+    let ticking = false
+
+    function onScroll() {
+      const currentY = window.scrollY
+      if (!header) return
+
+      if (currentY <= 0) {
+        header.classList.remove("-translate-y-full")
+        header.style.backgroundColor = ""
+        header.style.backdropFilter = ""
+        header.classList.remove("shadow-lg")
+      } else if (currentY > lastScrollY && currentY > 80) {
+        // Scrolling down past threshold — hide
+        header.classList.add("-translate-y-full")
+      } else {
+        // Scrolling up — show with background
+        header.classList.remove("-translate-y-full")
+        header.style.backgroundColor = "rgba(10, 15, 10, 0.85)"
+        header.style.backdropFilter = "blur(4px)"
+        header.classList.add("shadow-lg")
+      }
+
+      lastScrollY = currentY
+      ticking = false
+    }
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          requestAnimationFrame(onScroll)
+          ticking = true
+        }
+      },
+      { passive: true }
+    )
+  })
 </script>

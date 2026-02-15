@@ -1,18 +1,55 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import SEO from '../components/SEO.astro';
-import Navigation from '../components/Navigation.astro';
-import Footer from '../components/Footer.astro';
-import { DEFAULT_LOCALE, type Locale } from '../lib/i18n';
-import '../app.css';
+import { ClientRouter } from "astro:transitions"
+import SEO from "../components/SEO.astro"
+import Navigation from "../components/Navigation.astro"
+import Footer from "../components/Footer.astro"
+import { DEFAULT_LOCALE, type Locale } from "../lib/i18n"
+import "../app.css"
 
 interface Props {
-  title: string;
-  description: string;
-  locale?: Locale;
+  title: string
+  description: string
+  locale?: Locale
+  backgroundImage?: string
 }
 
-const { title, description, locale = DEFAULT_LOCALE } = Astro.props;
+const {
+  title,
+  description,
+  locale = DEFAULT_LOCALE,
+  backgroundImage,
+} = Astro.props
+
+const slideTransition = {
+  forwards: {
+    old: {
+      name: "slide-out-left",
+      duration: "0.3s",
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+      fillMode: "both",
+    },
+    new: {
+      name: "slide-in-right",
+      duration: "0.3s",
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+      fillMode: "both",
+    },
+  },
+  backwards: {
+    old: {
+      name: "slide-out-right",
+      duration: "0.3s",
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+      fillMode: "both",
+    },
+    new: {
+      name: "slide-in-left",
+      duration: "0.3s",
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+      fillMode: "both",
+    },
+  },
+}
 ---
 
 <!doctype html>
@@ -21,67 +58,428 @@ const { title, description, locale = DEFAULT_LOCALE } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <SEO title={title} description={description} />
-    <ViewTransitions />
+    <ClientRouter />
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body
+    class:list={[
+      "min-h-screen flex flex-col bg-surface text-text",
+      backgroundImage && "md:bg-cover md:bg-center",
+    ]}
+    style={backgroundImage
+      ? `background-image: url('${backgroundImage}')`
+      : undefined}
+  >
     <Navigation />
-    <main class="flex-1">
+    <main id="main-content" class="flex-1" transition:animate={slideTransition}>
       <slot />
     </main>
     <Footer />
 
-    <script>
-      import gsap from 'gsap';
+    <!-- Global lightbox overlay (outside main to avoid stacking context issues) -->
+    <div
+      id="lightbox"
+      style="display:none"
+      class="fixed inset-0 z-[60] flex items-center justify-center"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Kuvan suurennus"
+    >
+      <div
+        id="lightbox-backdrop"
+        class="absolute inset-0 bg-surface/95 backdrop-blur-sm"
+      >
+      </div>
+      <button
+        id="lightbox-close"
+        type="button"
+        class="absolute top-4 right-4 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-text transition-colors"
+        aria-label="Sulje"
+      >
+        <svg
+          class="w-8 h-8 pointer-events-none"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <button
+        id="lightbox-prev"
+        type="button"
+        class="absolute left-4 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-text transition-colors hidden"
+        aria-label="Edellinen kuva"
+      >
+        <svg
+          class="w-8 h-8 pointer-events-none"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+      <button
+        id="lightbox-next"
+        type="button"
+        class="absolute right-4 z-20 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-text transition-colors hidden"
+        aria-label="Seuraava kuva"
+      >
+        <svg
+          class="w-8 h-8 pointer-events-none"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"
+          ></path>
+        </svg>
+      </button>
+      <p
+        id="lightbox-title"
+        class="absolute top-4 left-4 z-20 text-lg font-semibold text-text"
+      >
+      </p>
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="relative z-10 max-h-[90vh] max-w-[90vw] object-contain"
+      />
+      <p id="lightbox-counter" class="sr-only" aria-live="polite"></p>
+    </div>
 
-      function initAnimations() {
-        // Animate .reveal elements on viewport entry
-        const revealElements = document.querySelectorAll('.reveal');
+    <script is:inline>
+      ;(function () {
+        var currentGroup = []
+        var currentIndex = 0
+        var currentTitle = ""
+        var lastFocused = null
 
-        // Set initial state
-        gsap.set(revealElements, { opacity: 0, y: 30 });
+        function getEl(id) {
+          return document.getElementById(id)
+        }
 
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                gsap.to(entry.target, {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.8,
-                  ease: 'power2.out',
-                });
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.1 }
-        );
+        function isOpen() {
+          var lb = getEl("lightbox")
+          return lb && lb.style.display !== "none"
+        }
 
-        revealElements.forEach((el) => observer.observe(el));
+        function updateNav() {
+          var prevBtn = getEl("lightbox-prev")
+          var nextBtn = getEl("lightbox-next")
+          if (prevBtn)
+            prevBtn.classList.toggle(
+              "hidden",
+              currentGroup.length <= 1 || currentIndex === 0
+            )
+          if (nextBtn)
+            nextBtn.classList.toggle(
+              "hidden",
+              currentGroup.length <= 1 ||
+                currentIndex === currentGroup.length - 1
+            )
+        }
 
-        // Footer fade-in
-        const footer = document.querySelector('footer');
-        if (footer) {
-          gsap.fromTo(footer, { opacity: 0 }, { opacity: 1, duration: 1, delay: 0.3 });
+        function showIndex(i) {
+          var img = getEl("lightbox-img")
+          var titleEl = getEl("lightbox-title")
+          var counter = getEl("lightbox-counter")
+          currentIndex = i
+          if (img) {
+            img.src = currentGroup[i].src
+            img.alt = currentGroup[i].alt
+          }
+          updateNav()
+          if (titleEl) titleEl.textContent = currentTitle
+          if (counter && currentGroup.length > 1) {
+            counter.textContent =
+              "Kuva " + (i + 1) + " / " + currentGroup.length
+          }
+        }
+
+        function show(trigger) {
+          var lightbox = getEl("lightbox")
+          var closeBtn = getEl("lightbox-close")
+          if (!lightbox) return
+          lastFocused = document.activeElement
+          var group = trigger.dataset.group
+          currentTitle = trigger.dataset.title || ""
+          var triggers = group
+            ? Array.from(
+                document.querySelectorAll(
+                  '.lightbox-trigger[data-group="' + group + '"]'
+                )
+              )
+            : [trigger]
+          currentGroup = triggers.map(function (t) {
+            return { src: t.dataset.src || "", alt: t.dataset.alt || "" }
+          })
+          currentIndex = triggers.indexOf(trigger)
+          if (currentIndex === -1) currentIndex = 0
+          lightbox.style.display = "flex"
+          document.body.style.overflow = "hidden"
+          showIndex(currentIndex)
+          if (closeBtn) closeBtn.focus()
+        }
+
+        function hide() {
+          var lightbox = getEl("lightbox")
+          var img = getEl("lightbox-img")
+          var titleEl = getEl("lightbox-title")
+          var prevBtn = getEl("lightbox-prev")
+          var nextBtn = getEl("lightbox-next")
+          if (lightbox) lightbox.style.display = "none"
+          if (img) img.src = ""
+          document.body.style.overflow = ""
+          currentGroup = []
+          currentTitle = ""
+          if (titleEl) titleEl.textContent = ""
+          if (prevBtn) prevBtn.classList.add("hidden")
+          if (nextBtn) nextBtn.classList.add("hidden")
+          if (lastFocused && lastFocused.focus) lastFocused.focus()
+          lastFocused = null
+        }
+
+        document.addEventListener("click", function (e) {
+          var trigger = e.target.closest(".lightbox-trigger")
+          if (trigger) {
+            show(trigger)
+            return
+          }
+          if (!isOpen()) return
+          if (e.target.closest("#lightbox-close")) {
+            hide()
+            return
+          }
+          if (e.target.closest("#lightbox-backdrop")) {
+            hide()
+            return
+          }
+          if (e.target.closest("#lightbox-prev")) {
+            if (currentIndex > 0) showIndex(currentIndex - 1)
+            return
+          }
+          if (e.target.closest("#lightbox-next")) {
+            if (currentIndex < currentGroup.length - 1)
+              showIndex(currentIndex + 1)
+            return
+          }
+        })
+
+        document.addEventListener("keydown", function (e) {
+          if (!isOpen()) return
+          if (e.key === "Escape") {
+            hide()
+            return
+          }
+          if (e.key === "ArrowLeft") {
+            if (currentIndex > 0) showIndex(currentIndex - 1)
+            return
+          }
+          if (e.key === "ArrowRight") {
+            if (currentIndex < currentGroup.length - 1)
+              showIndex(currentIndex + 1)
+            return
+          }
+          if (e.key === "Tab") {
+            e.preventDefault()
+            var focusable = [
+              getEl("lightbox-close"),
+              getEl("lightbox-prev"),
+              getEl("lightbox-next"),
+            ]
+            var visible = focusable.filter(function (b) {
+              return b && !b.classList.contains("hidden")
+            })
+            var idx = visible.indexOf(document.activeElement)
+            var next = e.shiftKey
+              ? visible[(idx - 1 + visible.length) % visible.length]
+              : visible[(idx + 1) % visible.length]
+            if (next) next.focus()
+          }
+        })
+      })()
+    </script>
+
+    <style is:global>
+      @keyframes slide-out-left {
+        from {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+      }
+      @keyframes slide-in-right {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes slide-out-right {
+        from {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+      }
+      @keyframes slide-in-left {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
         }
       }
 
-      // Run on initial page load
-      initAnimations();
-
-      // Re-run after Astro View Transitions navigation
-      document.addEventListener('astro:after-swap', () => {
-        initAnimations();
-      });
-
-      // Page transition: fade out before swap
-      document.addEventListener('astro:before-swap', () => {
-        const main = document.querySelector('main');
-        if (main) {
-          gsap.to(main, { opacity: 0, duration: 0.2 });
+      @media (max-width: 767px) {
+        ::view-transition-old(*),
+        ::view-transition-new(*) {
+          animation-duration: 0s !important;
         }
-      });
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        ::view-transition-old(*),
+        ::view-transition-new(*) {
+          animation-duration: 0s !important;
+        }
+      }
+    </style>
+
+    <script>
+      import gsap from "gsap"
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches
+
+      const NAV_HREFS = [
+        "/",
+        "/works/ceramic",
+        "/works/installation",
+        "/works/sculpture",
+        "/works/customer",
+        "/cv",
+        "/statement",
+        "/contact",
+      ]
+
+      function getNavIndex(path: string): number {
+        const exact = NAV_HREFS.indexOf(path)
+        if (exact !== -1) return exact
+        const prefix = NAV_HREFS.findIndex(
+          (href) => href !== "/" && path.startsWith(href)
+        )
+        return prefix !== -1 ? prefix : -1
+      }
+
+      function initAnimations(initialLoad = false) {
+        if (prefersReducedMotion) {
+          const revealElements = document.querySelectorAll(".reveal")
+          gsap.set(revealElements, { opacity: 1, y: 0 })
+          return
+        }
+
+        if (initialLoad) {
+          const revealElements = document.querySelectorAll(".reveal")
+          gsap.set(revealElements, { opacity: 0, y: 30 })
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  gsap.to(entry.target, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                  })
+                  observer.unobserve(entry.target)
+                }
+              })
+            },
+            { threshold: 0.1 }
+          )
+
+          revealElements.forEach((el) => observer.observe(el))
+        }
+
+        const footer = document.querySelector("footer")
+        if (footer) {
+          gsap.fromTo(
+            footer,
+            { opacity: 0 },
+            { opacity: 1, duration: 1, delay: 0.3 }
+          )
+        }
+      }
+
+      initAnimations(true)
+
+      // Track whether navigation was triggered by keyboard
+      let keyboardNavHref: string | null = null
+
+      document.addEventListener("astro:before-preparation", (event: any) => {
+        const active = document.activeElement as HTMLElement | null
+        if (active?.matches?.("a[href]") && active.closest("nav[aria-label]")) {
+          keyboardNavHref = active.getAttribute("href")
+        } else {
+          keyboardNavHref = null
+        }
+
+        const oldIndex = getNavIndex(window.location.pathname)
+        const newIndex = getNavIndex(
+          new URL(event.to, window.location.origin).pathname
+        )
+
+        if (oldIndex !== -1 && newIndex !== -1 && oldIndex !== newIndex) {
+          event.direction = oldIndex < newIndex ? "forward" : "back"
+        }
+      })
+
+      document.addEventListener("astro:after-swap", () => {
+        initAnimations(false)
+
+        // Restore focus to the corresponding nav link after page swap
+        if (keyboardNavHref) {
+          const targetLink = document.querySelector(
+            `nav[aria-label="Päävalikko"] a[href="${keyboardNavHref}"]`
+          ) as HTMLElement | null
+          if (targetLink) {
+            targetLink.focus()
+          }
+          keyboardNavHref = null
+        }
+      })
     </script>
   </body>
 </html>

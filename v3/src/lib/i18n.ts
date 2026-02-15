@@ -5,6 +5,7 @@ export const UI_STRINGS: Record<
   Locale,
   {
     navigation: Array<{ label: string; href: string }>;
+    worksSubnav: Array<{ label: string; href: string }>;
     footer: { credit: string };
   }
 > = {
@@ -13,10 +14,17 @@ export const UI_STRINGS: Record<
       { label: 'Etusivu', href: '/' },
       { label: 'Keramiikka', href: '/works/ceramic' },
       { label: 'Installaatio', href: '/works/installation' },
-      { label: 'Veistos', href: '/works/sculpture' },
+      // { label: 'Veistos', href: '/works/sculpture' },
       { label: 'Asiakastyö', href: '/works/customer' },
       { label: 'CV', href: '/cv' },
-      { label: 'Yhteystiedot', href: '/contact' },
+      { label: 'Taiteilijan lausunto', href: '/statement' },
+      { label: 'Ota yhteyttä', href: '/contact' },
+    ],
+    worksSubnav: [
+      { label: 'Keramiikka', href: '/works/ceramic' },
+      { label: 'Installaatio', href: '/works/installation' },
+      { label: 'Veistos', href: '/works/sculpture' },
+      { label: 'Asiakastyö', href: '/works/customer' },
     ],
     footer: { credit: 'Website by' },
   },
@@ -25,10 +33,17 @@ export const UI_STRINGS: Record<
       { label: 'Home', href: '/' },
       { label: 'Ceramics', href: '/works/ceramic' },
       { label: 'Installation', href: '/works/installation' },
-      { label: 'Sculpture', href: '/works/sculpture' },
+      // { label: 'Sculpture', href: '/works/sculpture' },
       { label: 'Custom Work', href: '/works/customer' },
       { label: 'CV', href: '/cv' },
+      { label: 'Artist Statement', href: '/statement' },
       { label: 'Contact', href: '/contact' },
+    ],
+    worksSubnav: [
+      { label: 'Ceramics', href: '/works/ceramic' },
+      { label: 'Installation', href: '/works/installation' },
+      { label: 'Sculpture', href: '/works/sculpture' },
+      { label: 'Custom Work', href: '/works/customer' },
     ],
     footer: { credit: 'Website by' },
   },

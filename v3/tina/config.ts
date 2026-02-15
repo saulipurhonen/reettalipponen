@@ -37,13 +37,33 @@ export default defineConfig({
           { name: 'description', label: 'SEO-kuvaus', type: 'string' },
           { name: 'slug', label: 'URL-tunnus', type: 'string', required: true },
           {
-            name: 'gallery',
-            label: 'Galleria',
+            name: 'works',
+            label: 'Teokset',
             type: 'object',
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.title || 'Teos' }),
+            },
             fields: [
-              { name: 'image', label: 'Kuva', type: 'image' },
-              { name: 'title', label: 'Teoksen nimi', type: 'string' },
+              { name: 'title', label: 'Teoksen nimi', type: 'string', required: true },
+              { name: 'description', label: 'Kuvaus', type: 'string' },
+              { name: 'dimensions', label: 'Mitat', type: 'string' },
+              { name: 'year', label: 'Vuosi', type: 'string' },
+              { name: 'materials', label: 'Materiaalit', type: 'string' },
+              {
+                name: 'images',
+                label: 'Kuvat',
+                type: 'object',
+                list: true,
+                ui: {
+                  itemProps: (item) => ({ label: item?.alt || 'Kuva' }),
+                },
+                fields: [
+                  { name: 'image', label: 'Kuva', type: 'image' },
+                  { name: 'thumbnail', label: 'Pienoiskuva', type: 'image' },
+                  { name: 'alt', label: 'Alt-teksti', type: 'string' },
+                ],
+              },
             ],
           },
         ],
@@ -61,6 +81,9 @@ export default defineConfig({
             label: 'Osiot',
             type: 'object',
             list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.sectionTitle || 'Osio' }),
+            },
             fields: [
               { name: 'sectionTitle', label: 'Osion otsikko', type: 'string', required: true },
               {
@@ -68,6 +91,9 @@ export default defineConfig({
                 label: 'Merkinnät',
                 type: 'object',
                 list: true,
+                ui: {
+                  itemProps: (item) => ({ label: item?.content || 'Merkintä' }),
+                },
                 fields: [
                   { name: 'date', label: 'Päivämäärä', type: 'string' },
                   { name: 'content', label: 'Sisältö', type: 'string', required: true },
@@ -81,6 +107,17 @@ export default defineConfig({
         name: 'contact',
         label: 'Yhteystiedot',
         path: 'content/fi/contact',
+        format: 'md',
+        fields: [
+          { name: 'title', label: 'Otsikko', type: 'string', required: true, isTitle: true },
+          { name: 'description', label: 'SEO-kuvaus', type: 'string' },
+          { name: 'body', label: 'Sisältö', type: 'rich-text', isBody: true },
+        ],
+      },
+      {
+        name: 'statement',
+        label: 'Artist statement',
+        path: 'content/fi/statement',
         format: 'md',
         fields: [
           { name: 'title', label: 'Otsikko', type: 'string', required: true, isTitle: true },

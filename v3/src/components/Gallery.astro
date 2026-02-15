@@ -1,24 +1,64 @@
 ---
-interface Props {
-  items: Array<{
-    image?: string | null;
-    title?: string | null;
-  }>;
+interface WorkItem {
+  title?: string | null
+  description?: string | null
+  dimensions?: string | null
+  year?: string | null
+  materials?: string | null
+  images?: Array<{
+    image?: string | null
+    thumbnail?: string | null
+    alt?: string | null
+  }> | null
 }
 
-const { items } = Astro.props;
+interface Props {
+  items: WorkItem[]
+}
+
+const { items } = Astro.props
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-  {items.map((item) => (
-    <div class="reveal">
-      <img
-        src={item.image || ''}
-        alt={item.title || ''}
-        class="w-full h-auto object-cover"
-        loading="lazy"
-      />
-      {item.title && <p class="mt-2 text-sm text-gray-600">{item.title}</p>}
-    </div>
-  ))}
+<div class="divide-y divide-surface-elevated">
+  {
+    items.map((work, workIndex) => (
+      <div class="reveal py-12 first:pt-0">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
+          {work.images?.map((img) => (
+            <button
+              type="button"
+              class="lightbox-trigger block cursor-pointer group overflow-hidden"
+              data-src={img.image || ""}
+              data-alt={img.alt || work.title || ""}
+              data-group={`work-${workIndex}`}
+              data-title={work.title || ""}
+              aria-label={`Avaa kuva: ${img.alt || work.title || "Teos"}`}
+            >
+              <img
+                src={img.thumbnail || img.image || ""}
+                alt={img.alt || work.title || ""}
+                class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </button>
+          ))}
+        </div>
+        <div class="mt-4 space-y-1">
+          {work.title && (
+            <p class="text-lg font-semibold text-text">{work.title}</p>
+          )}
+          {work.description && (
+            <p class="text-sm text-text-muted">{work.description}</p>
+          )}
+          {work.dimensions && (
+            <p class="text-sm text-text-muted">{work.dimensions}</p>
+          )}
+          {work.year && <p class="text-sm text-text-muted">{work.year}</p>}
+          {work.materials && (
+            <p class="text-sm text-text-muted">{work.materials}</p>
+          )}
+        </div>
+      </div>
+    ))
+  }
 </div>
