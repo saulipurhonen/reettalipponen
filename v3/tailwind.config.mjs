@@ -3,6 +3,9 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      fontFamily: {
+        display: ['Caveat', 'cursive'],
+      },
       colors: {
         surface: {
           DEFAULT: '#0a0f0a',

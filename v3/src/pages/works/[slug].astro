@@ -35,7 +35,7 @@ const { data, content } = getContent<WorksData>(`fi/works/${slug}.md`)
 
 <BaseLayout title={data.title} description={data.description}>
   <div class="mx-auto max-w-6xl px-4 py-12">
-    <h1 class="reveal text-3xl font-bold mb-8 text-text">{data.title}</h1>
+    <h1 class="reveal text-5xl font-light mb-8 text-text">{data.title}</h1>
     <Gallery items={data.works || []} />
     {
       content && (

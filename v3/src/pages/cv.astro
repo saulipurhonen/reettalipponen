@@ -23,7 +23,7 @@ const { data } = getContent<CvData>("fi/cv/index.md")
 
 <BaseLayout title={data.title} description={data.description}>
   <div class="mx-auto max-w-6xl px-4 py-12">
-    <h1 class="reveal text-3xl font-bold mb-12 text-text">{data.title}</h1>
+    <h1 class="reveal text-5xl font-light mb-12 text-text">{data.title}</h1>
     {
       data.sections?.map((section) => (
         <section class="reveal mb-10">
