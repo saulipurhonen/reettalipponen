@@ -18,7 +18,7 @@ export const UI_STRINGS: Record<
       { label: 'Asiakastyö', href: '/works/customer' },
       { label: 'CV', href: '/cv' },
       { label: 'Artist statement', href: '/statement' },
-      { label: 'Yhteystiedot', href: '/contact' },
+      { label: 'Ota yhteyttä', href: '/contact' },
     ],
     worksSubnav: [
       { label: 'Keramiikka', href: '/works/ceramic' },

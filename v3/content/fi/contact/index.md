@@ -1,5 +1,5 @@
 ---
-title: Yhteystiedot
+title: Ota yhteyttä
 description: Ota yhteyttä - Reetta Lipponen
 ---
 
