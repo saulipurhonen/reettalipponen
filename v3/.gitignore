@@ -5,6 +5,10 @@ dist/
 .env.*
 
 # TinaCMS
+tina/__generated__/
+!tina/__generated__/_graphql.json
+!tina/__generated__/_schema.json
+!tina/__generated__/_lookup.json
 public/admin/
 
 # macOS
