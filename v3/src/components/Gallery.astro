@@ -17,6 +17,10 @@ interface Props {
 }
 
 const { items } = Astro.props
+
+function toWebp(src: string): string {
+  return src.replace(/\.jpe?g$/i, ".webp")
+}
 ---
 
 <div class="divide-y divide-surface-elevated">
@@ -24,24 +28,32 @@ const { items } = Astro.props
     items.map((work, workIndex) => (
       <div class="reveal py-12 first:pt-0">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
-          {work.images?.map((img) => (
-            <button
-              type="button"
-              class="lightbox-trigger block cursor-pointer group overflow-hidden"
-              data-src={img.image || ""}
-              data-alt={img.alt || work.title || ""}
-              data-group={`work-${workIndex}`}
-              data-title={work.title || ""}
-              aria-label={`Avaa kuva: ${img.alt || work.title || "Teos"}`}
-            >
-              <img
-                src={img.thumbnail || img.image || ""}
-                alt={img.alt || work.title || ""}
-                class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
-            </button>
-          ))}
+          {work.images?.map((img) => {
+            const thumbSrc = img.thumbnail || img.image || ""
+            const webpSrc = toWebp(thumbSrc)
+            return (
+              <button
+                type="button"
+                class="lightbox-trigger block cursor-pointer group overflow-hidden"
+                data-src={img.image || ""}
+                data-alt={img.alt || work.title || ""}
+                data-group={`work-${workIndex}`}
+                data-title={work.title || ""}
+                aria-label={`Avaa kuva: ${img.alt || work.title || "Teos"}`}
+              >
+                <picture>
+                  <source type="image/webp" srcset={webpSrc} />
+                  <img
+                    src={thumbSrc}
+                    alt={img.alt || work.title || ""}
+                    width="250"
+                    class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+              </button>
+            )
+          })}
         </div>
         <div class="mt-4 space-y-1">
           {work.title && (
