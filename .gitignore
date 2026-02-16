@@ -56,7 +56,7 @@ typings/
 
 # gatsby files
 .cache/
-public
+/public
 
 # v3 build output
 v3/dist/
