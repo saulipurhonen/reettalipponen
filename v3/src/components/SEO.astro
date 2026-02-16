@@ -1,15 +1,33 @@
 ---
 interface Props {
-  title: string;
-  description: string;
-  ogType?: string;
+  title: string
+  description: string
+  ogType?: string
+  ogImage?: string
 }
 
-const { title, description, ogType = 'website' } = Astro.props;
+const {
+  title,
+  description,
+  ogType = "website",
+  ogImage = "/images/home_bg_1920.jpg",
+} = Astro.props
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href
+const ogImageUrl = new URL(ogImage, Astro.site).href
 ---
 
 <title>{title}</title>
 <meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:locale" content="fi_FI" />
+<meta property="og:site_name" content="Reetta Lipponen" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
