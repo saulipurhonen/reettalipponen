@@ -5,7 +5,6 @@ dist/
 .env.*
 
 # TinaCMS
-tina/__generated__/
 public/admin/
 
 # macOS
