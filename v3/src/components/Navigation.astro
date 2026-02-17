@@ -85,35 +85,35 @@ function isActive(href: string): boolean {
       </div>
     </button>
   </nav>
-
-  <!-- Mobile overlay -->
-  <nav
-    id="mobile-menu"
-    aria-label="Mobiilivalikko"
-    class="fixed inset-0 z-40 hidden flex-col items-center justify-center bg-surface"
-  >
-    <ul class="flex flex-col items-center gap-6">
-      {
-        navItems.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              class:list={[
-                "mobile-nav-link text-lg transition-colors",
-                isActive(item.href)
-                  ? "text-accent-light font-semibold border-b-4 border-accent/50 pb-1"
-                  : "text-text-muted hover:text-accent-light",
-              ]}
-              {...(isActive(item.href) ? { "aria-current": "page" } : {})}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
 </header>
+
+<!-- Mobile overlay — outside header to avoid transform containing-block issues -->
+<nav
+  id="mobile-menu"
+  aria-label="Mobiilivalikko"
+  class="fixed inset-0 z-40 hidden flex-col items-center justify-center bg-surface"
+>
+  <ul class="flex flex-col items-center gap-6">
+    {
+      navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={[
+              "mobile-nav-link text-lg transition-colors",
+              isActive(item.href)
+                ? "text-accent-light font-semibold border-b-4 border-accent/50 pb-1"
+                : "text-text-muted hover:text-accent-light",
+            ]}
+            {...(isActive(item.href) ? { "aria-current": "page" } : {})}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
 
 <script>
   import gsap from "gsap"
@@ -125,6 +125,7 @@ function isActive(href: string): boolean {
     const bar2 = document.getElementById("bar-2")
     const bar3 = document.getElementById("bar-3")
     const mobileLinks = document.querySelectorAll(".mobile-nav-link")
+    const header = document.getElementById("site-header")
     let isAnimating = false
 
     function openMenu() {
@@ -216,13 +217,17 @@ function isActive(href: string): boolean {
       }
     })
 
-    // Focus trap inside mobile menu
-    menu?.addEventListener("keydown", (e) => {
+    // Focus trap: toggle button + mobile menu links
+    function handleFocusTrap(e: KeyboardEvent) {
       if (e.key !== "Tab") return
-      const focusableEls = menu.querySelectorAll<HTMLElement>(
-        "a[href], button:not([disabled])"
+      if (toggle?.getAttribute("aria-expanded") !== "true") return
+
+      const menuLinks = Array.from(
+        menu?.querySelectorAll<HTMLElement>("a[href]") ?? []
       )
+      const focusableEls = toggle ? [toggle, ...menuLinks] : menuLinks
       if (!focusableEls.length) return
+
       const first = focusableEls[0]
       const last = focusableEls[focusableEls.length - 1]
       if (e.shiftKey && document.activeElement === first) {
@@ -232,10 +237,11 @@ function isActive(href: string): boolean {
         e.preventDefault()
         first.focus()
       }
-    })
+    }
+
+    document.addEventListener("keydown", handleFocusTrap)
 
     // Sticky nav: hide on scroll down, show on scroll up
-    const header = document.getElementById("site-header")
     let lastScrollY = window.scrollY
     let ticking = false
 
