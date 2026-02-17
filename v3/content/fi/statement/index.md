@@ -7,4 +7,4 @@ Olen Joensuulaislähtöinen kuvanveistäjä ja asun tällä hetkellä Lappeenran
 
 Pääasiallinen työskentelymateriaalini on savi ja keramiikka. Veistokseni ovat valtaosin esittäviä ja usein niissä on viitteitä luonnosta. Toisaalta myös ympäristö- ja yhteisötaide kiinnostavat. Inspiroidun ennemmin tunteesta ja hetken mielijohteesta, kuin pitkällisestä pohdinnasta. En suunnittele liikoja, vaan annan teokselle mahdollisuuden muotoutua omanlaisekseen.
 
-Esittävien veistosten lisäksi olen viehättynyt herättelemään muutakin kuin pelkkää visuaalista maailmaa, koska useammat aistiärsykkeet yleensä voimistavat taiteenkokemusta. Haluan osallistaa katsojan mukaan ja näin ollen muuttaa hänet kokijaksi, osaksi teosta. test
+Esittävien veistosten lisäksi olen viehättynyt herättelemään muutakin kuin pelkkää visuaalista maailmaa, koska useammat aistiärsykkeet yleensä voimistavat taiteenkokemusta. Haluan osallistaa katsojan mukaan ja näin ollen muuttaa hänet kokijaksi, osaksi teosta.
