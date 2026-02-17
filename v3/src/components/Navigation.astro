@@ -131,6 +131,7 @@ function isActive(href: string): boolean {
       if (isAnimating) return
       isAnimating = true
 
+      document.body.style.overflow = "hidden"
       menu?.classList.remove("hidden")
       menu?.classList.add("flex")
       bar1?.classList.add("top-[6px]", "rotate-45")
@@ -140,6 +141,12 @@ function isActive(href: string): boolean {
       bar3?.classList.remove("bottom-0")
       toggle?.setAttribute("aria-expanded", "true")
       toggle?.setAttribute("aria-label", "Sulje valikko")
+
+      // Reset header position so menu stays visible
+      header?.classList.remove("-translate-y-full")
+      header?.style.removeProperty("backgroundColor")
+      header?.style.removeProperty("backdropFilter")
+      header?.classList.remove("shadow-lg")
 
       gsap.fromTo(
         menu,
@@ -160,6 +167,7 @@ function isActive(href: string): boolean {
       if (isAnimating) return
       isAnimating = true
 
+      document.body.style.overflow = ""
       bar1?.classList.remove("top-[6px]", "rotate-45")
       bar1?.classList.add("top-0")
       bar2?.classList.remove("opacity-0")
@@ -234,6 +242,14 @@ function isActive(href: string): boolean {
     function onScroll() {
       const currentY = window.scrollY
       if (!header) return
+
+      // Don't hide header while mobile menu is open
+      const menuOpen = toggle?.getAttribute("aria-expanded") === "true"
+      if (menuOpen) {
+        lastScrollY = currentY
+        ticking = false
+        return
+      }
 
       if (currentY <= 0) {
         header.classList.remove("-translate-y-full")
