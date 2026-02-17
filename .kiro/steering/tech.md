@@ -1,6 +1,52 @@
 # Tech Stack
 
-## v2 (Active — `/v2`)
+## v3 (Live — `/v3`)
+
+- **Framework**: Astro 5 (static output, View Transitions via `ClientRouter`)
+- **Language**: TypeScript (strict, with `@/*` path alias)
+- **Build tool**: Astro's built-in Vite pipeline
+- **Styling**: Tailwind CSS 3 + `@tailwindcss/typography` plugin + global `app.css`
+- **CMS**: TinaCMS (Git-backed, markdown content in `content/fi/`)
+- **Animations**: GSAP (scroll-reveal via IntersectionObserver, footer fade-in)
+- **Markdown**: `gray-matter` for frontmatter parsing, `marked` for HTML rendering
+- **Contact form**: StaticForms (`api.staticforms.xyz`)
+- **Sitemap**: `@astrojs/sitemap`
+- **Testing**: Vitest 3 + fast-check (property-based)
+- **Deployment**: GitHub Actions → GitHub Pages (from `v3/dist`)
+
+### Fonts
+
+- **Display**: Caveat (Google Fonts, used for `h1`)
+- **Body**: Inter (Google Fonts)
+
+### Custom Tailwind theme
+
+Defined in `v3/tailwind.config.mjs`:
+
+- `surface` / `surface-raised` / `surface-elevated` — dark green background tones
+- `accent` / `accent-light` / `accent-dark` — green accent palette
+- `gold` — highlight color
+- `text` / `text-muted` / `text-dim` — light text hierarchy
+- `font-display` — Caveat cursive
+
+### Common commands (run from `v3/`)
+
+```bash
+npm run dev        # Start TinaCMS + Astro dev server
+npm run build      # TinaCMS build + Astro production build
+npm run preview    # Preview production build
+npm run check      # Astro/TS type checking
+npm run test       # Vitest (single run)
+```
+
+### Environment variables (v3)
+
+Stored in `v3/.env`:
+
+- `TINA_TOKEN` / `TINA_CLIENT_ID` — TinaCMS cloud auth
+- `STATIC_FORMS_API_KEY` — StaticForms contact form API key
+
+## v2 (Previous — `/v2`)
 
 - **Framework**: SvelteKit 2 with Svelte 4
 - **Language**: TypeScript (with some JS in Svelte components)
