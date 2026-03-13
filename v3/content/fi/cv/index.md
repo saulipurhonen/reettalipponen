@@ -47,6 +47,8 @@ sections:
       - date: '2026'
         content: 'Pieni pala metsää, Promenadigalleria, Hyvinkää'
       - date: '2025'
+        content: 'Paloaseman taidetapahtuma, Armilan vanha paloasema, Lappeenranta'
+      - date: '2025'
         content: 'Kasvu, Taidekeskus Itä, Lappeenranta'
       - date: '2025'
         content: 'Olio, Galleria Pihatto, Lappeenranta'
