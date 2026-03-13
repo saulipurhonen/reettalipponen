@@ -116,5 +116,7 @@ sections:
         content: 'Etelä-Karjalan Taiteilijaseura, hallitus'
       - date: 2022-2023
         content: 'Popkatu-yhdistys Ry, hallitus'
+      - date: 2024-2025
+        content: 'Kaakon taide, hallitus'
 ---
 
