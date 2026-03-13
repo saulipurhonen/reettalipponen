@@ -94,6 +94,8 @@ sections:
         content: 'Makujen sinfonia- tilateos, ammattiopisto Outokumpu, Outokumpu'
       - date: '2009'
         content: 'Istuvat lehmät- muraali (yhteistyö), Aution tila, Outokumpu'
+      - date: '2024'
+        content: 'Makeisten kutsu -katumuraali, Lappeenranta'
   - sectionTitle: Yhteisötaideteokset
     entries:
       - date: '2022'
