@@ -90,6 +90,14 @@ sections:
         content: 'Kaukainen eilinen, Kevätkumpu-kulttuurifestivaali, Outokumpu'
       - date: '2008'
         content: 'Point of view, Kevätkumpu-kulttuurifestivaali, Outokumpu'
+  - sectionTitle: Tulevat näyttelyt
+    entries:
+      - date: '2027'
+        content: 'Välissä (yhteisnäyttely), Villa Suruton, Savonlinna'
+      - date: '2026'
+        content: 'Havaintoja, Galleria Pihatto, Lappeenranta'
+      - date: '2026'
+        content: 'Born to be Vino, Galleria HOI SIE, Lappeenranta'
   - sectionTitle: Julkiset ja puolijulkiset teokset
     entries:
       - date: '2024'
@@ -134,13 +142,5 @@ sections:
     entries:
       - content: Etelä-Karjalan taiteilijaseura
       - content: Musta Lista -kollektiivi
-  - sectionTitle: Tulevat näyttelyt
-    entries:
-      - date: '2027'
-        content: 'Välissä (yhteisnäyttely), Villa Suruton, Savonlinna'
-      - date: '2026'
-        content: 'Havaintoja, Galleria Pihatto, Lappeenranta'
-      - date: '2026'
-        content: 'Born to be Vino, Galleria HOI SIE, Lappeenranta'
 ---
 
