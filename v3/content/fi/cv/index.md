@@ -36,6 +36,8 @@ sections:
         content: 'Tuntiopettaja, kuvataiteen perusopetus, Joensuun seudun kansalaisopisto'
   - sectionTitle: Yksityisnäyttelyt
     entries:
+      - date: '2024'
+        content: 'Materiaalirakkaus, Taidekeskus Itä, Lappeenranta'
       - date: '2019'
         content: 'Voimia luonnosta, Galleria Honkaharju, Imatra'
   - sectionTitle: Teoksia yhteisnäyttelyissä
