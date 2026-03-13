@@ -40,7 +40,8 @@ sections:
         content: 'Voimia luonnosta, Galleria Honkaharju, Imatra'
   - sectionTitle: Teoksia yhteisnäyttelyissä
     entries:
-      - {}
+      - date: '2026'
+        content: 'Pieni pala metsää, Promenadigalleria, Hyvinkää'
       - date: '2025'
         content: 'Kasvu, Taidekeskus Itä, Lappeenranta'
       - date: '2025'
