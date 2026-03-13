@@ -41,7 +41,8 @@ sections:
   - sectionTitle: Teoksia yhteisnäyttelyissä
     entries:
       - {}
-      - {}
+      - date: '2025'
+        content: 'Kasvu, Taidekeskus Itä, Lappeenranta'
       - date: '2025'
         content: 'Olio, Galleria Pihatto, Lappeenranta'
       - date: '2024'
