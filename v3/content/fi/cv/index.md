@@ -138,5 +138,7 @@ sections:
         content: 'Välissä (yhteisnäyttely), Villa Suruton, Savonlinna'
       - date: '2026'
         content: 'Havaintoja, Galleria Pihatto, Lappeenranta'
+      - date: '2026'
+        content: 'Born to be Vino, Galleria HOI SIE, Lappeenranta'
 ---
 
