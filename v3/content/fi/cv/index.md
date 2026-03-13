@@ -114,5 +114,7 @@ sections:
     entries:
       - date: 2023 - 2025
         content: Etelä-Karjalan taiteilijaseuran hallitus
+      - date: 2022-2023
+        content: Popkatu-yhdistys Ry hallitus
 ---
 
