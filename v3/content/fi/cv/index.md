@@ -108,8 +108,6 @@ sections:
     entries:
       - content: Etelä-Karjalan taiteilijaseura
       - content: Musta Lista -kollektiivi
-      - content: 'Popkatu-yhdistys, hallituksen jäsen'
-      - content: 'Etelä-Karjalan taiteilijaseura, hallituksen varajäsen'
   - sectionTitle: Luottamustoimet
     entries:
       - date: 2023-2025
