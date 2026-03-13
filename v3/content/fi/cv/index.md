@@ -118,5 +118,7 @@ sections:
         content: 'Popkatu-yhdistys Ry, hallitus'
       - date: 2024-2025
         content: 'Kaakon taide, hallitus'
+      - date: 2016-2018
+        content: 'Fiktio Ry, hallitus'
 ---
 
