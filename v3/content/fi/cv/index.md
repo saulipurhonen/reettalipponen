@@ -40,6 +40,12 @@ sections:
         content: 'Voimia luonnosta, Galleria Honkaharju, Imatra'
   - sectionTitle: Teoksia yhteisnäyttelyissä
     entries:
+      - {}
+      - {}
+      - {}
+      - {}
+      - date: '2023'
+        content: 'Varjometsä, Lappeenrannan kaupungintalo'
       - date: '2023'
         content: 'Päin punaista, Taidekeskus Ahjo, Joensuu'
       - date: '2023'
@@ -78,6 +84,8 @@ sections:
         content: 'Point of view, Kevätkumpu-kulttuurifestivaali, Outokumpu'
   - sectionTitle: Julkiset ja puolijulkiset teokset
     entries:
+      - date: '2024'
+        content: 'Makeisten kutsu -katumuraali, Lappeenranta'
       - date: '2021'
         content: 'Vesi, ilma ja maa- akustiikkataulut, Lappeenrannan kirkko'
       - date: '2020'
@@ -94,8 +102,6 @@ sections:
         content: 'Makujen sinfonia- tilateos, ammattiopisto Outokumpu, Outokumpu'
       - date: '2009'
         content: 'Istuvat lehmät- muraali (yhteistyö), Aution tila, Outokumpu'
-      - date: '2024'
-        content: 'Makeisten kutsu -katumuraali, Lappeenranta'
   - sectionTitle: Yhteisötaideteokset
     entries:
       - date: '2022'
@@ -106,10 +112,6 @@ sections:
         content: 'Hyönteishotellikylä, Taideolohuone Katariinan piha, Lappeenrannan linnoitus'
       - date: '2019'
         content: 'Metsän peitto, LastenPop-kulttuuritapahtuma, Joensuu'
-  - sectionTitle: Jäsenyydet
-    entries:
-      - content: Etelä-Karjalan taiteilijaseura
-      - content: Musta Lista -kollektiivi
   - sectionTitle: Luottamustoimet
     entries:
       - date: 2023-2025
@@ -120,5 +122,9 @@ sections:
         content: 'Kaakon taide, hallitus'
       - date: 2016-2018
         content: 'Fiktio Ry, hallitus'
+  - sectionTitle: Jäsenyydet
+    entries:
+      - content: Etelä-Karjalan taiteilijaseura
+      - content: Musta Lista -kollektiivi
 ---
 
