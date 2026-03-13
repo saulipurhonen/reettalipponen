@@ -132,5 +132,6 @@ sections:
     entries:
       - content: Etelä-Karjalan taiteilijaseura
       - content: Musta Lista -kollektiivi
+  - sectionTitle: Tulevat näyttelyt
 ---
 
