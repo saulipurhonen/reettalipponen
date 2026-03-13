@@ -42,7 +42,8 @@ sections:
     entries:
       - {}
       - {}
-      - {}
+      - date: '2025'
+        content: 'Olio, Galleria Pihatto, Lappeenranta'
       - date: '2024'
         content: 'Vähän sinistä, Piippuhalli, Savonlinna'
       - date: '2023'
