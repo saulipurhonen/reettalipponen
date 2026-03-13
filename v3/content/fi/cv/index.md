@@ -136,5 +136,7 @@ sections:
     entries:
       - date: '2027'
         content: 'Välissä (yhteisnäyttely), Villa Suruton, Savonlinna'
+      - date: '2026'
+        content: 'Havaintoja, Galleria Pihatto, Lappeenranta'
 ---
 
