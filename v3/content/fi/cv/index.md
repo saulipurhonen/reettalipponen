@@ -112,7 +112,7 @@ sections:
       - content: 'Etelä-Karjalan taiteilijaseura, hallituksen varajäsen'
   - sectionTitle: Luottamustoimet
     entries:
-      - date: 2023 - 2025
+      - date: 2023-2025
         content: 'Etelä-Karjalan taiteilijaseura, hallitus'
       - date: 2022-2023
         content: Popkatu-yhdistys Ry hallitus
