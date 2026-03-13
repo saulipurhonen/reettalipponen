@@ -16,6 +16,8 @@ sections:
         content: 'Kuvallisen ilmaisun perustutkinto, Ammattiopisto Outokumpu'
   - sectionTitle: Kulttuurialan työkokemus
     entries:
+      - date: '2023'
+        content: 'Ohjaaja, Taidetyöpaja, Kulttuurin unelmavuoden pilottihanke, Lappeenranta'
       - date: 2023 -
         content: 'Koulutaiteilija, Metamorfoosi -hanke, Sammonlahden yläkoulu, Lappeenranta'
       - date: 2022 - 2023
