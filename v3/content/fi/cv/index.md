@@ -133,5 +133,8 @@ sections:
       - content: Etelä-Karjalan taiteilijaseura
       - content: Musta Lista -kollektiivi
   - sectionTitle: Tulevat näyttelyt
+    entries:
+      - date: '2027'
+        content: 'Välissä (yhteisnäyttely), Villa Suruton, Savonlinna'
 ---
 
