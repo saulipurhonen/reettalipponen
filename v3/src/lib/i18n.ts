@@ -49,4 +49,4 @@ export const UI_STRINGS: Record<
   },
 };
 
-export const MOBILE_BREAKPOINT = 768;
+export const MOBILE_BREAKPOINT = 1024;

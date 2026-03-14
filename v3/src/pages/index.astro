@@ -1,13 +1,13 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
-import { getContent } from "../lib/content"
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getContent } from '../lib/content';
 
 interface HomeData {
-  title: string
-  description: string
+  title: string;
+  description: string;
 }
 
-const { data, content } = getContent<HomeData>("fi/home/index.md")
+const { data, content } = getContent<HomeData>('fi/home/index.md');
 ---
 
 <BaseLayout title={data.title} description={data.description}>
@@ -42,16 +42,27 @@ const { data, content } = getContent<HomeData>("fi/home/index.md")
       class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"
     >
     </div>
-    <div class="relative z-10 mx-auto max-w-6xl w-full px-4 pb-16">
-      <h1
-        class="reveal text-5xl md:text-7xl font-light tracking-tight text-text"
-      >
-        {data.title}
-      </h1>
-      <p class="reveal mt-2 text-lg text-text-muted">Kuvataiteilija</p>
+    <div
+      class="relative z-10 mx-auto max-w-3xl lg:max-w-6xl w-full px-4 pb-0 lg:pt-24 lg:pb-16 lg:flex lg:justify-end"
+    >
+      <div class="lg:w-1/2 lg:pl-8">
+        <h1
+          class="reveal text-5xl lg:text-7xl font-light tracking-tight text-text"
+        >
+          {data.title}
+        </h1>
+        <p class="reveal mt-2 text-lg text-text-muted">Kuvataiteilija</p>
+        <div
+          class="reveal mt-6 prose prose-theme max-w-none hidden lg:block"
+          set:html={content}
+        />
+      </div>
     </div>
   </section>
-  <section aria-label="Sisältö" class="reveal mx-auto max-w-3xl px-4 py-16">
+  <section
+    aria-label="Sisältö"
+    class="reveal mx-auto max-w-3xl px-4 my-16 lg:hidden"
+  >
     <div class="prose prose-theme max-w-none" set:html={content} />
   </section>
 </BaseLayout>

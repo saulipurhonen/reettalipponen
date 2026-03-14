@@ -1,14 +1,14 @@
 ---
-import { UI_STRINGS, DEFAULT_LOCALE } from "../lib/i18n"
+import { UI_STRINGS, DEFAULT_LOCALE } from '../lib/i18n';
 
-const navItems = UI_STRINGS[DEFAULT_LOCALE].navigation
-const pathname = Astro.url.pathname
+const navItems = UI_STRINGS[DEFAULT_LOCALE].navigation;
+const pathname = Astro.url.pathname;
 
 function isActive(href: string): boolean {
-  if (href === "/") {
-    return pathname === "/"
+  if (href === '/') {
+    return pathname === '/';
   }
-  return pathname.startsWith(href)
+  return pathname.startsWith(href);
 }
 ---
 
@@ -39,19 +39,19 @@ function isActive(href: string): boolean {
     </a>
 
     <!-- Desktop nav -->
-    <ul class="hidden md:flex md:items-center md:gap-6">
+    <ul class="hidden lg:flex lg:items-center lg:gap-6">
       {
         navItems.map((item) => (
           <li>
             <a
               href={item.href}
               class:list={[
-                "text-sm transition-colors",
+                'text-sm transition-colors',
                 isActive(item.href)
-                  ? "text-accent-light font-semibold border-b-4 border-accent/50 pb-1"
-                  : "text-text-muted hover:text-accent-light",
+                  ? 'text-accent-light font-semibold border-b-4 border-accent/50 pb-1'
+                  : 'text-text-muted hover:text-accent-light',
               ]}
-              {...(isActive(item.href) ? { "aria-current": "page" } : {})}
+              {...(isActive(item.href) ? { 'aria-current': 'page' } : {})}
             >
               {item.label}
             </a>
@@ -63,7 +63,7 @@ function isActive(href: string): boolean {
     <!-- Mobile hamburger button -->
     <button
       id="menu-toggle"
-      class="relative z-50 md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center group ml-auto"
+      class="relative z-50 lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center group ml-auto"
       type="button"
       aria-label="Avaa valikko"
       aria-expanded="false"
@@ -100,12 +100,12 @@ function isActive(href: string): boolean {
           <a
             href={item.href}
             class:list={[
-              "mobile-nav-link text-lg transition-colors",
+              'mobile-nav-link text-lg transition-colors',
               isActive(item.href)
-                ? "text-accent-light font-semibold border-b-4 border-accent/50 pb-1"
-                : "text-text-muted hover:text-accent-light",
+                ? 'text-accent-light font-semibold border-b-4 border-accent/50 pb-1'
+                : 'text-text-muted hover:text-accent-light',
             ]}
-            {...(isActive(item.href) ? { "aria-current": "page" } : {})}
+            {...(isActive(item.href) ? { 'aria-current': 'page' } : {})}
           >
             {item.label}
           </a>
@@ -116,38 +116,38 @@ function isActive(href: string): boolean {
 </nav>
 
 <script>
-  import gsap from "gsap"
+  import gsap from 'gsap';
 
-  document.addEventListener("astro:page-load", () => {
-    const toggle = document.getElementById("menu-toggle")
-    const menu = document.getElementById("mobile-menu")
-    const bar1 = document.getElementById("bar-1")
-    const bar2 = document.getElementById("bar-2")
-    const bar3 = document.getElementById("bar-3")
-    const mobileLinks = document.querySelectorAll(".mobile-nav-link")
-    const header = document.getElementById("site-header")
-    let isAnimating = false
+  document.addEventListener('astro:page-load', () => {
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const bar1 = document.getElementById('bar-1');
+    const bar2 = document.getElementById('bar-2');
+    const bar3 = document.getElementById('bar-3');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    const header = document.getElementById('site-header');
+    let isAnimating = false;
 
     function openMenu() {
-      if (isAnimating) return
-      isAnimating = true
+      if (isAnimating) return;
+      isAnimating = true;
 
-      document.body.style.overflow = "hidden"
-      menu?.classList.remove("hidden")
-      menu?.classList.add("flex")
-      bar1?.classList.add("top-[6px]", "rotate-45")
-      bar1?.classList.remove("top-0")
-      bar2?.classList.add("opacity-0")
-      bar3?.classList.add("bottom-[6px]", "-rotate-45")
-      bar3?.classList.remove("bottom-0")
-      toggle?.setAttribute("aria-expanded", "true")
-      toggle?.setAttribute("aria-label", "Sulje valikko")
+      document.body.style.overflow = 'hidden';
+      menu?.classList.remove('hidden');
+      menu?.classList.add('flex');
+      bar1?.classList.add('top-[6px]', 'rotate-45');
+      bar1?.classList.remove('top-0');
+      bar2?.classList.add('opacity-0');
+      bar3?.classList.add('bottom-[6px]', '-rotate-45');
+      bar3?.classList.remove('bottom-0');
+      toggle?.setAttribute('aria-expanded', 'true');
+      toggle?.setAttribute('aria-label', 'Sulje valikko');
 
       // Reset header position so menu stays visible
-      header?.classList.remove("-translate-y-full")
-      header?.style.removeProperty("backgroundColor")
-      header?.style.removeProperty("backdropFilter")
-      header?.classList.remove("shadow-lg")
+      header?.classList.remove('-translate-y-full');
+      header?.style.removeProperty('backgroundColor');
+      header?.style.removeProperty('backdropFilter');
+      header?.classList.remove('shadow-lg');
 
       gsap.fromTo(
         menu,
@@ -156,136 +156,136 @@ function isActive(href: string): boolean {
           opacity: 1,
           y: 0,
           duration: 0.3,
-          ease: "power2.out",
+          ease: 'power2.out',
           onComplete: () => {
-            isAnimating = false
+            isAnimating = false;
           },
-        }
-      )
+        },
+      );
     }
 
     function closeMenu() {
-      if (isAnimating) return
-      isAnimating = true
+      if (isAnimating) return;
+      isAnimating = true;
 
-      document.body.style.overflow = ""
-      bar1?.classList.remove("top-[6px]", "rotate-45")
-      bar1?.classList.add("top-0")
-      bar2?.classList.remove("opacity-0")
-      bar3?.classList.remove("bottom-[6px]", "-rotate-45")
-      bar3?.classList.add("bottom-0")
-      toggle?.setAttribute("aria-expanded", "false")
-      toggle?.setAttribute("aria-label", "Avaa valikko")
+      document.body.style.overflow = '';
+      bar1?.classList.remove('top-[6px]', 'rotate-45');
+      bar1?.classList.add('top-0');
+      bar2?.classList.remove('opacity-0');
+      bar3?.classList.remove('bottom-[6px]', '-rotate-45');
+      bar3?.classList.add('bottom-0');
+      toggle?.setAttribute('aria-expanded', 'false');
+      toggle?.setAttribute('aria-label', 'Avaa valikko');
 
       gsap.to(menu, {
         opacity: 0,
         y: -40,
         duration: 0.3,
-        ease: "power2.in",
+        ease: 'power2.in',
         onComplete: () => {
-          menu?.classList.add("hidden")
-          menu?.classList.remove("flex")
-          gsap.set(menu, { clearProps: "all" })
-          isAnimating = false
+          menu?.classList.add('hidden');
+          menu?.classList.remove('flex');
+          gsap.set(menu, { clearProps: 'all' });
+          isAnimating = false;
         },
-      })
+      });
     }
 
-    toggle?.addEventListener("click", () => {
-      const isOpen = toggle.getAttribute("aria-expanded") === "true"
+    toggle?.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
       if (isOpen) {
-        closeMenu()
+        closeMenu();
       } else {
-        openMenu()
+        openMenu();
       }
-    })
+    });
 
     mobileLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        closeMenu()
-      })
-    })
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
 
     // Escape key closes mobile menu
-    document.addEventListener("keydown", (e) => {
+    document.addEventListener('keydown', (e) => {
       if (
-        e.key === "Escape" &&
-        toggle?.getAttribute("aria-expanded") === "true"
+        e.key === 'Escape' &&
+        toggle?.getAttribute('aria-expanded') === 'true'
       ) {
-        closeMenu()
-        toggle?.focus()
+        closeMenu();
+        toggle?.focus();
       }
-    })
+    });
 
     // Focus trap: toggle button + mobile menu links
     function handleFocusTrap(e: KeyboardEvent) {
-      if (e.key !== "Tab") return
-      if (toggle?.getAttribute("aria-expanded") !== "true") return
+      if (e.key !== 'Tab') return;
+      if (toggle?.getAttribute('aria-expanded') !== 'true') return;
 
       const menuLinks = Array.from(
-        menu?.querySelectorAll<HTMLElement>("a[href]") ?? []
-      )
-      const focusableEls = toggle ? [toggle, ...menuLinks] : menuLinks
-      if (!focusableEls.length) return
+        menu?.querySelectorAll<HTMLElement>('a[href]') ?? [],
+      );
+      const focusableEls = toggle ? [toggle, ...menuLinks] : menuLinks;
+      if (!focusableEls.length) return;
 
-      const first = focusableEls[0]
-      const last = focusableEls[focusableEls.length - 1]
+      const first = focusableEls[0];
+      const last = focusableEls[focusableEls.length - 1];
       if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault()
-        last.focus()
+        e.preventDefault();
+        last.focus();
       } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault()
-        first.focus()
+        e.preventDefault();
+        first.focus();
       }
     }
 
-    document.addEventListener("keydown", handleFocusTrap)
+    document.addEventListener('keydown', handleFocusTrap);
 
     // Sticky nav: hide on scroll down, show on scroll up
-    let lastScrollY = window.scrollY
-    let ticking = false
+    let lastScrollY = window.scrollY;
+    let ticking = false;
 
     function onScroll() {
-      const currentY = window.scrollY
-      if (!header) return
+      const currentY = window.scrollY;
+      if (!header) return;
 
       // Don't hide header while mobile menu is open
-      const menuOpen = toggle?.getAttribute("aria-expanded") === "true"
+      const menuOpen = toggle?.getAttribute('aria-expanded') === 'true';
       if (menuOpen) {
-        lastScrollY = currentY
-        ticking = false
-        return
+        lastScrollY = currentY;
+        ticking = false;
+        return;
       }
 
       if (currentY <= 0) {
-        header.classList.remove("-translate-y-full")
-        header.style.backgroundColor = ""
-        header.style.backdropFilter = ""
-        header.classList.remove("shadow-lg")
+        header.classList.remove('-translate-y-full');
+        header.style.backgroundColor = '';
+        header.style.backdropFilter = '';
+        header.classList.remove('shadow-lg');
       } else if (currentY > lastScrollY && currentY > 80) {
         // Scrolling down past threshold — hide
-        header.classList.add("-translate-y-full")
+        header.classList.add('-translate-y-full');
       } else {
         // Scrolling up — show with background
-        header.classList.remove("-translate-y-full")
-        header.style.backgroundColor = "rgba(10, 15, 10, 0.85)"
-        header.style.backdropFilter = "blur(4px)"
-        header.classList.add("shadow-lg")
+        header.classList.remove('-translate-y-full');
+        header.style.backgroundColor = 'rgba(10, 15, 10, 0.85)';
+        header.style.backdropFilter = 'blur(4px)';
+        header.classList.add('shadow-lg');
       }
 
-      lastScrollY = currentY
-      ticking = false
+      lastScrollY = currentY;
+      ticking = false;
     }
 
     window.addEventListener(
-      "scroll",
+      'scroll',
       () => {
         if (!ticking) {
-          requestAnimationFrame(onScroll)
-          ticking = true
+          requestAnimationFrame(onScroll);
+          ticking = true;
         }
       },
-      { passive: true }
-    )
-  })
+      { passive: true },
+    );
+  });
 </script>
