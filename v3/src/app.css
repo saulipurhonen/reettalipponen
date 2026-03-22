@@ -29,6 +29,32 @@ h1 {
 }
 
 /* Typography plugin overrides for the green theme */
+
+/* Nav link hover underline — gold line slides in from left */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.25rem;
+  height: 1px;
+  background-color: #c4a35a;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link::after {
+    transition: none;
+  }
+}
+
 .prose-theme {
   --tw-prose-body: #e8ede9;
   --tw-prose-headings: #e8ede9;

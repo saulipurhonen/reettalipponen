@@ -24,7 +24,7 @@ const { data, content } = getContent<HomeData>('fi/home/index.md');
   <!-- Hero: full viewport, dramatic — negative margin pulls behind sticky nav -->
   <section
     aria-label="Esittely"
-    class="hero-section relative flex flex-col h-svh -mt-[76px] overflow-hidden"
+    class="hero-section relative flex flex-col h-svh lg:min-h-svh lg:h-auto -mt-[76px] overflow-hidden"
   >
     <!-- Background image -->
     <picture>
@@ -57,7 +57,7 @@ const { data, content } = getContent<HomeData>('fi/home/index.md');
 
     <!-- Hero content -->
     <div
-      class="relative z-10 w-full mt-auto px-6 pb-4 sm:pb-24 lg:pb-32 lg:px-12"
+      class="relative z-10 w-full mt-auto px-6 pb-4 sm:pb-16 lg:pb-20 lg:px-12"
     >
       <div
         class="mx-auto max-w-7xl lg:flex lg:items-end lg:justify-between lg:gap-16"
@@ -82,10 +82,8 @@ const { data, content } = getContent<HomeData>('fi/home/index.md');
           </div>
         </div>
 
-        <!-- Right: intro text on desktop -->
-        <div
-          class="hero-intro mt-10 lg:mt-0 lg:max-w-sm lg:pb-2 hidden lg:block"
-        >
+        <!-- Right: intro text on desktop only -->
+        <div class="hero-intro hidden lg:block lg:max-w-sm lg:pb-2">
           <div
             class="prose prose-theme prose-lg max-w-none text-text-muted/90 leading-relaxed"
             set:html={content}
@@ -94,7 +92,7 @@ const { data, content } = getContent<HomeData>('fi/home/index.md');
       </div>
     </div>
 
-    <!-- Scroll indicator -->
+    <!-- Scroll indicator — mobile/tablet only (desktop has intro text in hero) -->
     <div
       class="scroll-indicator relative z-10 flex flex-col items-center pb-6 lg:hidden"
       aria-hidden="true"
@@ -104,7 +102,7 @@ const { data, content } = getContent<HomeData>('fi/home/index.md');
     </div>
   </section>
 
-  <!-- Intro section: mobile + generous spacing -->
+  <!-- Intro section: below the fold on mobile only -->
   <section
     aria-label="Sisältö"
     class="reveal mx-auto max-w-2xl px-6 pt-10 pb-20 sm:py-28 lg:hidden"
