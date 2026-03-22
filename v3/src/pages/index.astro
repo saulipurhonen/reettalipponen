@@ -304,6 +304,27 @@ const { data, content } = getContent<HomeData>('fi/home/index.md');
         '-=0.2',
       );
 
+    // Hide scroll indicator when intro content scrolls into view
+    const introContent = document.getElementById('intro-content');
+    if (scrollInd && introContent && !prefersReducedMotion) {
+      const hideObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              gsap.to(scrollInd, {
+                opacity: 0,
+                duration: 0.4,
+                ease: 'power2.out',
+              });
+              hideObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.05 },
+      );
+      hideObserver.observe(introContent);
+    }
+
     // Mobile intro: choreographed scroll-reveal
     if (mobileReveals.length > 0) {
       // Set initial hidden state
