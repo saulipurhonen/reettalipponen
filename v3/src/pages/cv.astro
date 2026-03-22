@@ -1,24 +1,24 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
-import { getContent } from "../lib/content"
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getContent } from '../lib/content';
 
 interface CvEntry {
-  date?: string
-  content: string
+  date?: string;
+  content: string;
 }
 
 interface CvSection {
-  sectionTitle: string
-  entries: CvEntry[]
+  sectionTitle: string;
+  entries: CvEntry[];
 }
 
 interface CvData {
-  title: string
-  description: string
-  sections: CvSection[]
+  title: string;
+  description: string;
+  sections: CvSection[];
 }
 
-const { data } = getContent<CvData>("fi/cv/index.md")
+const { data } = getContent<CvData>('fi/cv/index.md');
 ---
 
 <BaseLayout title={data.title} description={data.description}>
@@ -27,7 +27,7 @@ const { data } = getContent<CvData>("fi/cv/index.md")
     {
       data.sections?.map((section) => (
         <section class="reveal mb-10">
-          <h2 class="text-sm font-semibold uppercase tracking-widest text-accent mb-4 border-b border-surface-elevated pb-2">
+          <h2 class="text-sm font-semibold uppercase tracking-widest text-gold mb-4 border-b border-surface-elevated pb-2">
             {section.sectionTitle}
           </h2>
           <ul class="space-y-3">

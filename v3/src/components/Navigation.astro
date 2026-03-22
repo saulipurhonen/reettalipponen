@@ -15,6 +15,7 @@ function isActive(href: string): boolean {
 <header
   id="site-header"
   class="sticky top-0 z-50 transition-transform duration-300"
+  {...pathname === '/' ? { 'data-home': '' } : {}}
 >
   <a
     href="#main-content"
@@ -29,27 +30,27 @@ function isActive(href: string): boolean {
     <!-- Logo -->
     <a
       href="/"
-      class="flex items-baseline gap-1"
+      class="flex items-baseline gap-1.5"
       aria-label="Etusivu – Reetta Lipponen .ART"
     >
       <span class="font-display text-2xl text-text">Reetta Lipponen</span>
-      <span class="text-xs font-semibold uppercase tracking-widest text-accent"
+      <span class="text-xs font-semibold uppercase tracking-[0.2em] text-gold"
         >.ART</span
       >
     </a>
 
     <!-- Desktop nav -->
-    <ul class="hidden lg:flex lg:items-center lg:gap-6">
+    <ul class="hidden lg:flex lg:items-center lg:flex-nowrap">
       {
         navItems.map((item) => (
-          <li>
+          <li class="shrink-0">
             <a
               href={item.href}
               class:list={[
-                'text-sm transition-colors',
+                'nav-link relative px-2 py-2 text-[0.65rem] xl:text-[0.75rem] uppercase tracking-[0.08em] xl:tracking-[0.12em] font-medium transition-colors duration-300 whitespace-nowrap',
                 isActive(item.href)
-                  ? 'text-accent-light font-semibold border-b-4 border-accent/50 pb-1'
-                  : 'text-text-muted hover:text-accent-light',
+                  ? 'text-gold'
+                  : 'text-text-muted hover:text-text',
               ]}
               {...(isActive(item.href) ? { 'aria-current': 'page' } : {})}
             >
@@ -93,17 +94,17 @@ function isActive(href: string): boolean {
   aria-label="Mobiilivalikko"
   class="fixed inset-0 z-40 hidden flex-col items-center justify-center bg-surface"
 >
-  <ul class="flex flex-col items-center gap-6">
+  <ul class="flex flex-col items-center gap-5">
     {
       navItems.map((item) => (
         <li>
           <a
             href={item.href}
             class:list={[
-              'mobile-nav-link text-lg transition-colors',
+              'mobile-nav-link nav-link relative px-4 py-2 text-sm uppercase tracking-[0.2em] font-medium transition-colors duration-300',
               isActive(item.href)
-                ? 'text-accent-light font-semibold border-b-4 border-accent/50 pb-1'
-                : 'text-text-muted hover:text-accent-light',
+                ? 'text-gold'
+                : 'text-text-muted hover:text-text',
             ]}
             {...(isActive(item.href) ? { 'aria-current': 'page' } : {})}
           >
@@ -257,14 +258,32 @@ function isActive(href: string): boolean {
         return;
       }
 
+      const isHome = header.hasAttribute('data-home');
+
       if (currentY <= 0) {
         header.classList.remove('-translate-y-full');
         header.style.backgroundColor = '';
         header.style.backdropFilter = '';
         header.classList.remove('shadow-lg');
-      } else if (currentY > lastScrollY && currentY > 80) {
-        // Scrolling down past threshold — hide
-        header.classList.add('-translate-y-full');
+      } else if (currentY > lastScrollY) {
+        // Scrolling down — hide after threshold
+        if (currentY > 80) {
+          header.classList.add('-translate-y-full');
+          // On home page, clear background after the slide-out transition ends
+          if (isHome) {
+            header.addEventListener('transitionend', function clearBg(e) {
+              if (
+                e.propertyName === 'transform' &&
+                header.classList.contains('-translate-y-full')
+              ) {
+                header.style.backgroundColor = '';
+                header.style.backdropFilter = '';
+                header.classList.remove('shadow-lg');
+              }
+              header.removeEventListener('transitionend', clearBg);
+            });
+          }
+        }
       } else {
         // Scrolling up — show with background
         header.classList.remove('-translate-y-full');

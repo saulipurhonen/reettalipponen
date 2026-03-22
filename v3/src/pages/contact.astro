@@ -1,14 +1,14 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
-import { getContent } from "../lib/content"
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getContent } from '../lib/content';
 
 interface ContactData {
-  title: string
-  description: string
+  title: string;
+  description: string;
 }
 
-const { data, content } = getContent<ContactData>("fi/contact/index.md")
-const apiKey = import.meta.env.STATIC_FORMS_API_KEY
+const { data, content } = getContent<ContactData>('fi/contact/index.md');
+const apiKey = import.meta.env.STATIC_FORMS_API_KEY;
 ---
 
 <BaseLayout title={data.title} description={data.description}>
@@ -26,7 +26,7 @@ const apiKey = import.meta.env.STATIC_FORMS_API_KEY
       href="https://www.instagram.com/reettalipponen.art"
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 mb-10 text-text-muted transition-colors hover:text-accent-light"
+      class="inline-flex items-center gap-2 mb-10 text-text-muted transition-colors hover:text-gold"
       aria-label="Instagram: @reettalipponen.art"
     >
       <svg
@@ -64,7 +64,7 @@ const apiKey = import.meta.env.STATIC_FORMS_API_KEY
           id="name"
           name="name"
           required
-          class="w-full rounded border border-surface-elevated bg-surface-raised px-3 py-2 text-text placeholder-text-dim focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent"
+          class="w-full rounded border border-surface-elevated bg-surface-raised px-3 py-2 text-text placeholder-text-dim focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/40"
         />
       </div>
 
@@ -77,7 +77,7 @@ const apiKey = import.meta.env.STATIC_FORMS_API_KEY
           id="email"
           name="email"
           required
-          class="w-full rounded border border-surface-elevated bg-surface-raised px-3 py-2 text-text placeholder-text-dim focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent"
+          class="w-full rounded border border-surface-elevated bg-surface-raised px-3 py-2 text-text placeholder-text-dim focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/40"
         />
       </div>
 
@@ -88,13 +88,13 @@ const apiKey = import.meta.env.STATIC_FORMS_API_KEY
           name="message"
           rows="5"
           required
-          class="w-full rounded border border-surface-elevated bg-surface-raised px-3 py-2 text-text placeholder-text-dim focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent resize-vertical"
+          class="w-full rounded border border-surface-elevated bg-surface-raised px-3 py-2 text-text placeholder-text-dim focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/40 resize-vertical"
         ></textarea>
       </div>
 
       <button
         type="submit"
-        class="rounded bg-accent px-6 py-2 text-sm font-semibold text-text transition-colors hover:bg-accent-light disabled:opacity-50"
+        class="rounded bg-gold px-6 py-2 text-sm font-semibold text-surface transition-colors hover:bg-gold/85 disabled:opacity-50"
       >
         Lähetä
       </button>
@@ -111,43 +111,45 @@ const apiKey = import.meta.env.STATIC_FORMS_API_KEY
 </BaseLayout>
 
 <script>
-  const form = document.getElementById("contact-form") as HTMLFormElement
-  const status = document.getElementById("form-status") as HTMLParagraphElement
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const status = document.getElementById('form-status') as HTMLParagraphElement;
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault()
-    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement
-    btn.disabled = true
-    btn.textContent = "Lähetetään..."
-    status.classList.add("hidden")
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector(
+      'button[type="submit"]',
+    ) as HTMLButtonElement;
+    btn.disabled = true;
+    btn.textContent = 'Lähetetään...';
+    status.classList.add('hidden');
 
     try {
-      const formData = new FormData(form)
-      const data = Object.fromEntries(formData.entries())
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
 
-      const res = await fetch("https://api.staticforms.xyz/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('https://api.staticforms.xyz/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
-      })
+      });
 
-      const json = await res.json()
+      const json = await res.json();
 
       if (json.success) {
         status.textContent =
-          "Kiitos viestistäsi! Palaan asiaan mahdollisimman pian."
-        status.className = "text-sm text-accent-light"
-        form.reset()
+          'Kiitos viestistäsi! Palaan asiaan mahdollisimman pian.';
+        status.className = 'text-sm text-gold';
+        form.reset();
       } else {
-        throw new Error(json.message || "Lähetys epäonnistui")
+        throw new Error(json.message || 'Lähetys epäonnistui');
       }
     } catch {
       status.textContent =
-        "Viestin lähetys epäonnistui. Yritä myöhemmin uudelleen."
-      status.className = "text-sm text-red-400"
+        'Viestin lähetys epäonnistui. Yritä myöhemmin uudelleen.';
+      status.className = 'text-sm text-red-400';
     } finally {
-      btn.disabled = false
-      btn.textContent = "Lähetä"
+      btn.disabled = false;
+      btn.textContent = 'Lähetä';
     }
-  })
+  });
 </script>

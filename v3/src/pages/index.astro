@@ -10,7 +10,7 @@ interface HomeData {
 const { data, content } = getContent<HomeData>('fi/home/index.md');
 ---
 
-<BaseLayout title={data.title} description={data.description}>
+<BaseLayout title={data.title} description={data.description} fullHeight>
   <link
     slot="head"
     rel="preload"
@@ -20,7 +20,13 @@ const { data, content } = getContent<HomeData>('fi/home/index.md');
     imagesizes="100vw"
     fetchpriority="high"
   />
-  <section aria-label="Esittely" class="relative min-h-[70vh] flex items-end">
+
+  <!-- Hero: full viewport, dramatic — negative margin pulls behind sticky nav -->
+  <section
+    aria-label="Esittely"
+    class="hero-section relative flex flex-col h-svh lg:min-h-svh lg:h-auto -mt-[76px] overflow-hidden"
+  >
+    <!-- Background image -->
     <picture>
       <source
         type="image/webp"
@@ -32,37 +38,366 @@ const { data, content } = getContent<HomeData>('fi/home/index.md');
         srcset="/images/home_bg_640.jpg 640w, /images/home_bg_1024.jpg 1024w, /images/home_bg_1920.jpg 1920w"
         sizes="100vw"
         alt="Kuvataiteilija Reetta Lipponen"
-        class="absolute inset-0 w-full h-full object-cover object-[0%_30%]"
+        class="hero-img absolute inset-0 w-full h-full object-cover object-[0%_30%]"
         loading="eager"
         fetchpriority="high"
         decoding="async"
       />
     </picture>
+
+    <!-- Layered gradient: richer, more cinematic — strengthened top for text contrast -->
     <div
-      class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"
+      class="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-surface/30"
+      aria-hidden="true"
     >
     </div>
+
+    <!-- Subtle organic noise texture -->
+    <div class="hero-noise absolute inset-0" aria-hidden="true"></div>
+
+    <!-- Hero content -->
     <div
-      class="relative z-10 mx-auto max-w-3xl lg:max-w-6xl w-full px-4 pb-0 lg:pt-24 lg:pb-16 lg:flex lg:justify-end"
+      class="relative z-10 w-full mt-auto px-6 pb-4 sm:pb-16 lg:pb-20 lg:px-12"
     >
-      <div class="lg:w-1/2 lg:pl-8">
-        <h1
-          class="reveal text-5xl lg:text-7xl font-light tracking-tight text-text"
-        >
-          {data.title}
-        </h1>
-        <p class="reveal mt-2 text-lg text-text-muted">Kuvataiteilija</p>
-        <div
-          class="reveal mt-6 prose prose-theme max-w-none hidden lg:block"
-          set:html={content}
-        />
+      <div
+        class="mx-auto max-w-7xl lg:flex lg:items-end lg:justify-between lg:gap-16"
+      >
+        <!-- Left: name + subtitle -->
+        <div class="lg:max-w-2xl">
+          <p
+            class="hero-subtitle text-sm sm:text-base font-semibold uppercase tracking-[0.25em] text-gold mb-3 sm:mb-6 hero-text-shadow"
+          >
+            Kuvataiteilija
+          </p>
+          <h1
+            class="hero-title font-display text-5xl sm:text-8xl lg:text-[9rem] lg:leading-[0.85] font-light tracking-tight text-text hero-text-shadow"
+          >
+            {data.title}
+          </h1>
+          <!-- Gold accent line — spans full title width -->
+          <div
+            class="hero-line mt-4 sm:mt-8 h-px w-full bg-gold/70"
+            aria-hidden="true"
+          >
+          </div>
+        </div>
+
+        <!-- Right: intro text on desktop only -->
+        <div class="hero-intro hidden lg:block lg:max-w-[26rem] lg:pb-2">
+          <div
+            class="intro-text prose prose-theme max-w-none"
+            set:html={content}
+          />
+        </div>
       </div>
     </div>
+
+    <!-- Scroll indicator — mobile/tablet only, organic glaze-drop motif -->
+    <div
+      class="scroll-indicator relative z-10 flex items-center justify-center pb-6 lg:hidden"
+      aria-hidden="true"
+    >
+      <svg
+        class="scroll-drop w-3 h-5"
+        viewBox="0 0 12 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6 0C6 0 0 9 0 13a6 6 0 0 0 12 0C12 9 6 0 6 0Z"
+          fill="currentColor"
+          class="text-gold/50"></path>
+      </svg>
+    </div>
   </section>
+
+  <!-- Intro section: below the fold on mobile only -->
   <section
+    id="intro-content"
     aria-label="Sisältö"
-    class="reveal mx-auto max-w-3xl px-4 my-16 lg:hidden"
+    class="mx-auto max-w-2xl px-6 pt-16 pb-24 sm:py-32 lg:hidden"
   >
-    <div class="prose prose-theme max-w-none" set:html={content} />
+    <!-- Pull-quote: a bold Caveat moment to reward scrolling -->
+    <blockquote
+      class="mobile-reveal mb-12 sm:mb-16"
+      aria-label="Lainaus taiteilijalta"
+    >
+      <p
+        class="font-display text-3xl sm:text-4xl text-gold/90 leading-snug tracking-tight"
+      >
+        "Annan teokselle rakennusaineet ja se itse sanelee ehdot."
+      </p>
+    </blockquote>
+
+    <div class="mobile-reveal relative pl-6 sm:pl-8">
+      <!-- Bolder accent line — thicker, taller, more presence -->
+      <div
+        class="accent-line absolute left-0 top-0 w-[2px] h-full bg-gradient-to-b from-gold via-gold/30 to-transparent"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="intro-text prose prose-theme max-w-[60ch]"
+        set:html={content}
+      />
+    </div>
   </section>
 </BaseLayout>
+
+<style>
+  /* Organic noise texture overlay */
+  .hero-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* Drop cap — dramatic Caveat first letter */
+  .intro-text :global(p:first-of-type::first-letter) {
+    font-family: 'Caveat', cursive;
+    font-size: 3.2em;
+    float: left;
+    line-height: 0.7;
+    margin-right: 0.15em;
+    margin-top: 0.08em;
+    padding-bottom: 0.1em;
+    color: #c4a35a;
+    font-weight: 400;
+  }
+
+  /* Lead paragraph — lighter weight, larger, brighter */
+  .intro-text :global(p:first-of-type) {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #e8ede9;
+    line-height: 1.8;
+    letter-spacing: 0.005em;
+  }
+
+  /* Body paragraphs — standard weight, muted, generous dark-mode line-height */
+  .intro-text :global(p) {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: #9aaa9e;
+  }
+
+  /* Paragraph spacing — generous, editorial rhythm */
+  .intro-text :global(p + p) {
+    margin-top: 1.5em;
+  }
+
+  /* Scroll indicator — organic drip rhythm */
+  .scroll-drop {
+    animation: drop-fall 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes drop-fall {
+    0% {
+      opacity: 0.3;
+      transform: translateY(0) scale(0.85);
+    }
+    40% {
+      opacity: 0.7;
+      transform: translateY(0) scale(1);
+    }
+    60% {
+      opacity: 0.7;
+      transform: translateY(0) scale(1);
+    }
+    85% {
+      opacity: 0.5;
+      transform: translateY(6px) scale(0.9);
+    }
+    100% {
+      opacity: 0.3;
+      transform: translateY(0) scale(0.85);
+    }
+  }
+
+  /* Text shadow safety net for hero text over variable background */
+  .hero-text-shadow {
+    text-shadow:
+      0 1px 8px rgba(10, 15, 10, 0.6),
+      0 2px 20px rgba(10, 15, 10, 0.4);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-drop {
+      animation: none;
+      opacity: 0.5;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  document.addEventListener('astro:page-load', () => {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+
+    const subtitle = document.querySelector('.hero-subtitle');
+    const title = document.querySelector('.hero-title');
+    const line = document.querySelector('.hero-line');
+    const intro = document.querySelector('.hero-intro');
+    const scrollInd = document.querySelector('.scroll-indicator');
+    const heroImg = document.querySelector('.hero-img');
+    const scrollDrop = document.querySelector('.scroll-drop');
+
+    // Mobile intro elements
+    const mobileReveals = document.querySelectorAll('.mobile-reveal');
+    const accentLine = document.querySelector('.accent-line');
+
+    if (prefersReducedMotion) {
+      gsap.set([subtitle, title, line, intro, scrollInd, scrollDrop], {
+        opacity: 1,
+        y: 0,
+        x: 0,
+        scale: 1,
+      });
+      gsap.set(mobileReveals, { opacity: 1, y: 0 });
+      if (accentLine) gsap.set(accentLine, { scaleY: 1 });
+      return;
+    }
+
+    // Subtle Ken Burns on the hero image
+    if (heroImg) {
+      gsap.fromTo(
+        heroImg,
+        { scale: 1.08 },
+        { scale: 1, duration: 8, ease: 'power1.out' },
+      );
+    }
+
+    // Staggered entrance choreography
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    tl.fromTo(
+      subtitle,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.7 },
+    )
+      .fromTo(
+        title,
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.9 },
+        '-=0.4',
+      )
+      .fromTo(
+        line,
+        { opacity: 0, scaleX: 0, transformOrigin: 'left center' },
+        { opacity: 1, scaleX: 1, duration: 0.6 },
+        '-=0.3',
+      )
+      .fromTo(
+        intro,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.7 },
+        '-=0.2',
+      )
+      .fromTo(
+        scrollInd,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5 },
+        '-=0.2',
+      );
+
+    // Hide scroll indicator when intro content scrolls into view
+    const introContent = document.getElementById('intro-content');
+    if (scrollInd && introContent && !prefersReducedMotion) {
+      const hideObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              gsap.to(scrollInd, {
+                opacity: 0,
+                duration: 0.4,
+                ease: 'power2.out',
+              });
+              hideObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.05 },
+      );
+      hideObserver.observe(introContent);
+    }
+
+    // Mobile intro: choreographed scroll-reveal
+    if (mobileReveals.length > 0) {
+      // Set initial hidden state
+      gsap.set(mobileReveals, { opacity: 0, y: 40 });
+      if (accentLine) {
+        gsap.set(accentLine, { scaleY: 0, transformOrigin: 'top center' });
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            const el = entry.target;
+            const isQuote = el.tagName === 'BLOCKQUOTE';
+
+            if (isQuote) {
+              // Blockquote: drift up with a slow, organic ease
+              gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power2.out',
+              });
+            } else {
+              // Prose container: staggered entrance
+              const revealTl = gsap.timeline({
+                defaults: { ease: 'power2.out' },
+              });
+
+              // Accent line grows downward like a brushstroke
+              if (accentLine) {
+                revealTl.to(accentLine, {
+                  scaleY: 1,
+                  duration: 0.8,
+                  ease: 'power3.out',
+                });
+              }
+
+              // Container fades in alongside the line
+              revealTl.to(
+                el,
+                { opacity: 1, y: 0, duration: 0.9 },
+                accentLine ? '-=0.6' : '0',
+              );
+
+              // Stagger individual paragraphs within the prose
+              const paragraphs = el.querySelectorAll('.intro-text p');
+              if (paragraphs.length > 1) {
+                gsap.set(Array.from(paragraphs).slice(1), {
+                  opacity: 0,
+                  y: 20,
+                });
+                revealTl.to(
+                  Array.from(paragraphs).slice(1),
+                  {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7,
+                    stagger: 0.15,
+                  },
+                  '-=0.4',
+                );
+              }
+            }
+
+            observer.unobserve(el);
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      mobileReveals.forEach((el) => observer.observe(el));
+    }
+  });
+</script>

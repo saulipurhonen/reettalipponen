@@ -8,7 +8,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
   background-color: #0a0f0a;
   color: #e8ede9;
 }
@@ -23,23 +23,54 @@ h1 {
   margin-top: 1.25em;
 }
 
+/* Slightly increased line-height for light-on-dark body text */
+.prose-theme {
+  font-kerning: normal;
+}
+
 :focus-visible {
-  outline: 2px solid #6b9e7a;
+  outline: 2px solid #c4a35a;
   outline-offset: 2px;
 }
 
 /* Typography plugin overrides for the green theme */
+
+/* Nav link hover underline — gold line slides in from left */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.25rem;
+  height: 1px;
+  background-color: #c4a35a;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link::after {
+    transition: none;
+  }
+}
+
 .prose-theme {
   --tw-prose-body: #e8ede9;
   --tw-prose-headings: #e8ede9;
   --tw-prose-lead: #9aaa9e;
-  --tw-prose-links: #6b9e7a;
+  --tw-prose-links: #c4a35a;
   --tw-prose-bold: #e8ede9;
-  --tw-prose-counters: #6b7d70;
-  --tw-prose-bullets: #4a7c59;
+  --tw-prose-counters: #9aaa9e;
+  --tw-prose-bullets: #c4a35a;
   --tw-prose-hr: #1e261e;
   --tw-prose-quotes: #9aaa9e;
-  --tw-prose-quote-borders: #4a7c59;
+  --tw-prose-quote-borders: #c4a35a;
   --tw-prose-captions: #6b7d70;
   --tw-prose-code: #e8ede9;
   --tw-prose-pre-code: #e8ede9;
