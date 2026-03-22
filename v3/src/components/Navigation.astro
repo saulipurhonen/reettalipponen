@@ -15,6 +15,7 @@ function isActive(href: string): boolean {
 <header
   id="site-header"
   class="sticky top-0 z-50 transition-transform duration-300"
+  {...pathname === '/' ? { 'data-home': '' } : {}}
 >
   <a
     href="#main-content"
@@ -257,14 +258,32 @@ function isActive(href: string): boolean {
         return;
       }
 
+      const isHome = header.hasAttribute('data-home');
+
       if (currentY <= 0) {
         header.classList.remove('-translate-y-full');
         header.style.backgroundColor = '';
         header.style.backdropFilter = '';
         header.classList.remove('shadow-lg');
-      } else if (currentY > lastScrollY && currentY > 80) {
-        // Scrolling down past threshold — hide
-        header.classList.add('-translate-y-full');
+      } else if (currentY > lastScrollY) {
+        // Scrolling down — hide after threshold
+        if (currentY > 80) {
+          header.classList.add('-translate-y-full');
+          // On home page, clear background after the slide-out transition ends
+          if (isHome) {
+            header.addEventListener('transitionend', function clearBg(e) {
+              if (
+                e.propertyName === 'transform' &&
+                header.classList.contains('-translate-y-full')
+              ) {
+                header.style.backgroundColor = '';
+                header.style.backdropFilter = '';
+                header.classList.remove('shadow-lg');
+              }
+              header.removeEventListener('transitionend', clearBg);
+            });
+          }
+        }
       } else {
         // Scrolling up — show with background
         header.classList.remove('-translate-y-full');
