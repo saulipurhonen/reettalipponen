@@ -8,7 +8,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Nunito Sans', system-ui, -apple-system, sans-serif;
   background-color: #0a0f0a;
   color: #e8ede9;
 }
@@ -21,6 +21,11 @@ h1 {
 
 .prose p + p {
   margin-top: 1.25em;
+}
+
+/* Slightly increased line-height for light-on-dark body text */
+.prose-theme {
+  font-kerning: normal;
 }
 
 :focus-visible {

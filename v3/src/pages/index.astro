@@ -83,9 +83,9 @@ const { data, content } = getContent<HomeData>('fi/home/index.md');
         </div>
 
         <!-- Right: intro text on desktop only -->
-        <div class="hero-intro hidden lg:block lg:max-w-sm lg:pb-2">
+        <div class="hero-intro hidden lg:block lg:max-w-[26rem] lg:pb-2">
           <div
-            class="prose prose-theme prose-lg max-w-none text-text-muted/90 leading-relaxed"
+            class="intro-text prose prose-theme max-w-none"
             set:html={content}
           />
         </div>
@@ -105,16 +105,17 @@ const { data, content } = getContent<HomeData>('fi/home/index.md');
   <!-- Intro section: below the fold on mobile only -->
   <section
     aria-label="Sisältö"
-    class="reveal mx-auto max-w-2xl px-6 pt-10 pb-20 sm:py-28 lg:hidden"
+    class="reveal mx-auto max-w-2xl px-6 pt-16 pb-24 sm:py-32 lg:hidden"
   >
-    <div class="relative">
+    <div class="relative pl-6 sm:pl-8">
+      <!-- Bolder accent line — thicker, taller, more presence -->
       <div
-        class="absolute -left-4 top-0 w-px h-full bg-gradient-to-b from-gold/40 via-gold/10 to-transparent"
+        class="absolute left-0 top-0 w-[2px] h-full bg-gradient-to-b from-gold via-gold/30 to-transparent"
         aria-hidden="true"
       >
       </div>
       <div
-        class="prose prose-theme prose-lg max-w-none text-text-muted leading-relaxed"
+        class="intro-text prose prose-theme max-w-[60ch]"
         set:html={content}
       />
     </div>
@@ -128,6 +129,40 @@ const { data, content } = getContent<HomeData>('fi/home/index.md');
     opacity: 0.03;
     mix-blend-mode: overlay;
     pointer-events: none;
+  }
+
+  /* Drop cap — dramatic Caveat first letter */
+  .intro-text :global(p:first-of-type::first-letter) {
+    font-family: 'Caveat', cursive;
+    font-size: 3.2em;
+    float: left;
+    line-height: 0.7;
+    margin-right: 0.15em;
+    margin-top: 0.08em;
+    padding-bottom: 0.1em;
+    color: #c4a35a;
+    font-weight: 400;
+  }
+
+  /* Lead paragraph — lighter weight, larger, brighter */
+  .intro-text :global(p:first-of-type) {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #e8ede9;
+    line-height: 1.8;
+    letter-spacing: 0.005em;
+  }
+
+  /* Body paragraphs — standard weight, muted, generous dark-mode line-height */
+  .intro-text :global(p) {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: #9aaa9e;
+  }
+
+  /* Paragraph spacing — generous, editorial rhythm */
+  .intro-text :global(p + p) {
+    margin-top: 1.5em;
   }
 
   /* Scroll indicator pulse */
