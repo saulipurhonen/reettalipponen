@@ -21,6 +21,10 @@ const { items } = Astro.props
 function toWebp(src: string): string {
   return src.replace(/\.jpe?g$/i, ".webp")
 }
+
+function to500(src: string): string {
+  return src.replace(/(\.\w+)$/, "_500$1")
+}
 ---
 
 <div class="divide-y divide-surface-elevated">
@@ -42,11 +46,18 @@ function toWebp(src: string): string {
                 aria-label={`Avaa kuva: ${img.alt || work.title || "Teos"}`}
               >
                 <picture>
-                  <source type="image/webp" srcset={webpSrc} />
+                  <source
+                    type="image/webp"
+                    srcset={`${toWebp(thumbSrc)} 250w, ${to500(toWebp(thumbSrc))} 500w`}
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                  />
                   <img
                     src={thumbSrc}
+                    srcset={`${thumbSrc} 250w, ${to500(thumbSrc)} 500w`}
+                    sizes="(min-width: 768px) 33vw, 100vw"
                     alt={img.alt || work.title || ""}
-                    width="250"
+                    width="500"
+                    height="750"
                     class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
