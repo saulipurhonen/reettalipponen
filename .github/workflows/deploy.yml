@@ -34,13 +34,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Debug esbuild versions
-        run: |
-          echo "=== npm ls esbuild ==="
-          npm ls esbuild 2>&1 || true
-          echo "=== esbuild binary version ==="
-          npx esbuild --version 2>&1 || true
-
       - name: Build
         run: npx tinacms build && npx astro build
         env:
