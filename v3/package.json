@@ -30,7 +30,7 @@
   "overrides": {
     "dompurify": "^3.3.3",
     "jsonpath-plus": "^10.3.0",
-    "esbuild": "^0.25.0",
+    "esbuild": "0.24.2",
     "lodash": "^4.17.22",
     "mermaid": "^10.9.3",
     "react-router": "^6.30.2",
