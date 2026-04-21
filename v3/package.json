@@ -15,7 +15,7 @@
     "@astrojs/tailwind": "^6.0.2",
     "@tailwindcss/typography": "^0.5.19",
     "@tinacms/cli": "^2.1.5",
-    "astro": "^5.8.0",
+    "astro": "^6.1.6",
     "gray-matter": "^4.0.3",
     "gsap": "^3.14.2",
     "marked": "^17.0.2",
