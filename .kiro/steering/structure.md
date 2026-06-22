@@ -39,7 +39,7 @@
 ├── public/
 │   ├── images/             # Full-size + thumbnail images (jpg, webp)
 │   ├── admin/              # TinaCMS admin UI (auto-generated)
-│   ├── CNAME               # Custom domain: reettalipponen.art
+│   ├── CNAME               # Custom domain: reettapurhonen.art
 │   └── favicon files
 └── dist/                   # Astro build output (deployed to GitHub Pages)
 
@@ -95,4 +95,4 @@
 - **Animations**: GSAP-powered `.reveal` class elements animate in via IntersectionObserver. View Transitions handle page-to-page slides. `prefers-reduced-motion` is respected.
 - **Lightbox**: Global lightbox in `BaseLayout.astro` with keyboard nav, focus trapping, and group navigation. Uses `is:inline` script to persist across View Transitions.
 - **Works pages**: Dynamic `[slug].astro` with slugs: `ceramic`, `installation`, `sculpture`, `customer`. Each has a `Gallery` component rendering work items with thumbnails.
-- **Deployment**: GitHub Actions workflow builds TinaCMS + Astro, deploys `v3/dist` to GitHub Pages. Custom domain: `reettalipponen.art`.
+- **Deployment**: GitHub Actions workflow builds TinaCMS + Astro, deploys `v3/dist` to GitHub Pages. Custom domain: `reettapurhonen.art`.

@@ -1,6 +1,6 @@
 ---
 title: Keramiikka
-description: Reetta Lipposen keramiikkatyöt
+description: Reetta Purhosen keramiikkatyöt
 slug: ceramic
 works:
   - title: Lotuksen tarina

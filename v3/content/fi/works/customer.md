@@ -1,6 +1,6 @@
 ---
 title: Asiakastyö
-description: Reetta Lipposen asiakastyöt
+description: Reetta Purhosen asiakastyöt
 slug: customer
 works:
   - title: Dancing Old Willow

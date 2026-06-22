@@ -1,6 +1,6 @@
 ---
 title: Installaatio
-description: Reetta Lipposen installaatiot
+description: Reetta Purhosen installaatiot
 slug: installation
 works:
   - title: Elämänpuu

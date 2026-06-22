@@ -8,7 +8,7 @@ Primary audience is art funders, fellow artists, and gallery curators — people
 
 **Creative · Talented · Welcoming**
 
-The artist (Reetta Lipponen) works across ceramics, installations, and sculpture. She's inspired by feeling and impulse rather than rigid planning — letting works find their own form. The site should reflect that organic, intuitive creative process while maintaining professional credibility.
+The artist (Reetta Purhonen) works across ceramics, installations, and sculpture. She's inspired by feeling and impulse rather than rigid planning — letting works find their own form. The site should reflect that organic, intuitive creative process while maintaining professional credibility.
 
 Tone: Warm but confident. Not cold or corporate. Not whimsical or childish. Think "welcoming studio visit with someone whose work speaks for itself."
 
