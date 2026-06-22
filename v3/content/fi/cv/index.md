@@ -1,10 +1,10 @@
 ---
 title: CV
-description: Reetta Lipponen - CV
+description: Reetta Purhonen - CV
 sections:
   - sectionTitle: Henkilötiedot
     entries:
-      - content: Lipponen Reetta Emilia
+      - content: Purhonen Reetta Emilia
       - content: '1986, Joensuu'
   - sectionTitle: Taideopinnot
     entries:

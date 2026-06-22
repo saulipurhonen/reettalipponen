@@ -1,6 +1,6 @@
 ---
 title: Taiteilijan lausunto
-description: Reetta Lipposen taiteilijan lausunto
+description: Reetta Purhosen taiteilijan lausunto
 ---
 
 Olen Joensuulaislähtöinen kuvanveistäjä ja asun tällä hetkellä Lappeenrannassa. Koulutukseltani olen kuva-artesaani sekä kuvataiteilija amk. Olen vuosien saatossa myös toiminut kuvataiteen opetustehtävissä sekä kulttuuritapahtumien tuottajana.

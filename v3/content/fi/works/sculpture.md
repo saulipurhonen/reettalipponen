@@ -1,6 +1,6 @@
 ---
 title: Veistos
-description: Reetta Lipposen veistokset
+description: Reetta Purhosen veistokset
 slug: sculpture
 works: []
 ---

@@ -1,6 +1,6 @@
 # Product Overview
 
-This is the personal portfolio website for Reetta Lipponen, a Finnish visual artist based in Lappeenranta. The site showcases her artwork (ceramics, installations, sculptures, customer work), CV, artist statement, and contact information.
+This is the personal portfolio website for Reetta Purhonen, a Finnish visual artist based in Lappeenranta. The site showcases her artwork (ceramics, installations, sculptures, customer work), CV, artist statement, and contact information.
 
 The content is primarily in Finnish.
 

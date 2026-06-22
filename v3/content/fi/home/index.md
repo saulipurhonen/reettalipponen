@@ -1,6 +1,6 @@
 ---
-title: Reetta Lipponen
-description: Reetta Lipponen - Kuvataiteilija
+title: Reetta Purhonen
+description: Reetta Purhonen - Kuvataiteilija
 ---
 
 Olen Joensuulaislähtöinen, Lappeenrannassa asuva kuvataiteilija. Työskentelen kuvanveiston sekä ympäristö- ja yhteisötaiteen parissa, ja olen toiminut myös kuvataiteen opetuksessa sekä kulttuuritapahtumien tuotannoissa.

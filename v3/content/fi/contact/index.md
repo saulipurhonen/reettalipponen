@@ -1,8 +1,8 @@
 ---
 title: Ota yhteyttä
-description: Ota yhteyttä - Reetta Lipponen
+description: Ota yhteyttä - Reetta Purhonen
 ---
 
-Reetta Lipponen
+Reetta Purhonen
 [email]
 Lappeenranta, Suomi
