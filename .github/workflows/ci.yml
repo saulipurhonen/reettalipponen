@@ -32,6 +32,9 @@ jobs:
         env:
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
           TINA_CLIENT_ID: ${{ secrets.TINA_CLIENT_ID }}
+          # Check against the PR branch's Tina Cloud index, not main's,
+          # so schema changes can be validated before merge.
+          TINA_BRANCH: ${{ github.head_ref }}
 
       - name: Build Astro
         run: npx astro build
