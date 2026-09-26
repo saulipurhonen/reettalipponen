@@ -10,8 +10,8 @@ describe('Navigation', () => {
 
   it('renders all expected Finnish labels', () => {
     const expectedLabels = [
-      'Etusivu', 'Keramiikka', 'Installaatio', 'Veistos',
-      'Asiakastyö', 'CV', 'Yhteystiedot'
+      'Etusivu', 'Keramiikka', 'Installaatio',
+      'Asiakastyö', 'CV', 'Taiteilijan lausunto', 'Ota yhteyttä'
     ];
     const labels = navItems.map(item => item.label);
     expect(labels).toEqual(expectedLabels);
