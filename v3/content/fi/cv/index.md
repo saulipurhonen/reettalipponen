@@ -104,6 +104,8 @@ sections:
         content: 'Välissä (yhteisnäyttely), Villa Suruton, Savonlinna'
       - date: '2027'
         content: 'Materiaalirakkaus II, Taidetila Hoppa, Jyväskylä'
+      - date: '2027'
+        content: 'Materiaalirakkaus II, Galleria Uusikuva, Kotka'
   - sectionTitle: Julkiset ja puolijulkiset teokset
     entries:
       - date: '2024'
