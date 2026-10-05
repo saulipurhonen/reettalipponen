@@ -3,13 +3,12 @@ title: Reetta Purhonen
 description: Reetta Purhonen - Kuvataiteilija
 ---
 
-Olen Joensuulaislähtöinen, Lappeenrannassa asuva kuvataiteilija. Työskentelen kuvanveiston sekä ympäristö- ja yhteisötaiteen parissa, ja olen toiminut myös kuvataiteen opetuksessa sekä kulttuuritapahtumien tuotannoissa.
+Taiteellisen työskentelyni ydin on keramiikka. Tällä hetkellä olen kiinnostunut erityisesti kuvanveistosta, jossa luonnosta kumpuavat muodot, yksityiskohdat, havainnot ja tunnelmat saavat uudenlaisen merkityksen. En halua työstää savea, vaan työskennellä sen kanssa yhdessä.
 
-Inspiroidun tunteesta ja hetkestä. En suunnittele teoksiani tarkasti etukäteen, vaan annan niiden muotoutua prosessin aikana — usein suunta voi muuttua vielä aivan lopussa.
+Työskentelytapani on intuitiivinen ja materiaalilähtöinen. Keramiikan primitiivipoltot tuovat mukanaan elementin, jota en voi täysin hallita – tuli tekee osansa ja savu sekä tuhka jättävät jälkensä.
 
-Teen myös esittävää, viimeisteltyä käyttökeramiikkaa, jonka aiheet kumpuavat luonnosta. Näissä teoksissa korostuvat muoto, materiaali ja tarkkuus.
+Minua viehättää myös eri aistien herättäminen. Visuaalisuuden rinnalle tuodut ulottuvuudet voivat muuttaa katsojan kokijaksi, osaksi teosta.
 
-Minua kiinnostaa visuaalisuuden lisäksi myös muiden aistien herättäminen — pyrin siihen, että teos ei ole vain nähtävä, vaan koettava.
 <!-- Olen Joensuulaislähtöinen, nykyisin Lappeenrannassa asuva kuvataiteilija. Olen toiminut myös kuvataiteen opetustehtävissä sekä kulttuuritapahtumien tuotannoissa. Mielenkiinnon kohteeni keskittyvät kuvanveistoon, sekä ympäristö- ja yhteisötaiteeseen.
 
 Inspiroidun ennemmin tunteesta ja hetken mielijohteesta, kuin pitkällisestä pohdinnasta. En luonnostele tai suunnittele teoksiani liian tarkasti, vaan annan niiden monesti muotoutua omanlaisekseen, joskus muuttaen suuntaa jopa aivan loppumetreillä. Annan teokselle rakennusaineet ja se itse sanelee ehdot, joita hyväksi käyttäen muokkaan lopputuloksen.
