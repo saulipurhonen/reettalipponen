@@ -33,7 +33,7 @@ sections:
       - date: 2017 - 2023
         content: 'Tuottaja, LastenPop-kulttuuritapahtuma, Joensuu'
       - date: 2015 - 2016
-        content: 'Kuvataideopettaja, Lasten- ja nuorten kuvataideleiri, Joensuun seudun kansalaisopisto'
+        content: 'Ohjaaja, Lasten- ja nuorten kuvataideleirit, Joensuun seudun kansalaisopisto'
       - date: 2013 - 2015
         content: 'Kuvataideohjaaja, iltapäiväkerho, Pielisensuun Ev. Lut. seurakunta'
       - date: 2012 - 2016
