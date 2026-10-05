@@ -14,6 +14,8 @@ sections:
         content: 'Kuvallisen ilmaisun perustutkinto, Ammattiopisto Outokumpu'
   - sectionTitle: Kulttuurialan työkokemus
     entries:
+      - date: '2026'
+        content: 'Työpajojen ohjaaja, Taide Etelä-Karjalan muutosvoimana -hanke'
       - date: '2023'
         content: 'Ohjaaja, Taidetyöpaja, Kulttuurin unelmavuoden pilottihanke, Lappeenranta'
       - date: 2023 -
