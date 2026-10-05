@@ -40,6 +40,8 @@ sections:
         content: 'Tuntiopettaja, kuvataiteen perusopetus, Joensuun seudun kansalaisopisto'
   - sectionTitle: Yksityisnäyttelyt
     entries:
+      - date: '2026'
+        content: 'Born to be Vino, Galleria HOI SIE, Lappeenranta'
       - date: '2024'
         content: 'Materiaalirakkaus, Taidekeskus Itä, Lappeenranta'
       - date: '2019'
