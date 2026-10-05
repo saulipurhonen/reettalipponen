@@ -10,8 +10,6 @@ sections:
     entries:
       - date: 2016 - 2020
         content: 'Kulttuurialan amk-tutkinto, kuvataiteilija, LAB-ammattikorkeakoulu, Lappeenranta'
-      - date: 2014 - 2015
-        content: 'Keramiikan perusteet, Joensuun seudun kansalaisopisto'
       - date: 2008 - 2011
         content: 'Kuvallisen ilmaisun perustutkinto, Ammattiopisto Outokumpu'
   - sectionTitle: Kulttuurialan työkokemus
