@@ -20,7 +20,7 @@ sections:
         content: 'Työpajojen ohjaaja, Taide Etelä-Karjalan muutosvoimana -hanke'
       - date: '2023'
         content: 'Ohjaaja, Taidetyöpaja, Kulttuurin unelmavuoden pilottihanke, Lappeenranta'
-      - date: 2023 -
+      - date: 2023 - 2026
         content: 'Koulutaiteilija, Metamorfoosi -hanke, Sammonlahden yläkoulu, Lappeenranta'
       - date: 2022 - 2023
         content: 'Ohjaaja, Harrastehaavi -hanke, Lappeenrannan nuorisotoimi'
