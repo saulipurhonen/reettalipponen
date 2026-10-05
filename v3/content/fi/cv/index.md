@@ -15,6 +15,8 @@ sections:
   - sectionTitle: Kulttuurialan työkokemus
     entries:
       - date: '2026'
+        content: 'Tuntiopettaja, Media-ala ja kuvallinen ilmaisu, Kouvolan ammattiopisto Eduko'
+      - date: '2026'
         content: 'Työpajojen ohjaaja, Taide Etelä-Karjalan muutosvoimana -hanke'
       - date: '2023'
         content: 'Ohjaaja, Taidetyöpaja, Kulttuurin unelmavuoden pilottihanke, Lappeenranta'
