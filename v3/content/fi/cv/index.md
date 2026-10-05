@@ -98,12 +98,12 @@ sections:
         content: 'Point of view, Kevätkumpu-kulttuurifestivaali, Outokumpu'
   - sectionTitle: Tulevat näyttelyt
     entries:
-      - date: '2027'
-        content: 'Välissä (yhteisnäyttely), Villa Suruton, Savonlinna'
       - date: '2026'
         content: 'Havaintoja, Galleria Pihatto, Lappeenranta'
-      - date: '2026'
-        content: 'Born to be Vino, Galleria HOI SIE, Lappeenranta'
+      - date: '2027'
+        content: 'Välissä (yhteisnäyttely), Villa Suruton, Savonlinna'
+      - date: '2027'
+        content: 'Materiaalirakkaus II, Taidetila Hoppa, Jyväskylä'
   - sectionTitle: Julkiset ja puolijulkiset teokset
     entries:
       - date: '2024'
