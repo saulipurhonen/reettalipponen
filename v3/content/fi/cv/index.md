@@ -31,7 +31,7 @@ sections:
       - date: 2015 - 2016
         content: 'Kuvataideopettaja, Lasten- ja nuorten kuvataideleiri, Joensuun seudun kansalaisopisto'
       - date: 2013 - 2015
-        content: 'Kuvataideopettaja, iltapäiväkerho, Pielisensuun Ev. Lut. seurakunta'
+        content: 'Kuvataideohjaaja, iltapäiväkerho, Pielisensuun Ev. Lut. seurakunta'
       - date: 2012 - 2016
         content: 'Tuntiopettaja, kuvataiteen perusopetus, Joensuun seudun kansalaisopisto'
   - sectionTitle: Yksityisnäyttelyt
