@@ -25,7 +25,7 @@ sections:
       - date: 2022 -
         content: 'Tuntiopettaja, kuvataiteen perusopetus, Savitaipaleen kansalaisopisto'
       - date: '2018'
-        content: 'Kuvataideopettaja, maahanmuuttajien kuvataidetyöpaja, Imatra'
+        content: 'Ohjaaja, maahanmuuttajien kuvataidetyöpaja, Imatra'
       - date: 2017 - 2023
         content: 'Tuottaja, LastenPop-kulttuuritapahtuma, Joensuu'
       - date: 2015 - 2016
