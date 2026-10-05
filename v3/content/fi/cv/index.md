@@ -128,6 +128,8 @@ sections:
         content: 'Istuvat lehmät- muraali (yhteistyö), Aution tila, Outokumpu'
   - sectionTitle: Yhteisötaideteokset
     entries:
+      - date: '2026'
+        content: 'Kompassi, Sammontalon piha-alue, Lappeenranta'
       - date: '2022'
         content: 'Värit, Pohjoinen rantapuisto, Joensuu'
       - date: '2022'
