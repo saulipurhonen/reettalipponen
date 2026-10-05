@@ -14,7 +14,7 @@ sections:
         content: 'Kuvallisen ilmaisun perustutkinto, Ammattiopisto Outokumpu'
   - sectionTitle: Kulttuurialan työkokemus
     entries:
-      - date: '2026'
+      - date: 2026 -
         content: 'Tuntiopettaja, Media-ala ja kuvallinen ilmaisu, Kouvolan ammattiopisto Eduko'
       - date: '2026'
         content: 'Työpajojen ohjaaja, Taide Etelä-Karjalan muutosvoimana -hanke'
